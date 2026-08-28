@@ -4,7 +4,7 @@
 
 Greenville, SC (remote / US remote) · [+1-864-517-4117](tel:+18645174117) · [adam@matthewsteinberger.com](mailto:adam@matthewsteinberger.com) · [linkedin.com/in/adammatthewsteinberger](https://www.linkedin.com/in/adammatthewsteinberger/) · [github.com/adammatthewsteinberger](https://github.com/adammatthewsteinberger) · [vibewithadam.matthewsteinberger.com](https://vibewithadam.matthewsteinberger.com) · [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
 
-> Available September 2026 for Staff Software Architect, AI Automation Engineer, Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles — W2 preferred, contract-to-hire OK.
+> Available from September 2026 for Staff Software Architect, AI Automation Engineer, Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles — W2 preferred, contract-to-hire OK.
 
 ## Summary
 
