@@ -4,7 +4,7 @@ RAG systems, event-driven Azure microservices, and automation pipelines that the
 
 Greenville, SC (remote / US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com | vibewithadam.matthewsteinberger.com/join-me
 
-Available September 2026 for Staff Software Architect, AI Automation Engineer, Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles — W2 preferred, contract-to-hire OK.
+Available from September 2026 for Staff Software Architect, AI Automation Engineer, Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles — W2 preferred, contract-to-hire OK.
 
 SUMMARY
 I build AI systems that actually work inside enterprise environments — production-grade platforms that handle real data, real security requirements, and real organizational complexity, not demos. 13+ years across AI, cloud, fintech, insurance, healthcare, and cybersecurity. Most recently: sole architect of a multi-vendor AI governance gateway, co-lead of a 20-microservice AI payroll platform, author of two identity-governance-as-code control planes and the shared Python platform library adopted by 17+ repositories — all on private AKS with secretless (OIDC / workload identity) delivery and supply-chain security in CI. The work starts with a business problem nobody has solved cleanly and ends with something the people who inherit it can run — architecture documented before code, junior developers trained in parallel, handoffs that hold. I document everything for the same reason a RAG pipeline cites its sources.

@@ -23,7 +23,7 @@ CONTACT = [
     ("vibewithadam.matthewsteinberger.com", "https://vibewithadam.matthewsteinberger.com"),
     ("vibewithadam.matthewsteinberger.com/join-me", "https://vibewithadam.matthewsteinberger.com/join-me"),
 ]
-AVAILABILITY = ("Available September 2026 for Staff Software Architect, AI Automation Engineer, "
+AVAILABILITY = ("Available from September 2026 for Staff Software Architect, AI Automation Engineer, "
                 "Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles "
                 "— W2 preferred, contract-to-hire OK.")
 
