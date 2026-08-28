@@ -2,7 +2,7 @@
 
 **Staff Software Architect & AI Automation Engineer** — RAG systems, event-driven Azure microservices, and automation pipelines that the people who inherit them can actually run.
 
-Greenville, SC (remote / US remote) · [+1-864-517-4117](tel:+18645174117) · [adam@matthewsteinberger.com](mailto:adam@matthewsteinberger.com) · [linkedin.com/in/adammatthewsteinberger](https://www.linkedin.com/in/adammatthewsteinberger/) · [github.com/adammatthewsteinberger](https://github.com/adammatthewsteinberger) · [hire.adam.matthewsteinberger.com](https://hire.adam.matthewsteinberger.com)
+Greenville, SC (remote / US remote) · [+1-864-517-4117](tel:+18645174117) · [adam@matthewsteinberger.com](mailto:adam@matthewsteinberger.com) · [linkedin.com/in/adammatthewsteinberger](https://www.linkedin.com/in/adammatthewsteinberger/) · [github.com/adammatthewsteinberger](https://github.com/adammatthewsteinberger) · [vibewithadam.matthewsteinberger.com](https://vibewithadam.matthewsteinberger.com) · [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
 
 > Available September 2026 for Staff Software Architect, AI Automation Engineer, Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles — W2 preferred, contract-to-hire OK.
 
@@ -75,14 +75,14 @@ I build AI systems that actually work inside enterprise environments — product
 
 ## Open Source
 
-- **[claudeloop](https://github.com/adammatthewsteinberger/claudeloop) · [codexloop](https://github.com/adammatthewsteinberger/codexloop) · [cursorloop](https://github.com/adammatthewsteinberger/cursorloop) · [agyloop](https://github.com/adammatthewsteinberger/agyloop) · [vibey](https://github.com/adammatthewsteinberger/vibey)** — Onion-architected autonomous session runners for Claude Code, OpenAI Codex, Cursor Agent, and Google Antigravity _(never block on a human; distinguish rate-limit windows from exhausted credits)_ and **vibey**, the six-phase PostgreSQL-backed conductor on top of them.
-- **[vibey-bootstrap](https://github.com/adammatthewsteinberger/vibey-bootstrap) · [vibey-skills](https://github.com/adammatthewsteinberger/vibey-skills)** — The Azure Functions cross-cutting layer _(formerly azure-bootstrap; 17+ repos)_ and an **18-plugin / 71-skill** Claude Code marketplace _(formerly vibe-engineering-skills)_.
+- **[claudeloop](https://github.com/adammatthewsteinberger/claudeloop) · [codexloop](https://github.com/adammatthewsteinberger/codexloop) · [cursorloop](https://github.com/adammatthewsteinberger/cursorloop) · [agyloop](https://github.com/adammatthewsteinberger/agyloop) · [qwenloop](https://github.com/adammatthewsteinberger/qwenloop) · [vibey](https://github.com/adammatthewsteinberger/vibey) · [vibey-gh](https://github.com/adammatthewsteinberger/vibey-gh)** — Onion-architected autonomous session runners for Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity, and a fully local Qwen 2.5 Coder _(never block on a human; distinguish rate-limit windows from exhausted credits)_; **vibey**, the six-phase PostgreSQL-backed conductor on top of them; and **vibey-gh**, stdlib-only release automation (provenance, merge train, dual-channel releases).
+- **[vibey-bootstrap](https://github.com/adammatthewsteinberger/vibey-bootstrap) · [vibey-skills](https://github.com/adammatthewsteinberger/vibey-skills)** — The Azure Functions cross-cutting layer _(formerly azure-bootstrap; 17+ repos)_ and a Claude Code marketplace of evidence-grounded practitioner skills _(formerly vibe-engineering-skills)_.
 
-All MIT-licensed, on PyPI — [hire.adam.matthewsteinberger.com/open-source](https://hire.adam.matthewsteinberger.com/open-source)
+All MIT-licensed, on PyPI. Contributors and volunteers welcome — [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
 
 ## Publications
 
-- **[Novice to Navigator: Your Guide to AI Chatbots for Business](https://hire.adam.matthewsteinberger.com/novice-to-navigator)** — Plain-English guide to RAG chatbots for decision-makers; **first edition free online**, second edition in development _(ISBN 979-8274310628)_.
+- **[Novice to Navigator: Your Guide to AI Chatbots for Business](https://vibewithadam.matthewsteinberger.com/novice-to-navigator)** — Plain-English guide to RAG chatbots for decision-makers; **first edition free online**, second edition in development _(ISBN 979-8274310628)_.
 
 ## Education & Certifications
 
@@ -92,4 +92,6 @@ All MIT-licensed, on PyPI — [hire.adam.matthewsteinberger.com/open-source](htt
 
 ---
 
-Formats: [PDF](adam-steinberger-resume.pdf) · [DOCX](adam-steinberger-resume.docx) · [TXT](adam-steinberger-resume.txt) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [hire.adam.matthewsteinberger.com/hire-me](https://hire.adam.matthewsteinberger.com/hire-me)
+Formats: [PDF](adam-steinberger-resume.pdf) · [DOCX](adam-steinberger-resume.docx) · [TXT](adam-steinberger-resume.txt) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibewithadam.matthewsteinberger.com/hire-me](https://vibewithadam.matthewsteinberger.com/hire-me)
+
+License: code [MIT](LICENSE) · résumé content [CC BY 4.0](LICENSE-CONTENT.md) · builder: `tools/build_resume.py`
