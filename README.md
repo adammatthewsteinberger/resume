@@ -93,3 +93,5 @@ All MIT-licensed, on PyPI. Contributors and volunteers welcome — [vibe.with.ad
 ---
 
 Formats: [PDF](adam-steinberger-resume.pdf) · [DOCX](adam-steinberger-resume.docx) · [TXT](adam-steinberger-resume.txt) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibe.with.adam.matthewsteinberger.com/hire-me](https://vibe.with.adam.matthewsteinberger.com/hire-me)
+
+License: code [MIT](LICENSE) · résumé content [CC BY 4.0](LICENSE-CONTENT.md) · builder: `tools/build_resume.py`
