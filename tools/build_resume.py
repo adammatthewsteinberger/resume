@@ -2,7 +2,7 @@
 """Single-source résumé builder: emits README.md, .txt, .docx, .html (→ PDF via Chrome).
 
 Content is data below; every output is derived from it so the formats never drift.
-Sources of truth: LinkedIn profile export (2026-08-18), vibe.with.adam.matthewsteinberger.com,
+Sources of truth: LinkedIn profile export (2026-08-18), vibewithadam.matthewsteinberger.com,
 GitHub/PyPI, and the book manuscripts. No invented metrics.
 """
 import html, json, re, sys, os
@@ -20,8 +20,8 @@ CONTACT = [
     ("adam@matthewsteinberger.com", "mailto:adam@matthewsteinberger.com"),
     ("linkedin.com/in/adammatthewsteinberger", "https://www.linkedin.com/in/adammatthewsteinberger/"),
     ("github.com/adammatthewsteinberger", "https://github.com/adammatthewsteinberger"),
-    ("vibe.with.adam.matthewsteinberger.com", "https://vibe.with.adam.matthewsteinberger.com"),
-    ("vibe.with.adam.matthewsteinberger.com/join-me", "https://vibe.with.adam.matthewsteinberger.com/join-me"),
+    ("vibewithadam.matthewsteinberger.com", "https://vibewithadam.matthewsteinberger.com"),
+    ("vibewithadam.matthewsteinberger.com/join-me", "https://vibewithadam.matthewsteinberger.com/join-me"),
 ]
 AVAILABILITY = ("Available September 2026 for Staff Software Architect, AI Automation Engineer, "
                 "Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles "
@@ -235,8 +235,8 @@ OSS_LINKS = {n: f"https://github.com/adammatthewsteinberger/{n}" for n in
              ["claudeloop", "codexloop", "cursorloop", "agyloop", "qwenloop", "vibey", "vibey-gh",
               "vibey-bootstrap", "vibey-skills"]}
 OSS_NOTE = "All MIT-licensed, on PyPI. Contributors and volunteers welcome — "
-OSS_NOTE_URL = "https://vibe.with.adam.matthewsteinberger.com/join-me"
-OSS_NOTE_LINK_TEXT = "vibe.with.adam.matthewsteinberger.com/join-me"
+OSS_NOTE_URL = "https://vibewithadam.matthewsteinberger.com/join-me"
+OSS_NOTE_LINK_TEXT = "vibewithadam.matthewsteinberger.com/join-me"
 
 def oss_names(name):
     """Split 'a · b · c' into [(name, url-or-None), ...]."""
@@ -244,7 +244,7 @@ def oss_names(name):
 
 PUBLICATIONS = [
     ("Novice to Navigator: Your Guide to AI Chatbots for Business",
-     "Plain-English guide to RAG chatbots for decision-makers; **first edition free online**, second edition in development _(ISBN 979-8274310628)_.", "https://vibe.with.adam.matthewsteinberger.com/novice-to-navigator"),
+     "Plain-English guide to RAG chatbots for decision-makers; **first edition free online**, second edition in development _(ISBN 979-8274310628)_.", "https://vibewithadam.matthewsteinberger.com/novice-to-navigator"),
 ]
 
 EDUCATION = [
@@ -350,7 +350,7 @@ def md():
     L.append("")
     L.append("Formats: [PDF](adam-steinberger-resume.pdf) · [DOCX](adam-steinberger-resume.docx) · "
              "[TXT](adam-steinberger-resume.txt) · [Scrum certificate](scrum-certificate.pdf) · "
-             "Everything else: [vibe.with.adam.matthewsteinberger.com/hire-me](https://vibe.with.adam.matthewsteinberger.com/hire-me)")
+             "Everything else: [vibewithadam.matthewsteinberger.com/hire-me](https://vibewithadam.matthewsteinberger.com/hire-me)")
     L.append("")
     L.append("License: code [MIT](LICENSE) · résumé content [CC BY 4.0](LICENSE-CONTENT.md) · builder: `tools/build_resume.py`")
     L.append("")
