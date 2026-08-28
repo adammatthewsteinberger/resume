@@ -21,6 +21,7 @@ CONTACT = [
     ("linkedin.com/in/adammatthewsteinberger", "https://www.linkedin.com/in/adammatthewsteinberger/"),
     ("github.com/adammatthewsteinberger", "https://github.com/adammatthewsteinberger"),
     ("hire.adam.matthewsteinberger.com", "https://hire.adam.matthewsteinberger.com"),
+    ("hire.adam.matthewsteinberger.com/join-me", "https://hire.adam.matthewsteinberger.com/join-me"),
 ]
 AVAILABILITY = ("Available September 2026 for Staff Software Architect, AI Automation Engineer, "
                 "Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles "
@@ -220,21 +221,22 @@ EXPERIENCE = [
 ]
 
 OPEN_SOURCE = [
-    ("claudeloop · codexloop · cursorloop · agyloop · vibey",
-     "Onion-architected autonomous session runners for Claude Code, OpenAI Codex, Cursor Agent, and Google Antigravity "
-     "_(never block on a human; distinguish rate-limit windows from exhausted credits)_ and **vibey**, the six-phase PostgreSQL-backed "
-     "conductor on top of them.", "https://github.com/adammatthewsteinberger/claudeloop"),
+    ("claudeloop · codexloop · cursorloop · agyloop · qwenloop · vibey · vibey-gh",
+     "Onion-architected autonomous session runners for Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity, and a fully local "
+     "Qwen 2.5 Coder _(never block on a human; distinguish rate-limit windows from exhausted credits)_; **vibey**, the six-phase "
+     "PostgreSQL-backed conductor on top of them; and **vibey-gh**, stdlib-only release automation (provenance, merge train, "
+     "dual-channel releases).", "https://github.com/adammatthewsteinberger/claudeloop"),
     ("vibey-bootstrap · vibey-skills",
-     "The Azure Functions cross-cutting layer _(formerly azure-bootstrap; 17+ repos)_ and an **18-plugin / 71-skill** Claude Code marketplace "
-     "_(formerly vibe-engineering-skills)_.", "https://github.com/adammatthewsteinberger/vibey-bootstrap"),
+     "The Azure Functions cross-cutting layer _(formerly azure-bootstrap; 17+ repos)_ and a Claude Code marketplace of evidence-grounded "
+     "practitioner skills _(formerly vibe-engineering-skills)_.", "https://github.com/adammatthewsteinberger/vibey-bootstrap"),
 ]
 # Every " · "-separated package name in an OPEN_SOURCE entry is linked to its own repo.
 OSS_LINKS = {n: f"https://github.com/adammatthewsteinberger/{n}" for n in
-             ["claudeloop", "codexloop", "cursorloop", "agyloop", "vibey",
+             ["claudeloop", "codexloop", "cursorloop", "agyloop", "qwenloop", "vibey", "vibey-gh",
               "vibey-bootstrap", "vibey-skills"]}
-OSS_NOTE = "All MIT-licensed, on PyPI — "
-OSS_NOTE_URL = "https://hire.adam.matthewsteinberger.com/open-source"
-OSS_NOTE_LINK_TEXT = "hire.adam.matthewsteinberger.com/open-source"
+OSS_NOTE = "All MIT-licensed, on PyPI. Contributors and volunteers welcome — "
+OSS_NOTE_URL = "https://hire.adam.matthewsteinberger.com/join-me"
+OSS_NOTE_LINK_TEXT = "hire.adam.matthewsteinberger.com/join-me"
 
 def oss_names(name):
     """Split 'a · b · c' into [(name, url-or-None), ...]."""

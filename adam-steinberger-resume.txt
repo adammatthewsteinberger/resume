@@ -2,7 +2,7 @@ ADAM MATTHEW STEINBERGER
 Staff Software Architect & AI Automation Engineer
 RAG systems, event-driven Azure microservices, and automation pipelines that the people who inherit them can actually run.
 
-Greenville, SC (remote / US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | hire.adam.matthewsteinberger.com
+Greenville, SC (remote / US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | hire.adam.matthewsteinberger.com | hire.adam.matthewsteinberger.com/join-me
 
 Available September 2026 for Staff Software Architect, AI Automation Engineer, Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles — W2 preferred, contract-to-hire OK.
 
@@ -66,9 +66,9 @@ EARLIER EXPERIENCE
 - GE HealthCare - Junior Software Engineer, Barrington, IL (Aug 2012 – Feb 2013). Zero Footprint (ZFP), a browser-based JavaScript CT/MRI viewer for real-time 3D scrolling; built the full i18n feature. First Scrum team.
 
 OPEN SOURCE
-- claudeloop · codexloop · cursorloop · agyloop · vibey: Onion-architected autonomous session runners for Claude Code, OpenAI Codex, Cursor Agent, and Google Antigravity (never block on a human; distinguish rate-limit windows from exhausted credits) and vibey, the six-phase PostgreSQL-backed conductor on top of them. (https://github.com/adammatthewsteinberger/claudeloop)
-- vibey-bootstrap · vibey-skills: The Azure Functions cross-cutting layer (formerly azure-bootstrap; 17+ repos) and an 18-plugin / 71-skill Claude Code marketplace (formerly vibe-engineering-skills). (https://github.com/adammatthewsteinberger/vibey-bootstrap)
-All MIT-licensed, on PyPI — hire.adam.matthewsteinberger.com/open-source
+- claudeloop · codexloop · cursorloop · agyloop · qwenloop · vibey · vibey-gh: Onion-architected autonomous session runners for Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity, and a fully local Qwen 2.5 Coder (never block on a human; distinguish rate-limit windows from exhausted credits); vibey, the six-phase PostgreSQL-backed conductor on top of them; and vibey-gh, stdlib-only release automation (provenance, merge train, dual-channel releases). (https://github.com/adammatthewsteinberger/claudeloop)
+- vibey-bootstrap · vibey-skills: The Azure Functions cross-cutting layer (formerly azure-bootstrap; 17+ repos) and a Claude Code marketplace of evidence-grounded practitioner skills (formerly vibe-engineering-skills). (https://github.com/adammatthewsteinberger/vibey-bootstrap)
+All MIT-licensed, on PyPI. Contributors and volunteers welcome — hire.adam.matthewsteinberger.com/join-me
 
 PUBLICATIONS
 - Novice to Navigator: Your Guide to AI Chatbots for Business: Plain-English guide to RAG chatbots for decision-makers; first edition free online, second edition in development (ISBN 979-8274310628). (https://hire.adam.matthewsteinberger.com/novice-to-navigator)
