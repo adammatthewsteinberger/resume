@@ -31,8 +31,8 @@ AVAILABILITY = ("Available from September 2026 for Staff Software Architect, AI 
 SUMMARY = (
     "I build AI systems that actually work inside enterprise environments — production-grade platforms that "
     "handle real data, real security requirements, and real organizational complexity, *not demos*. **13+ years** "
-    "across AI, cloud, fintech, insurance, healthcare, and cybersecurity. Most recently: **creator of vibey**, an "
-    "open-source conductor for AI coding agents (1.0.0 on PyPI); before that, **sole architect of a "
+    "across AI, cloud, fintech, insurance, healthcare, and cybersecurity. Most recently: **creator of vibey** "
+    "(open source); before that, **sole architect of a "
     "multi-vendor AI governance gateway**, **co-lead of a 20-microservice AI payroll platform**, author of two "
     "identity-governance-as-code control planes and the shared Python platform library adopted by 17+ repositories "
     "— all on private AKS with secretless (OIDC / workload identity) delivery and supply-chain security in CI. "
@@ -43,8 +43,7 @@ SUMMARY = (
 
 SKILLS = [
     ("AI & LLM Systems", "RAG and vector search (pgvector, FAISS, Azure AI Search, Pinecone), multi-vendor LLM gateways with cost/policy "
-                         "governance, AI agents and multi-agent orchestration (including coding agents across Claude Code, Codex, "
-                         "Cursor, and Antigravity), MCP servers, structured outputs, HITL gating, LoRA fine-tuning; "
+                         "governance, AI agents and multi-agent orchestration, MCP servers, structured outputs, HITL gating, LoRA fine-tuning; "
                          "Azure OpenAI/Foundry, Claude, GPT, Gemini, Grok, Mistral, vLLM, Ollama, LangChain, Document Intelligence, "
                          "Content Safety; OWASP LLM Top 10 / NIST AI RMF"),
     ("Azure & Cloud", "AKS (private clusters, workload identity, KEDA), Functions, App Service, Service Bus, Event Hubs, Key Vault, "
@@ -60,8 +59,8 @@ SKILLS = [
     ("Languages & Frameworks", "Python 3.11/3.12 (FastAPI, Flask, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, "
                                "Next.js 15/16 + React 19, C#/.NET (Web API, MVC), Java Spring Boot, gRPC/REST, OpenAPI 3.1, Bash, SQL, KQL"),
     ("Quality & Data", "pytest, Hypothesis, mutmut, contract/e2e/chaos tests, mypy --strict, ruff, import-linter-enforced onion "
-                       "architecture; PostgreSQL (job queues on SKIP LOCKED, append-only event ledgers), MongoDB, Snowflake, "
-                       "SQL Server, Oracle, Redis; ETL/API integrations (HubSpot, SharePoint, Salesforce, Outlook)"),
+                       "architecture; PostgreSQL, MongoDB, Snowflake, SQL Server, Oracle, Redis; ETL/API integrations (HubSpot, "
+                       "SharePoint, Salesforce, Outlook)"),
     ("Delivery & Leadership", "Discovery → documented solution → Jira decomposition → mentored handoff; Scrum (CSM), "
                               "Security-First Scrum (author), evidence-based delivery (DORA/CHAOS/QSM), architecture documentation, mentoring"),
 ]
@@ -85,6 +84,9 @@ EXPERIENCE = [
             "vibey-gh, my stdlib-only release tool (merge train, provenance trailers, commit-derived versions, TestPyPI/PyPI); "
             "a Helm chart (KEDA, kopf operator) installed on minikube in CI. **~100k lines of Python source, ~121k lines of "
             "tests, 37 ADRs, 188 merged PRs, 11 PyPI releases** (Aug–Sep 2026).",
+            "**vibey-bootstrap** _(formerly azure-bootstrap; built at Vizius)_ — the firm's Python platform library through three "
+            "major versions on PyPI, **adopted by 17+ repositories** (logging, alerting, dead-letter consumers, outbox); 86% "
+            "coverage; four platforms refactored onto it.",
         ],
     },
     {
@@ -107,11 +109,11 @@ EXPERIENCE = [
             "AI-directed spreadsheet corrections, earnings and report review. Owned Terraform, 20 Helm charts, Kustomize, "
             "GitOps, and 10 CI/CD workflows; 585 test modules across unit/integration/contract/e2e/smoke. Architecture "
             "**production-ready at day 45**; a junior developer trained in parallel now owns it.",
-            "**Technical report generation platform** _(lead, ~54k LOC)_ — turns raw electrical-testing instrument data into "
-            "standards-aware customer deliverables: mail-webhook ingestion with per-document fan-out, a multi-vendor parser seam, "
-            "a deterministic deficiency analyzer fed by a scraped standards store plus LLM review, blocking data-quality validation, "
+            "**Technical report generation platform** _(lead, ~54k LOC)_ — turns electrical-testing instrument data into "
+            "standards-aware client reports: mail-webhook ingestion with per-document fan-out, a multi-vendor parser seam, "
+            "a deterministic deficiency analyzer (scraped standards plus LLM review), blocking data-quality gates, "
             "SAML 2.0 + Entra dual-issuer SSO, per-user bearer auth replacing a shared API key. **Eliminated silent false-success "
-            "deploys**; authored the SOC 2 readiness assessment, threat model, ADRs, and an evidence-based delivery operating model.",
+            "deploys**; wrote the SOC 2 readiness assessment, threat model, ADRs, and an evidence-based delivery model.",
             "**Identity governance as code** _(sole author, two control planes)_ — a Kubernetes operator (kopf) that reconciles "
             "directory governance state against Git-declared custom resources with **fully secretless multi-tenant auth** "
             "(federated credentials, zero stored tenant secrets) and an LLM that drafts pull requests for judgment calls; and "
@@ -124,14 +126,9 @@ EXPERIENCE = [
             "mypy --strict clean, import-linter-enforced pure domain, property/mutation/chaos tests proving convergence.",
             "**Multi-tenant observability portal** _(lead)_ — sub-second streaming, analytical, and federated APM/vendor/cost planes, "
             "**every payload tagged with its freshness**; CLI, REST, HMAC webhooks, MCP server, and SDK over one core; SAML SSO; KEDA.",
-            "**vibey-bootstrap** _(formerly azure-bootstrap; open source, MIT)_ — authored the firm's shared Python platform library "
-            "through three major versions on PyPI, **adopted by 17+ repositories**: four-phase logging↔config bootstrap, structured "
-            "logging with correlation IDs and masking, tiered alerting, ingress classifier, dead-letter-aware consumers, ten logging "
-            "transports behind a never-block/never-raise shipper, transactional outbox; 86% coverage; four platforms refactored to "
-            "delete the code it replaced.",
-            "**DevSecOps, secretless by default** — OIDC workload identity federation across 20 CI workflows in 9 repositories, "
-            "managed identity at runtime, CSI-driver vault secrets; supply-chain pipelines with SAST, SCA, IaC scanning, secret "
-            "detection, SBOM generation, keyless image signing, and policy-as-code admission; cleared 24 IaC policy findings; "
+            "**DevSecOps, secretless by default** — OIDC workload identity federation for 20 CI workflows in 9 repos, "
+            "managed identity at runtime, CSI-driver vault secrets; supply-chain pipelines with SAST, SCA, IaC and secret "
+            "scanning, SBOMs, keyless signing, and policy-as-code admission; cleared 24 IaC policy findings; "
             "**security self-reviews** closed an auth bypass, path traversal, SSRF, timing-unsafe comparison, query injection, and "
             "an over-scoped CI credential before release. Cross-tenant production migration on OIDC and least-privilege RBAC.",
             "**Architecture & advisory** — **five formal architecture document sets (~180 pages)** including a three-tier package "
@@ -153,28 +150,23 @@ EXPERIENCE = [
         "bullets": [
             "**Project Excite** — designed and built an **adapter-based relay microservice** handing seekers from the AI to live volunteers "
             "on Chatwoot or EchoGlobal: abstract adapter + concrete adapters, **explicit session state machine with idempotent teardown**, "
-            "Redis-backed session manager, HMAC-verified webhooks, QStash-queued delivery, shared in-session @agent. Three technical "
-            "executive summaries and a unified relay schema reference written before implementation.",
-            "**Shipped across split PR stacks** (schema, relay lib/HTTP, backend proxy, client UI, admin monitoring) plus **security hardening** "
-            "(XSS via DOMPurify, CORS allowlist, Sentry PII off, rate limiting) and CI/PHPUnit repair; ~68 commits.",
+            "Redis-backed session manager, HMAC-verified webhooks, QStash-queued delivery, shared in-session @agent; three technical "
+            "executive summaries and a unified relay schema reference came first. **Shipped across split PR stacks** (schema, relay "
+            "lib/HTTP, backend proxy, client UI, admin monitoring) plus **security hardening** (XSS via DOMPurify, CORS allowlist, "
+            "Sentry PII off, rate limiting) and CI/PHPUnit repair; ~68 commits.",
         ],
     },
     {
         "org": "Adam Matthew Steinberger LLC", "loc": "Greenville, SC",
-        "role": "Independent product design", "dates": "2026",
+        "role": "Senior Software Engineering Consultant (Mar – Aug 2025); independent product design (2026)",
+        "dates": "Mar 2025 – 2026",
+        "blurb": "Four engagements in six months, then independent product design.",
         "bullets": [
-            "**Business plans and software architecture documents** for two SaaS concepts — a mobile-first social platform (React Native, "
-            "FastAPI, Azure Container Apps) and a decentralized confidential-AI protocol.",
-        ],
-    },
-    {
-        "org": "Adam Matthew Steinberger LLC", "loc": "Greenville, SC",
-        "role": "Senior Software Engineering Consultant", "dates": "Mar 2025 – Aug 2025",
-        "blurb": "Four engagements in six months.",
-        "bullets": [
-            "**Self-hosted RAG chatbot** _(non-profit)_ — on-premise RAG on Mistral-7B + FAISS behind an OpenAI-compatible vLLM API; "
-            "Grafana/Prometheus on every token; Docker on bare metal; **zero external dependencies; shipped in 30 days**.",
-            "**Cloud RAG chatbot** _(sales agency)_ — Gemini-based RAG with API-driven web search; **shipped in 30 days**.",
+            "**Business plans and software architecture documents** _(2026)_ for two SaaS concepts — a mobile-first social platform "
+            "(React Native, FastAPI, Azure Container Apps) and a decentralized confidential-AI protocol.",
+            "**Two RAG chatbots, 30 days each** — self-hosted _(non-profit)_: Mistral-7B + FAISS behind OpenAI-compatible vLLM, "
+            "Grafana/Prometheus on every token, Docker on bare metal, **zero external dependencies**; cloud _(sales agency)_: "
+            "Gemini RAG with API-driven web search.",
             "**Web push notification system** _(non-profit, GodFocus)_ — timezone-aware scheduling, personalization, VAPID encryption; "
             "**159/159 tests, 85.84% coverage** via AI-assisted TDD in **5 billable hours against a 30+ hour estimate**.",
             "**Codebase review & architecture** _(non-profit)_ — **190+ files / 59,000 lines in 10 hours**; surfaced 5% test coverage and "
@@ -245,10 +237,9 @@ EXPERIENCE = [
 
 OPEN_SOURCE = [
     ("vibey · PyPI · docs",
-     "One repository and one PyPI distribution for the conductor, the claudeloop, codexloop, cursorloop, agyloop, and "
-     "qwenloop runners _(never block on a human; distinguish rate-limit windows from exhausted credits)_, vibey-gh, "
-     "vibey-skills _(formerly vibe-engineering-skills)_, and vibey-bootstrap _(formerly azure-bootstrap)_; the separate "
-     "repositories and packages are retired.", "https://github.com/the-vibey-project/vibey"),
+     "One repo, one PyPI distribution: the conductor, the claudeloop, codexloop, cursorloop, agyloop, and qwenloop "
+     "runners _(never block on a human; tell rate-limit windows from exhausted credits)_, vibey-gh, and vibey-skills "
+     "_(formerly vibe-engineering-skills)_.", "https://github.com/the-vibey-project/vibey"),
 ]
 # Every " · "-separated name in an OPEN_SOURCE entry is linked to its own URL.
 OSS_LINKS = {
@@ -268,7 +259,7 @@ PUBLICATIONS = [
     ("Novice to Navigator: Your Guide to AI Chatbots for Business",
      "Plain-English guide to RAG chatbots for decision-makers; **first edition free online**, second edition in development _(ISBN 979-8274310628)_.", "https://vibewithadam.matthewsteinberger.com/novice-to-navigator"),
     ("Ledger-Mediated Orchestration: Vendor-Independent Autonomous Software Delivery over a Pool of Coding Agents",
-     "Technical paper on vibey's design, published with its docs _(2026; not peer-reviewed)_.",
+     "_(not refereed)_",
      "https://the-vibey-project.github.io/vibey/main/paper.pdf"),
 ]
 
