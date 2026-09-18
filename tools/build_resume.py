@@ -3,7 +3,8 @@
 
 Content is data below; every output is derived from it so the formats never drift.
 Sources of truth: LinkedIn profile export (2026-08-18), vibewithadam.matthewsteinberger.com,
-GitHub/PyPI, and the book manuscripts. No invented metrics.
+GitHub/PyPI, the book manuscripts, and the-vibey-project/vibey at 4e9adf18 (vibey figures
+measured 2026-09-18). No invented metrics.
 """
 import html, json, re, sys, os
 
@@ -30,7 +31,8 @@ AVAILABILITY = ("Available from September 2026 for Staff Software Architect, AI 
 SUMMARY = (
     "I build AI systems that actually work inside enterprise environments — production-grade platforms that "
     "handle real data, real security requirements, and real organizational complexity, *not demos*. **13+ years** "
-    "across AI, cloud, fintech, insurance, healthcare, and cybersecurity. Most recently: **sole architect of a "
+    "across AI, cloud, fintech, insurance, healthcare, and cybersecurity. Most recently: **creator of vibey**, an "
+    "open-source conductor for AI coding agents (1.0.0 on PyPI); before that, **sole architect of a "
     "multi-vendor AI governance gateway**, **co-lead of a 20-microservice AI payroll platform**, author of two "
     "identity-governance-as-code control planes and the shared Python platform library adopted by 17+ repositories "
     "— all on private AKS with secretless (OIDC / workload identity) delivery and supply-chain security in CI. "
@@ -41,7 +43,8 @@ SUMMARY = (
 
 SKILLS = [
     ("AI & LLM Systems", "RAG and vector search (pgvector, FAISS, Azure AI Search, Pinecone), multi-vendor LLM gateways with cost/policy "
-                         "governance, AI agents and multi-agent orchestration, MCP servers, structured outputs, HITL gating, LoRA fine-tuning; "
+                         "governance, AI agents and multi-agent orchestration (including coding agents across Claude Code, Codex, "
+                         "Cursor, and Antigravity), MCP servers, structured outputs, HITL gating, LoRA fine-tuning; "
                          "Azure OpenAI/Foundry, Claude, GPT, Gemini, Grok, Mistral, vLLM, Ollama, LangChain, Document Intelligence, "
                          "Content Safety; OWASP LLM Top 10 / NIST AI RMF"),
     ("Azure & Cloud", "AKS (private clusters, workload identity, KEDA), Functions, App Service, Service Bus, Event Hubs, Key Vault, "
@@ -57,13 +60,33 @@ SKILLS = [
     ("Languages & Frameworks", "Python 3.11/3.12 (FastAPI, Flask, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, "
                                "Next.js 15/16 + React 19, C#/.NET (Web API, MVC), Java Spring Boot, gRPC/REST, OpenAPI 3.1, Bash, SQL, KQL"),
     ("Quality & Data", "pytest, Hypothesis, mutmut, contract/e2e/chaos tests, mypy --strict, ruff, import-linter-enforced onion "
-                       "architecture; PostgreSQL, MongoDB, Snowflake, SQL Server, Oracle, Redis; ETL/API integrations (HubSpot, "
-                       "SharePoint, Salesforce, Outlook)"),
+                       "architecture; PostgreSQL (job queues on SKIP LOCKED, append-only event ledgers), MongoDB, Snowflake, "
+                       "SQL Server, Oracle, Redis; ETL/API integrations (HubSpot, SharePoint, Salesforce, Outlook)"),
     ("Delivery & Leadership", "Discovery → documented solution → Jira decomposition → mentored handoff; Scrum (CSM), "
                               "Security-First Scrum (author), evidence-based delivery (DORA/CHAOS/QSM), architecture documentation, mentoring"),
 ]
 
 EXPERIENCE = [
+    {
+        "org": "The Vibey Project (open source)", "loc": "Greenville, SC",
+        "role": "Creator and maintainer", "dates": "Aug 2026 – Present",
+        "blurb": "Self-directed, unpaid open-source work, MIT-licensed, published on PyPI as vibey. Sole maintainer; "
+                 "developed by directing AI coding agents under the project's own CI gates.",
+        "bullets": [
+            "**vibey** _(1.0.0 on PyPI; built with AI coding agents under its own CI gates)_ — a queue-based conductor that "
+            "carries a change from spec interview through design, build, and review (opt-in Azure deployment) across Claude "
+            "Code, OpenAI Codex, Cursor Agent, Google Antigravity, and a local Qwen 2.5 Coder, calling a human only at "
+            "recorded approval gates. One pip install ships all five runners and the release tooling.",
+            "**Nothing lost when an agent dies** — every decision, finding, and handoff is a row in an append-only PostgreSQL "
+            "ledger (UPDATE/DELETE are no-ops); workers claim jobs under SKIP LOCKED leases; a handoff to another vendor "
+            "must pass a model-free no-loss check or it retries, escalates, or parks for a human. A chaos test (500 jobs, "
+            "8 workers, 20% dropped mid-job) must end with **no job lost or run twice**.",
+            "**Gates and release automation** — 100% branch-coverage floors in CI on the conductor, all five runners, and "
+            "vibey-gh, my stdlib-only release tool (merge train, provenance trailers, commit-derived versions, TestPyPI/PyPI); "
+            "a Helm chart (KEDA, kopf operator) installed on minikube in CI. **~100k lines of Python source, ~121k lines of "
+            "tests, 37 ADRs, 188 merged PRs, 11 PyPI releases** (Aug–Sep 2026).",
+        ],
+    },
     {
         "org": "The Vizius Group", "loc": "Greenville, SC",
         "role": "Senior Azure and AI Development Engineer", "dates": "Sep 2025 – Aug 2026",
@@ -221,20 +244,19 @@ EXPERIENCE = [
 ]
 
 OPEN_SOURCE = [
-    ("claudeloop · codexloop · cursorloop · agyloop · qwenloop · vibey · vibey-gh",
-     "Onion-architected autonomous session runners for Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity, and a fully local "
-     "Qwen 2.5 Coder _(never block on a human; distinguish rate-limit windows from exhausted credits)_; **vibey**, the six-phase "
-     "PostgreSQL-backed conductor on top of them; and **vibey-gh**, stdlib-only release automation (provenance, merge train, "
-     "dual-channel releases).", "https://github.com/adammatthewsteinberger/claudeloop"),
-    ("vibey-bootstrap · vibey-skills",
-     "The Azure Functions cross-cutting layer _(formerly azure-bootstrap; 17+ repos)_ and a Claude Code marketplace of evidence-grounded "
-     "practitioner skills _(formerly vibe-engineering-skills)_.", "https://github.com/adammatthewsteinberger/vibey-bootstrap"),
+    ("vibey · PyPI · docs",
+     "One repository and one PyPI distribution for the conductor, the claudeloop, codexloop, cursorloop, agyloop, and "
+     "qwenloop runners _(never block on a human; distinguish rate-limit windows from exhausted credits)_, vibey-gh, "
+     "vibey-skills _(formerly vibe-engineering-skills)_, and vibey-bootstrap _(formerly azure-bootstrap)_; the separate "
+     "repositories and packages are retired.", "https://github.com/the-vibey-project/vibey"),
 ]
-# Every " · "-separated package name in an OPEN_SOURCE entry is linked to its own repo.
-OSS_LINKS = {n: f"https://github.com/adammatthewsteinberger/{n}" for n in
-             ["claudeloop", "codexloop", "cursorloop", "agyloop", "qwenloop", "vibey", "vibey-gh",
-              "vibey-bootstrap", "vibey-skills"]}
-OSS_NOTE = "All MIT-licensed, on PyPI. Contributors and volunteers welcome — "
+# Every " · "-separated name in an OPEN_SOURCE entry is linked to its own URL.
+OSS_LINKS = {
+    "vibey": "https://github.com/the-vibey-project/vibey",
+    "PyPI": "https://pypi.org/project/vibey/",
+    "docs": "https://the-vibey-project.github.io/vibey/main/",
+}
+OSS_NOTE = "MIT-licensed. Contributors and volunteers welcome — "
 OSS_NOTE_URL = "https://vibewithadam.matthewsteinberger.com/join-me"
 OSS_NOTE_LINK_TEXT = "vibewithadam.matthewsteinberger.com/join-me"
 
@@ -245,6 +267,9 @@ def oss_names(name):
 PUBLICATIONS = [
     ("Novice to Navigator: Your Guide to AI Chatbots for Business",
      "Plain-English guide to RAG chatbots for decision-makers; **first edition free online**, second edition in development _(ISBN 979-8274310628)_.", "https://vibewithadam.matthewsteinberger.com/novice-to-navigator"),
+    ("Ledger-Mediated Orchestration: Vendor-Independent Autonomous Software Delivery over a Pool of Coding Agents",
+     "Technical paper on vibey's design, published with its docs _(2026; not peer-reviewed)_.",
+     "https://the-vibey-project.github.io/vibey/main/paper.pdf"),
 ]
 
 EDUCATION = [
@@ -382,7 +407,9 @@ def txt():
     L.append("")
     L.append("OPEN SOURCE")
     for name, desc, url in OPEN_SOURCE:
-        L.append(f"- {name}: {desc} ({url})")
+        # Plain text has no hyperlinks, so each linked name carries its own URL.
+        names = " · ".join(f"{n} ({u})" if u else n for n, u in oss_names(name))
+        L.append(f"- {names}: {desc}")
     L.append(OSS_NOTE + OSS_NOTE_LINK_TEXT)
     L.append("")
     L.append("PUBLICATIONS")
