@@ -93,6 +93,6 @@ MIT-licensed. Contributors and volunteers welcome — [vibewithadam.matthewstein
 
 ---
 
-Formats: [PDF](adam-steinberger-resume.pdf) · [DOCX](adam-steinberger-resume.docx) · [TXT](adam-steinberger-resume.txt) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibewithadam.matthewsteinberger.com/hire-me](https://vibewithadam.matthewsteinberger.com/hire-me)
+Formats: [PDF](adam-steinberger-resume.pdf) · [DOCX](adam-steinberger-resume.docx) · [TXT](adam-steinberger-resume.txt) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
 
 License: code [MIT](LICENSE) · résumé content [CC BY 4.0](LICENSE-CONTENT.md) · builder: `tools/build_resume.py`
