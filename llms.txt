@@ -4,7 +4,7 @@
 
 I've spent 13 years building production software for insurance, lending, healthcare and security teams, and most recently the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. In my own time I maintain vibey, an open-source conductor for AI coding agents.
 
-Available now for Staff+ engineering roles. Based in Greenville, SC; working US-remote.
+Available now for Staff+ engineering roles and for fixed-scope contract work. Based in Greenville, SC; working US-remote.
 
 Key facts, each traceable to the résumé and to public repositories:
 - Platforms other teams adopted. Sole architect of a policy-enforced LLM gateway that three product teams moved onto, retiring the credentials their apps held; my platform library is used by 17+ repositories.
@@ -12,20 +12,33 @@ Key facts, each traceable to the résumé and to public repositories:
 - Handoffs that hold. Co-led a 20-service AI payroll platform to production-ready architecture by day 45; the junior developer I trained alongside it now owns it.
 - Open source, in public. Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and passes only if no job is lost or run twice.
 
-## Résumé
-
-- [Résumé (Markdown)](https://github.com/adammatthewsteinberger/resume/blob/HEAD/README.md): the full résumé, including open-source work
-- [Résumé (JSON Resume)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/resume.json): structured, machine-readable
-- [General résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume.txt): Staff Software Engineer · AI platforms, identity and agent infrastructure
-- [Platform & identity focus résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-platform-identity.txt): Staff Software Engineer · AI platform, identity and regulated deployments
-- [Forward-deployed focus résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-forward-deployed.txt): Forward Deployed AI Engineer · Enterprise AI, discovery to production
-
 ## Open source
 
 - [vibey](https://github.com/the-vibey-project/vibey): conductor for AI coding agents with an append-only PostgreSQL ledger; MIT; pip install vibey-engine
 - [vibey documentation](https://the-vibey-project.github.io/vibey/main/): install, architecture, decision records
 - [Ledger-Mediated Orchestration (paper)](https://the-vibey-project.github.io/vibey/main/paper.pdf): vibey's design (not peer reviewed)
 - [Contribute to vibey](https://github.com/the-vibey-project/vibey/blob/develop/CONTRIBUTING.md): how to start
+
+## Fixed-scope engagements
+
+Available for contract work, each engagement a fixed scope with a written acceptance checklist. AI use is disclosed: I build with AI coding agents, run through vibey under the same tests and review gates I would hold a person to. I scope, review and sign off on every deliverable myself, and I will tell you which parts were agent-assisted. For sensitive work I switch off any platform or vendor setting that would let your code or messages train a model.
+
+- [AI codebase and security review](https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#ai-codebase-and-security-review): A severity-ranked findings report, a one-page executive summary and a phased roadmap. Proof: Reviewed a 59,000-line codebase in 10 hours and found missing auth middleware and 5% test coverage. My pre-release reviews have caught an auth bypass, path traversal and SSRF.
+- [Production RAG chatbot in 30 days](https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#production-rag-chatbot-in-30-days): A chatbot that answers from your documents and cites them, with evaluation, monitoring and a handoff. Proof: Delivered two RAG chatbots in 30 days each: one fully self-hosted for a non-profit (Mistral-7B, FAISS and vLLM, no external dependencies) and one cloud-based for a sales agency.
+- [LLM cost and policy gateway](https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#llm-cost-and-policy-gateway): One API in front of your AI vendors, with spend caps, allowlists and a tamper-evident audit trail. Proof: Sole architect of a ~54k-line gateway in front of six vendors; three product teams moved onto it and retired the credentials their apps held.
+- [Okta and Entra ID governance fixes](https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#okta-and-entra-id-governance-fixes): An access review, then groups, roles and policy managed from Git with drift detection. Proof: Sole author of two identity-governance-as-code control planes covering 40 resource kinds with no stored tenant secrets; identity advisory for a SOX-regulated enterprise of about 5,700 identities.
+- [SOC 2 and OWASP LLM Top 10 readiness for an AI feature](https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#soc-2-and-owasp-llm-top-10-readiness-for-an-ai-feature): A threat model and a control-gap list mapped to SOC 2, the OWASP LLM Top 10 and the NIST AI RMF. Proof: Wrote the SOC 2 readiness assessment and STRIDE threat model for a report platform, and mapped an AI gateway's controls to the OWASP LLM Top 10 and NIST AI RMF.
+- [Written intake](https://github.com/adammatthewsteinberger/resume/blob/HEAD/freelance/intake.md): how an engagement starts
+
+## Résumé
+
+- [Résumé (Markdown)](https://github.com/adammatthewsteinberger/resume/blob/HEAD/README.md): the full résumé, including open-source work
+- [Résumé (JSON Resume)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/resume.json): structured, machine-readable
+- [Profile (schema.org JSON-LD)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/profile.jsonld): Person, with the engagements as offers
+- [General résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume.txt): Staff Software Engineer · AI platforms, identity and agent infrastructure
+- [Freelance & contract résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-freelance.txt): Independent AI Platform Engineer · fixed-scope AI, identity and security work
+- [Platform & identity focus résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-platform-identity.txt): Staff Software Engineer · AI platform, identity and regulated deployments
+- [Forward-deployed focus résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-forward-deployed.txt): Forward Deployed AI Engineer · Enterprise AI, discovery to production
 
 ## Contact
 
