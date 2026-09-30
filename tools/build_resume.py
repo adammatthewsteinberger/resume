@@ -531,7 +531,8 @@ def md():
         L.append(f"| {VARIANTS[key]['label']} | [PDF]({f['pdf']}) | [DOCX]({f['docx']}) | [TXT]({f['txt']}) |")
     L.append("")
     L.append(f"Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · "
-             f"[CITATION.cff](CITATION.cff). More about me and my work: [{SITE.split('//')[1]}]({SITE}).")
+             f"[CITATION.cff](CITATION.cff) · [Scrum certificate](scrum-certificate.pdf) · "
+             f"Everything else: [{JOIN_ME.split('//')[1]}]({JOIN_ME})")
     L.append("")
     L.append("---")
     L.append("")

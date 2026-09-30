@@ -113,7 +113,7 @@ Setup, including PostgreSQL, is in the [install guide](https://github.com/the-vi
 | Platform & identity focus | [PDF](adam-steinberger-resume-platform-identity.pdf) | [DOCX](adam-steinberger-resume-platform-identity.docx) | [TXT](adam-steinberger-resume-platform-identity.txt) |
 | Forward-deployed focus | [PDF](adam-steinberger-resume-forward-deployed.pdf) | [DOCX](adam-steinberger-resume-forward-deployed.docx) | [TXT](adam-steinberger-resume-forward-deployed.txt) |
 
-Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · [CITATION.cff](CITATION.cff). More about me and my work: [vibewithadam.matthewsteinberger.com](https://vibewithadam.matthewsteinberger.com).
+Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · [CITATION.cff](CITATION.cff) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
 
 ---
 
