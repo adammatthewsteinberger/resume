@@ -11,6 +11,9 @@ so no format can drift from another:
     resume.json                               JSON Resume (https://jsonresume.org/schema)
     llms.txt                                  plain summary for LLM crawlers (https://llmstxt.org)
     CITATION.cff                              "Cite this repository" metadata
+    profile.jsonld                            schema.org Person, with the engagements as offers
+    SERVICES.md                               fixed-scope engagements: scope, proof and price
+    freelance/upwork.md, freelance/fiverr-pro.md   platform copy, checked against field limits
 
 Variants change the title, summary, highlights, skill order and which bullets appear.
 They never change a fact. Bullets are written once, in EXPERIENCE, and referenced by key.
@@ -254,6 +257,179 @@ SKILL_SETS = {
                  "for stakeholders; Scrum (CSM); author of Security-First Scrum"),
 }
 
+# ---------------------------------------------------------------- fixed-scope engagements (freelance)
+# Five outcomes already delivered, each sold as a fixed scope. The client is the subject of
+# every "problem" line; the proof is the evidence, and it may only restate numbers that already
+# appear in the EXPERIENCE bullets named in "sources" (check_services() enforces this).
+UPWORK_URL = None   # set to the public profile URL once it is live; rendered only when set
+FIVERR_URL = None   # likewise, for the Fiverr Pro seller page
+INTAKE = "freelance/intake.md"
+
+# ---------------------------------------------------------------- pricing (yours to set)
+# TODO(Adam): one entry per offer below. Each value is either None, which renders as
+# "Fixed price, quoted after the written intake", or a (price, turnaround) pair such as
+# ("from $2,500", "5 business days"). Price by the value of the outcome, not by an hourly
+# benchmark (the playbook found hourly benchmarks disagree by up to 2x). Public prices here
+# also appear on GitHub, in llms.txt and in the JSON-LD, so decide whether you want them
+# public or platform-only before filling them in.
+PRICING = {
+    "review": None,
+    "rag": None,
+    "gateway": None,
+    "identity": None,
+    "readiness": None,
+}
+
+SERVICES = [
+    {
+        "key": "review",
+        "portfolio": "Codebase review: 59,000 lines in 10 hours, with a phased roadmap",
+        "name": "AI codebase and security review",
+        "gig": "I will review your AI codebase for security gaps and give you a phased fix plan",
+        "problem": "Your AI feature or fast-grown codebase is about to meet customers or an auditor, and you need to "
+                   "know what will break or leak before they find it.",
+        "pitch": "A severity-ranked findings report, a one-page executive summary and a phased roadmap.",
+        "includes": [
+            "Findings ranked by severity, each with the file, the risk and the fix",
+            "A one-page executive summary for the people who won't read the report",
+            "A phased roadmap: fix this week, fix this quarter, and what can wait",
+            "A written walkthrough of the results, with a call if you want one",
+        ],
+        "proof": "Reviewed a 59,000-line codebase in 10 hours and found missing auth middleware and 5% test "
+                 "coverage. My pre-release reviews have caught an auth bypass, path traversal and SSRF.",
+        "sources": [("llc", "review"), ("vizius", "devsecops")],
+    },
+    {
+        "key": "rag",
+        "portfolio": "Self-hosted RAG chatbot in 30 days (Mistral-7B, FAISS, vLLM)",
+        "name": "Production RAG chatbot in 30 days",
+        "gig": "I will build a production RAG chatbot on your own documents in 30 days",
+        "problem": "You want staff or customers to get answers from your own documents, running in weeks rather "
+                   "than quarters, without your data leaving your control.",
+        "pitch": "A chatbot that answers from your documents and cites them, with evaluation, monitoring and a handoff.",
+        "includes": [
+            "A chatbot that answers from your documents and shows the source for each answer",
+            "An evaluation set of real questions, so quality is measured rather than guessed",
+            "Monitoring on every request, plus a runbook for whoever owns it next",
+            "Two tiers: cloud models, or fully self-hosted so no data leaves your servers",
+        ],
+        "proof": "Delivered two RAG chatbots in 30 days each: one fully self-hosted for a non-profit (Mistral-7B, "
+                 "FAISS and vLLM, no external dependencies) and one cloud-based for a sales agency.",
+        "sources": [("llc", "chatbots")],
+    },
+    {
+        "key": "gateway",
+        "portfolio": "LLM cost and policy gateway adopted by three product teams",
+        "name": "LLM cost and policy gateway",
+        "gig": "I will build an LLM gateway with spend caps and an audit trail for your teams",
+        "problem": "Your teams call several AI vendors with keys scattered through their apps, and nobody can say "
+                   "what it costs or who sent what.",
+        "pitch": "One API in front of your AI vendors, with spend caps, allowlists and a tamper-evident audit trail.",
+        "includes": [
+            "One OpenAI-compatible API in front of the vendors you already use",
+            "Per-project model allowlists, rate limits and hard spend caps",
+            "A tamper-evident audit trail of every call and what it cost",
+            "Sign-in through your identity provider, so apps hold no vendor keys",
+        ],
+        "proof": "Sole architect of a ~54k-line gateway in front of six vendors; three product teams moved onto it "
+                 "and retired the credentials their apps held.",
+        "sources": [("vizius", "gateway")],
+    },
+    {
+        "key": "identity",
+        "portfolio": "Identity governance as code: 40 resource kinds, no stored secrets",
+        "name": "Okta and Entra ID governance fixes",
+        "gig": "I will fix your Okta or Entra ID access governance and manage it from Git",
+        "problem": "Access grew by hand. Now there are stale groups, admins nobody remembers granting, and an "
+                   "access review each audit season that nobody fully trusts.",
+        "pitch": "An access review, then groups, roles and policy managed from Git with drift detection.",
+        "includes": [
+            "An access review that names the risky grants",
+            "Groups, roles and policies declared in Git and applied by a pipeline",
+            "Drift detection: safe drift fixed automatically, risky changes held for approval",
+            "A runbook your team can follow without me",
+        ],
+        "proof": "Sole author of two identity-governance-as-code control planes covering 40 resource kinds with no "
+                 "stored tenant secrets; identity advisory for a SOX-regulated enterprise of about 5,700 identities.",
+        "sources": [("vizius", "identity"), ("vizius", "advisory")],
+    },
+    {
+        "key": "readiness",
+        "portfolio": "SOC 2 readiness and STRIDE threat model for an AI report platform",
+        "name": "SOC 2 and OWASP LLM Top 10 readiness for an AI feature",
+        "gig": "I will assess your AI feature against SOC 2 and the OWASP LLM Top 10",
+        "problem": "A customer's security questionnaire just asked how your AI feature handles prompt injection "
+                   "and data leakage, and you need a straight answer backed by evidence.",
+        "pitch": "A threat model and a control-gap list mapped to SOC 2, the OWASP LLM Top 10 and the NIST AI RMF.",
+        "includes": [
+            "A STRIDE threat model of the feature",
+            "A control-gap list mapped to SOC 2, the OWASP LLM Top 10 and the NIST AI RMF",
+            "A remediation plan in priority order",
+            "Plain-language answers you can reuse in security questionnaires",
+        ],
+        "note": "This is readiness work, not an audit opinion; only a licensed CPA firm issues a SOC 2 report.",
+        "proof": "Wrote the SOC 2 readiness assessment and STRIDE threat model for a report platform, and mapped an "
+                 "AI gateway's controls to the OWASP LLM Top 10 and NIST AI RMF.",
+        "sources": [("vizius", "reports"), ("vizius", "gateway")],
+    },
+]
+
+# How engagements run. Each line is a professional practice a client can plan around.
+WORKING_STYLE = [
+    ("Written first.", "Every engagement starts with a short written intake instead of a discovery call. You answer "
+                       "on your own time, and I reply with a written scope. Calls are welcome, never required."),
+    ("Fixed scope, fixed price.", "Deliverables and an acceptance checklist are agreed in writing before work "
+                                  "starts, so we both know what done looks like."),
+    ("Predictable replies.", "I answer messages in set windows each weekday, US Eastern time, so you always know "
+                             "when to expect a reply."),
+    ("Risks in writing, early.", "If something threatens the date or the scope, you get a short written note with "
+                                 "options the day I find it."),
+    ("A few clients at a time.", "I take two or three engagements at once, so each one gets focused attention."),
+    ("Handoffs that hold.", "Every engagement ends with documentation and a handoff your team can run without me."),
+]
+
+AI_USE = ("I build with AI coding agents, run through vibey under the same tests and review gates I would hold a "
+          "person to. I scope, review and sign off on every deliverable myself, and I will tell you which parts were "
+          "agent-assisted. For sensitive work I switch off any platform or vendor setting that would let your code "
+          "or messages train a model.")
+
+# Platform field limits. P = platform's own page; S = consistent secondary sources. Checked 2026-09-30.
+LIMITS = {
+    "upwork_title": 70,             # P: upwork.com/resources/freelancer-headlines
+    "upwork_portfolio_title": 70,   # P: support.upwork.com, "How to enhance your freelancer profile"
+    "upwork_overview": 5000,        # S
+    "upwork_fold": 250,             # S: roughly what shows before "more" in search and previews
+    "upwork_skills": 20,            # S
+    "fiverr_title": 80,             # S, consistent across sources; includes the fixed "I will"
+    "fiverr_description": 1200,     # S
+}
+
+
+SERVICES_NOTE = "Each is a fixed scope, starting with a written intake and an agreed acceptance checklist."
+
+
+def price_line(key):
+    p = PRICING.get(key)
+    if not p:
+        return "Fixed price, quoted after the written intake."
+    price, turnaround = p
+    return f"{price}, fixed. Typical turnaround: {turnaround}."
+
+
+def check_services():
+    """Fail the build if a proof line states a number its source bullets don't contain."""
+    by_key = {e["key"]: e for e in EXPERIENCE}
+    assert set(PRICING) == {s["key"] for s in SERVICES}, "PRICING keys must match SERVICES keys"
+    for s in SERVICES:
+        src = " ".join(by_key[k]["bullets"][b] for k, b in s["sources"])
+        for n in re.findall(r"\d[\d,]*\d|\d", s["proof"]):
+            assert n in src, f"service '{s['key']}': '{n}' in proof is not in its source bullets"
+        for n in re.findall(r"\d[\d,]*\d|\d", s["portfolio"]):
+            assert n in src, f"service '{s['key']}': '{n}' in portfolio title is not in its source bullets"
+        assert len(s["gig"]) <= LIMITS["fiverr_title"], f"gig title too long: {s['gig']} ({len(s['gig'])})"
+        assert len(s["portfolio"]) <= LIMITS["upwork_portfolio_title"], f"portfolio title too long: {s['portfolio']}"
+
+
 # ---------------------------------------------------------------- variants (the framings)
 VARIANTS = {
     "default": {
@@ -262,7 +438,8 @@ VARIANTS = {
         "title": "Staff Software Engineer · AI platforms, identity and agent infrastructure",
         "tagline": "I build AI platforms that other teams can safely build on: no stored secrets, every call on the "
                    "record, and a person signing off on anything that can't be undone.",
-        "availability": "Available now for Staff+ engineering roles. Based in Greenville, SC; working US-remote.",
+        "availability": "Available now for Staff+ engineering roles and for fixed-scope contract work. Based in "
+                        "Greenville, SC; working US-remote.",
         "summary": "I've spent 13 years building production software for insurance, lending, healthcare and security "
                    "teams, and most recently the controls that let AI run safely inside them. My work is "
                    "identity-first: workload identity instead of stored keys, audit trails that can't be quietly "
@@ -287,7 +464,40 @@ VARIANTS = {
         },
         "keywords": ["Staff Software Engineer", "AI platform engineering", "agent orchestration", "LLM gateway",
                      "AI governance", "identity and access management", "workload identity", "secretless CI/CD",
-                     "Kubernetes", "Python", "open source", "vibey"],
+                     "Kubernetes", "Python", "open source", "vibey", "RAG chatbot", "AI security review",
+                     "freelance AI engineer"],
+    },
+    "freelance": {
+        "stem": "adam-steinberger-resume-freelance",
+        "label": "Freelance & contract",
+        "title": "Independent AI Platform Engineer · fixed-scope AI, identity and security work",
+        "tagline": "Senior engineering sold as a fixed scope: RAG chatbots, LLM gateways, identity governance and AI "
+                   "security reviews, agreed in writing and handed over clean.",
+        "availability": "Taking fixed-scope and contract engagements now. Based in Greenville, SC; working US-remote.",
+        "summary": "I've spent 13 years building production software for insurance, lending, healthcare and security "
+                   "teams, and I now offer that work as fixed-scope engagements. I've delivered two RAG chatbots in "
+                   "30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that "
+                   "three product teams adopted. Each engagement starts with a written intake and an acceptance "
+                   "checklist, and ends with documentation your team can run without me.",
+        "highlights": [
+            "**Fast from zero.** Two RAG chatbots delivered in 30 days each, one fully self-hosted so no data left "
+            "the client's servers; a 59,000-line codebase reviewed in 10 hours with a phased roadmap.",
+            "**Adoption, not demos.** Three product teams moved onto the AI gateway I architected; my platform "
+            "library is used by 17+ repositories.",
+            "**Security that holds up.** SOC 2 readiness, STRIDE threat models and OWASP LLM Top 10 mapping; "
+            "pre-release reviews that caught an auth bypass, path traversal and SSRF.",
+        ],
+        "services": True,
+        "order": ["llc", "vizius", "vibey", "apologist", "limaone"],
+        "skills": ["ai", "security", "identity", "languages"],
+        "bullets": {
+            "llc": ["chatbots", "review", "push"],
+            "vizius": ["gateway", "identity", "reports", "devsecops"],
+            "vibey": ["what", "ledger"],
+        },
+        "keywords": ["freelance AI engineer", "AI consultant", "RAG chatbot", "LLM gateway", "AI security review",
+                     "SOC 2 readiness", "OWASP LLM Top 10", "Okta", "Microsoft Entra ID", "fixed-price",
+                     "Upwork", "Fiverr Pro", "Python"],
     },
     "platform-identity": {
         "stem": "adam-steinberger-resume-platform-identity",
@@ -379,7 +589,7 @@ def jobs(v):
     """(entry, [bullet text]) in display order for variant v."""
     by_key = {e["key"]: e for e in EXPERIENCE}
     out = []
-    for k in ORDER:
+    for k in v.get("order", ORDER):
         e = by_key[k]
         keys = v["bullets"].get(k, list(e["bullets"]))
         out.append((e, [e["bullets"][b] for b in keys]))
@@ -458,6 +668,9 @@ def md():
     L.append("")
     L.append(f"> {v['availability']}")
     L.append("")
+    L.append("**[Contribute to vibey](#open-source)** · [Hire me for a fixed-scope project](#fixed-scope-engagements) · "
+             "[Hire me full-time](#experience)")
+    L.append("")
     L.append(v["summary"])
     L.append("")
 
@@ -497,6 +710,8 @@ def md():
         "",
     ]
 
+    L += services_md_section(level=2) + [""]
+
     L += ["## Highlights", ""] + [f"- {b}" for b in v["highlights"]] + [""]
 
     L += ["## Experience", ""]
@@ -531,7 +746,8 @@ def md():
         L.append(f"| {VARIANTS[key]['label']} | [PDF]({f['pdf']}) | [DOCX]({f['docx']}) | [TXT]({f['txt']}) |")
     L.append("")
     L.append(f"Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · "
-             f"[CITATION.cff](CITATION.cff) · [Scrum certificate](scrum-certificate.pdf) · "
+             f"[profile.jsonld](profile.jsonld) (schema.org) · [CITATION.cff](CITATION.cff) · "
+             f"[Scrum certificate](scrum-certificate.pdf) · "
              f"Everything else: [{JOIN_ME.split('//')[1]}]({JOIN_ME})")
     L.append("")
     L.append("---")
@@ -543,10 +759,165 @@ def md():
     return "\n".join(L)
 
 
+# ---------------------------------------------------------------- fixed-scope engagements: shared pieces
+def slug(s):
+    """GitHub's heading anchor: lowercase, punctuation dropped, spaces to hyphens."""
+    return re.sub(r"[^\w\- ]", "", s.lower()).replace(" ", "-")
+
+
+def channels_md():
+    out = [f"[email](mailto:{EMAIL})"]
+    if UPWORK_URL:
+        out.append(f"[Upwork]({UPWORK_URL})")
+    if FIVERR_URL:
+        out.append(f"[Fiverr Pro]({FIVERR_URL})")
+    return ", ".join(out[:-1]) + (" or " if len(out) > 1 else "") + out[-1]
+
+
+def services_md_section(level=2, base="SERVICES.md"):
+    """The compact version for the README; SERVICES.md carries the full catalog."""
+    hh = "#" * level
+    priced = any(PRICING.values())
+    L = [f"{hh} Fixed-scope engagements", "",
+         "If you need one of these outcomes, I have delivered it before. Each one is sold as a fixed scope, "
+         "with the deliverables and an acceptance checklist agreed in writing before work starts.", ""]
+    L += ["| Engagement | What you get |" + (" Price |" if priced else ""),
+          "|---|---|" + ("---|" if priced else "")]
+    for s in SERVICES:
+        row = f"| **[{s['name']}]({base}#{slug(s['name'])})** | {s['pitch']} |"
+        L.append(row + (f" {price_line(s['key'])} |" if priced else ""))
+    L.append("")
+    if not priced:
+        L += ["Each is a fixed price, quoted after the written intake. Proof and full scope for each are in "
+              f"[{base}]({base}).", ""]
+    L += ["**How I work:**", ""] + [f"- **{h_}** {t}" for h_, t in WORKING_STYLE[:3]] + [""]
+    L += [f"**How I use AI.** {AI_USE}", ""]
+    L += [f"**Start with the [written intake]({INTAKE}).** It takes about ten minutes, and I reply with a written "
+          f"scope and a fixed price. Send it by {channels_md()}."]
+    return L
+
+
+def services_page():
+    L = ["# Fixed-scope AI engineering engagements", "",
+         f"**{NAME}** · {VARIANTS['freelance']['title']}", "",
+         "Five outcomes I have already delivered in production, each sold as a fixed scope. You get a written "
+         "scope, a fixed price and an acceptance checklist before any work starts, and documentation your team "
+         "can run without me when it ends.", "",
+         "**Contents:** " + " · ".join(f"[{s['name']}](#{slug(s['name'])})" for s in SERVICES)
+         + " · [How I work](#how-i-work) · [How I use AI](#how-i-use-ai) · [Start](#start)", ""]
+    for s in SERVICES:
+        L += [f"## {s['name']}", "", f"**The problem.** {s['problem']}", "", "**What you get:**", ""]
+        L += [f"- {i}" for i in s["includes"]] + [""]
+        if s.get("note"):
+            L += [f"_{s['note']}_", ""]
+        L += [f"**Proof.** {s['proof']}", "", f"**Price.** {price_line(s['key'])}", ""]
+    L += ["## How I work", ""] + [f"- **{h_}** {t}" for h_, t in WORKING_STYLE] + [""]
+    L += ["## How I use AI", "", AI_USE, ""]
+    L += ["## Start", "",
+          f"Answer the [written intake]({INTAKE}) and send it by {channels_md()}. I reply with a written scope, "
+          "a fixed price and an acceptance checklist. If the brief is not a good fit, I will say so plainly and, "
+          "where I can, point you to someone better suited.", "",
+          f"The full résumé is in the [README](README.md); a résumé focused on contract work is "
+          f"[here]({VARIANTS['freelance']['stem']}.pdf). This page is generated by `tools/build_resume.py` "
+          "from the same facts as the résumé, so the two cannot disagree.", ""]
+    return "\n".join(L)
+
+
+def fenced(label, text, limit=None):
+    count = f"{len(text):,}" + (f" / {limit:,}" if limit else "")
+    return [f"**{label}** ({count} characters)", "", "```text", text, "```", ""]
+
+
+def upwork_title():
+    return "AI Platform Engineer | RAG, LLM Gateways, Okta/Entra & AI Security"
+
+
+UPWORK_SKILLS = ["Retrieval Augmented Generation", "Large Language Model", "AI Agent Development", "Python",
+                 "FastAPI", "PostgreSQL", "Kubernetes", "Microsoft Azure", "Microsoft Entra ID", "Okta",
+                 "Identity & Access Management", "Application Security", "Security Assessment", "SOC 2",
+                 "DevSecOps", "Terraform", "OpenAI API", "Claude", "TypeScript", "API Integration"]
+
+
+def upwork_overview():
+    hook = ("I put AI into production for teams that can't afford a leak: RAG chatbots on your own documents, LLM "
+            "gateways with spend caps and audit trails, and security reviews that find the gaps first. 13 years in "
+            "production; written-first, fixed-scope.")
+    L = [hook, "", "What I deliver, each at a fixed price:"]
+    L += [f"• {s['name']}: {s['pitch']}" for s in SERVICES]
+    L += ["", "Proof:"] + [f"• {s['proof']}" for s in SERVICES]
+    L += ["", "How I work:"] + [f"• {h_} {t}" for h_, t in WORKING_STYLE]
+    L += ["", f"How I use AI: {AI_USE}", "",
+          "Open source: I maintain vibey, an MIT-licensed conductor for AI coding agents, so you can read the code "
+          "I write in public before you hire me.", "",
+          "Message me with the outcome you need. I'll send a short written intake, then a fixed scope and price."]
+    return hook, "\n".join(L)
+
+
+def upwork_page():
+    hook, overview = upwork_overview()
+    title = upwork_title()
+    assert len(title) <= LIMITS["upwork_title"], f"Upwork title {len(title)} > {LIMITS['upwork_title']}"
+    assert len(hook) <= LIMITS["upwork_fold"], f"Upwork hook {len(hook)} > {LIMITS['upwork_fold']}"
+    assert len(overview) <= LIMITS["upwork_overview"], f"Upwork overview {len(overview)} > {LIMITS['upwork_overview']}"
+    assert len(UPWORK_SKILLS) <= LIMITS["upwork_skills"], "too many Upwork skills"
+    L = ["# Upwork profile copy", "",
+         "Generated by `tools/build_resume.py` from the same facts as the résumé. Paste each block into the "
+         "matching field; the build fails if any block passes the platform's limit. Upwork restricts contact "
+         "details before a contract starts, so this copy contains none.", "",
+         "Platform rules this kit keeps: every proposal is written and sent by a person; no tool logs in or bids "
+         "on my behalf; payments for Upwork clients stay on Upwork. Clients I already know come in as Direct "
+         "Contracts.", ""]
+    L += fenced("Title", title, LIMITS["upwork_title"])
+    L += fenced(f"Overview. The first {len(hook)} characters show before \"more\"", overview,
+                LIMITS["upwork_overview"])
+    L += [f"**Skills** ({len(UPWORK_SKILLS)} / {LIMITS['upwork_skills']})", "", ", ".join(UPWORK_SKILLS), ""]
+    L += ["## Portfolio items", ""]
+    for s in SERVICES:
+        L += fenced("Title", s["portfolio"], LIMITS["upwork_portfolio_title"])
+        L += [f"{s['problem']} {s['proof']}", ""]
+    L += ["## Project Catalog", ""]
+    for s in SERVICES:
+        L += [f"### {s['name']}", "", s["pitch"], ""] + [f"- {i}" for i in s["includes"]]
+        L += ["", f"**Price.** {price_line(s['key'])}", ""]
+    L += ["## Proposals", "", "Start from [proposal-template.md](proposal-template.md). Keep proposals to about "
+          "150–250 words: their outcome in their words, one proof line, three steps, one question.", ""]
+    return "\n".join(L)
+
+
+def fiverr_description(s):
+    text = (f"{s['problem']}\n\nWhat you get:\n" + "\n".join(f"• {i}" for i in s["includes"])
+            + (f"\n\n{s['note']}" if s.get("note") else "")
+            + f"\n\nProof: {s['proof']}\n\n"
+            "How I work: you send a short written brief first, and calls are optional. Scope, price and an "
+            "acceptance checklist are fixed before work starts. I use AI coding agents under my own review and "
+            "will tell you which parts were agent-assisted.")
+    assert len(text) <= LIMITS["fiverr_description"], f"Fiverr description for {s['key']}: {len(text)} chars"
+    return text
+
+
+def fiverr_page():
+    L = ["# Fiverr Pro gig copy", "",
+         "Generated by `tools/build_resume.py`. Apply through Fiverr Pro rather than the standard marketplace: "
+         "Pro vetting weighs off-platform experience, so attach "
+         f"[{VARIANTS['freelance']['stem']}.pdf](../{VARIANTS['freelance']['stem']}.pdf). Fiverr does not allow "
+         "external links or contact details in gigs, so this copy contains none.", "",
+         "Fiverr's AI guidelines ask for original, customized work, human judgment in every delivery, and "
+         "disclosure of AI use when a buyer asks. Each description below discloses it up front.", ""]
+    for n, s in enumerate(SERVICES, 1):
+        L += [f"## Gig {n}: {s['name']}", ""]
+        L += fenced("Title", s["gig"], LIMITS["fiverr_title"])
+        L += fenced("Description", fiverr_description(s), LIMITS["fiverr_description"])
+        L += [f"**Price.** {price_line(s['key'])}", ""]
+    return "\n".join(L)
+
+
 # ---------------------------------------------------------------- plain text
 def txt(v):
     L = [NAME.upper(), v["title"], v["tagline"], "", " | ".join(t for t, _ in CONTACT), "", v["availability"], ""]
     L += ["SUMMARY", v["summary"], "", "HIGHLIGHTS"] + [f"- {b}" for b in v["highlights"]] + [""]
+    if v.get("services"):
+        L += ["FIXED-SCOPE ENGAGEMENTS"] + [f"- {s['name']}: {s['pitch']}" for s in SERVICES]
+        L += [f"{SERVICES_NOTE} Details and proof: {REPO}/blob/HEAD/SERVICES.md", ""]
     L.append("EXPERIENCE")
     for e, bullets in jobs(v):
         L += ["", f"{e['org']} | {e['loc']}", f"{e['role']} | {span(e['start'], e['end'])}"]
@@ -576,8 +947,9 @@ def json_ld(v):
         "url": SITE,
         "address": {"@type": "PostalAddress", "addressLocality": CITY, "addressRegion": REGION,
                     "addressCountry": COUNTRY},
-        "sameAs": [u for _, _, u in PROFILES] + [SITE, REPO],
+        "sameAs": [u for _, _, u in PROFILES] + [SITE, REPO] + [u for u in (UPWORK_URL, FIVERR_URL) if u],
         "knowsAbout": v["keywords"],
+        "makesOffer": [offer_ld(s) for s in SERVICES],
         "alumniOf": [{"@type": "CollegeOrUniversity", "name": s} for s, *_ in EDUCATION],
         "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": c,
                            "recognizedBy": {"@type": "Organization", "name": o}} for c, o, _ in CERTS],
@@ -585,6 +957,16 @@ def json_ld(v):
                      + [{"@type": "SoftwareSourceCode", "name": "vibey", "codeRepository": VIBEY,
                          "license": "https://opensource.org/licenses/MIT"}],
     }
+
+
+def offer_ld(s):
+    o = {"@type": "Offer", "name": s["name"], "description": s["pitch"],
+         "url": f"{REPO}/blob/HEAD/SERVICES.md#{slug(s['name'])}",
+         "itemOffered": {"@type": "Service", "name": s["name"], "description": s["problem"],
+                         "serviceType": "Software engineering consulting", "areaServed": "Remote"}}
+    if PRICING.get(s["key"]):
+        o["priceSpecification"] = {"@type": "PriceSpecification", "description": price_line(s["key"])}
+    return o
 
 
 def json_resume():
@@ -646,20 +1028,29 @@ def llms_txt():
     L += [plain(v["summary"]), "", v["availability"], ""]
     L += ["Key facts, each traceable to the résumé and to public repositories:"]
     L += [f"- {plain(b)}" for b in v["highlights"]]
-    L += ["", "## Résumé", ""]
-    L.append(f"- [Résumé (Markdown)]({REPO}/blob/HEAD/README.md): the full résumé, including open-source work")
-    L.append(f"- [Résumé (JSON Resume)]({RAW}/resume.json): structured, machine-readable")
-    for key in VARIANTS:
-        vv = VARIANTS[key]
-        L.append(f"- [{vv['label']} résumé (text)]({RAW}/{files(vv)['txt']}): {plain(vv['title'])}")
     L += ["", "## Open source", ""]
     L.append(f"- [vibey]({VIBEY}): conductor for AI coding agents with an append-only PostgreSQL ledger; "
              "MIT; pip install vibey-engine")
     L.append(f"- [vibey documentation]({VIBEY_DOCS}): install, architecture, decision records")
     L.append(f"- [Ledger-Mediated Orchestration (paper)]({PAPER_URL}): vibey's design (not peer reviewed)")
     L.append(f"- [Contribute to vibey]({VIBEY}/blob/develop/CONTRIBUTING.md): how to start")
+    L += ["", "## Fixed-scope engagements", "",
+          "Available for contract work, each engagement a fixed scope with a written acceptance checklist. "
+          "AI use is disclosed: " + AI_USE, ""]
+    for s in SERVICES:
+        L.append(f"- [{s['name']}]({REPO}/blob/HEAD/SERVICES.md#{slug(s['name'])}): {s['pitch']} "
+                 f"Proof: {s['proof']}")
+    L.append(f"- [Written intake]({REPO}/blob/HEAD/{INTAKE}): how an engagement starts")
+    L += ["", "## Résumé", ""]
+    L.append(f"- [Résumé (Markdown)]({REPO}/blob/HEAD/README.md): the full résumé, including open-source work")
+    L.append(f"- [Résumé (JSON Resume)]({RAW}/resume.json): structured, machine-readable")
+    L.append(f"- [Profile (schema.org JSON-LD)]({RAW}/profile.jsonld): Person, with the engagements as offers")
+    for key in VARIANTS:
+        vv = VARIANTS[key]
+        L.append(f"- [{vv['label']} résumé (text)]({RAW}/{files(vv)['txt']}): {plain(vv['title'])}")
     L += ["", "## Contact", ""]
     L.append(f"- [Email](mailto:{EMAIL})")
+    L += [f"- [{n}]({u})" for n, u in (("Upwork", UPWORK_URL), ("Fiverr Pro", FIVERR_URL)) if u]
     L += [f"- [{n}]({u})" for n, _, u in PROFILES]
     L.append(f"- [Personal site]({SITE})")
     L += ["", "## Optional", ""]
@@ -761,6 +1152,11 @@ def html_doc(v):
     L.append(f"<div class='avail'>{h(v['availability'])}</div></header>")
     L.append(f"<h2>Summary</h2><p>{rich(v['summary'])}</p>")
     L.append("<h2>Highlights</h2><ul>" + "".join(f"<li>{rich(b)}</li>" for b in v["highlights"]) + "</ul>")
+    if v.get("services"):
+        L.append("<h2>Fixed-scope engagements</h2><ul>"
+                 + "".join(f"<li><b>{h(s['name'])}.</b> {h(s['pitch'])}</li>" for s in SERVICES)
+                 + f"</ul><p>{h(SERVICES_NOTE)} Details and proof: "
+                 f"<a href='{h(REPO)}/blob/HEAD/SERVICES.md'>github.com/adammatthewsteinberger/resume/SERVICES.md</a></p>")
     L.append("<h2>Experience</h2>")
     for e, bullets in jobs(v):
         L.append("<div class='job'><div class='job-head'>"
@@ -905,6 +1301,12 @@ def docx_doc(v, path):
     heading("Highlights")
     for b in v["highlights"]:
         bullet(b)
+    if v.get("services"):
+        heading("Fixed-scope engagements")
+        for s in SERVICES:
+            bullet(f"**{s['name']}.** {s['pitch']}")
+        p = d.add_paragraph(SERVICES_NOTE + " Details and proof: ")
+        link(p, f"{REPO}/blob/HEAD/SERVICES.md", "SERVICES.md")
     heading("Experience")
     for e, bullets in jobs(v):
         p = d.add_paragraph(); p.paragraph_format.space_before = Pt(5); p.paragraph_format.space_after = Pt(0)
@@ -938,7 +1340,12 @@ def docx_doc(v, path):
     cp.author = NAME
     cp.title = f"{NAME}: {v['title']}"
     cp.subject = plain(v["tagline"])
-    cp.keywords = ", ".join(v["keywords"])
+    kept = []  # Word caps this property at 255 characters; keep whole keywords, in priority order
+    for k in v["keywords"]:
+        if len(", ".join(kept + [k])) > 255:
+            break
+        kept.append(k)
+    cp.keywords = ", ".join(kept)
     d.save(path)
 
 
@@ -948,8 +1355,13 @@ def write(name, text):
         f.write(text)
 
 
-os.makedirs(OUT, exist_ok=True)
+check_services()
+os.makedirs(os.path.join(OUT, "freelance"), exist_ok=True)
 write("README.md", md())
+write("SERVICES.md", services_page())
+write("freelance/upwork.md", upwork_page())
+write("freelance/fiverr-pro.md", fiverr_page())
+write("profile.jsonld", json.dumps(json_ld(VARIANTS["default"]), indent=2, ensure_ascii=False) + "\n")
 write("resume.json", json.dumps(json_resume(), indent=2, ensure_ascii=False) + "\n")
 write("llms.txt", llms_txt())
 write("CITATION.cff", citation_cff())
@@ -961,4 +1373,4 @@ for key, v in VARIANTS.items():
     if MAKE_PDF:
         pdf(v, os.path.join(OUT, f["html"]), os.path.join(OUT, f["pdf"]))
     print(f"wrote {key}: {', '.join(sorted(f.values()))}")
-print("wrote README.md, resume.json, llms.txt, CITATION.cff →", OUT)
+print("wrote README.md, SERVICES.md, freelance/, profile.jsonld, resume.json, llms.txt, CITATION.cff →", OUT)

@@ -1,0 +1,144 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Adam Matthew Steinberger",
+  "jobTitle": "Staff Software Engineer",
+  "description": "I build AI platforms that other teams can safely build on: no stored secrets, every call on the record, and a person signing off on anything that can't be undone.",
+  "email": "mailto:adam@matthewsteinberger.com",
+  "telephone": "+1-864-517-4117",
+  "url": "https://vibewithadam.matthewsteinberger.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Greenville",
+    "addressRegion": "SC",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/adammatthewsteinberger/",
+    "https://github.com/adammatthewsteinberger",
+    "https://vibewithadam.matthewsteinberger.com",
+    "https://github.com/adammatthewsteinberger/resume"
+  ],
+  "knowsAbout": [
+    "Staff Software Engineer",
+    "AI platform engineering",
+    "agent orchestration",
+    "LLM gateway",
+    "AI governance",
+    "identity and access management",
+    "workload identity",
+    "secretless CI/CD",
+    "Kubernetes",
+    "Python",
+    "open source",
+    "vibey",
+    "RAG chatbot",
+    "AI security review",
+    "freelance AI engineer"
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "AI codebase and security review",
+      "description": "A severity-ranked findings report, a one-page executive summary and a phased roadmap.",
+      "url": "https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#ai-codebase-and-security-review",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "AI codebase and security review",
+        "description": "Your AI feature or fast-grown codebase is about to meet customers or an auditor, and you need to know what will break or leak before they find it.",
+        "serviceType": "Software engineering consulting",
+        "areaServed": "Remote"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Production RAG chatbot in 30 days",
+      "description": "A chatbot that answers from your documents and cites them, with evaluation, monitoring and a handoff.",
+      "url": "https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#production-rag-chatbot-in-30-days",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Production RAG chatbot in 30 days",
+        "description": "You want staff or customers to get answers from your own documents, running in weeks rather than quarters, without your data leaving your control.",
+        "serviceType": "Software engineering consulting",
+        "areaServed": "Remote"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "LLM cost and policy gateway",
+      "description": "One API in front of your AI vendors, with spend caps, allowlists and a tamper-evident audit trail.",
+      "url": "https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#llm-cost-and-policy-gateway",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "LLM cost and policy gateway",
+        "description": "Your teams call several AI vendors with keys scattered through their apps, and nobody can say what it costs or who sent what.",
+        "serviceType": "Software engineering consulting",
+        "areaServed": "Remote"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Okta and Entra ID governance fixes",
+      "description": "An access review, then groups, roles and policy managed from Git with drift detection.",
+      "url": "https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#okta-and-entra-id-governance-fixes",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Okta and Entra ID governance fixes",
+        "description": "Access grew by hand. Now there are stale groups, admins nobody remembers granting, and an access review each audit season that nobody fully trusts.",
+        "serviceType": "Software engineering consulting",
+        "areaServed": "Remote"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "SOC 2 and OWASP LLM Top 10 readiness for an AI feature",
+      "description": "A threat model and a control-gap list mapped to SOC 2, the OWASP LLM Top 10 and the NIST AI RMF.",
+      "url": "https://github.com/adammatthewsteinberger/resume/blob/HEAD/SERVICES.md#soc-2-and-owasp-llm-top-10-readiness-for-an-ai-feature",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "SOC 2 and OWASP LLM Top 10 readiness for an AI feature",
+        "description": "A customer's security questionnaire just asked how your AI feature handles prompt injection and data leakage, and you need a straight answer backed by evidence.",
+        "serviceType": "Software engineering consulting",
+        "areaServed": "Remote"
+      }
+    }
+  ],
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Skidmore College"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Rensselaer Polytechnic Institute"
+    }
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Certified ScrumMaster (CSM)",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Scrum Alliance"
+      }
+    }
+  ],
+  "subjectOf": [
+    {
+      "@type": "CreativeWork",
+      "name": "Ledger-Mediated Orchestration: Vendor-Independent Autonomous Software Delivery over a Pool of Coding Agents",
+      "url": "https://the-vibey-project.github.io/vibey/main/paper.pdf"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Novice to Navigator: Your Guide to AI Chatbots for Business",
+      "url": "https://vibewithadam.matthewsteinberger.com/novice-to-navigator"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "vibey",
+      "codeRepository": "https://github.com/the-vibey-project/vibey",
+      "license": "https://opensource.org/licenses/MIT"
+    }
+  ]
+}

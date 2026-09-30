@@ -8,7 +8,9 @@ Greenville, SC (US remote) · [+1-864-517-4117](tel:+18645174117) · [adam@matth
 
 [![vibey on PyPI](https://img.shields.io/pypi/v/vibey-engine?label=vibey)](https://pypi.org/project/vibey-engine/) [![Code: MIT](https://img.shields.io/badge/code-MIT-yellow.svg)](LICENSE) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
 
-> Available now for Staff+ engineering roles. Based in Greenville, SC; working US-remote.
+> Available now for Staff+ engineering roles and for fixed-scope contract work. Based in Greenville, SC; working US-remote.
+
+**[Contribute to vibey](#open-source)** · [Hire me for a fixed-scope project](#fixed-scope-engagements) · [Hire me full-time](#experience)
 
 I've spent 13 years building production software for insurance, lending, healthcare and security teams, and most recently the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. In my own time I maintain vibey, an open-source conductor for AI coding agents.
 
@@ -31,6 +33,30 @@ Setup, including PostgreSQL, is in the [install guide](https://github.com/the-vi
 [Contributing](https://github.com/the-vibey-project/vibey/blob/develop/CONTRIBUTING.md) · [Open issues](https://github.com/the-vibey-project/vibey/issues) · [Docs](https://the-vibey-project.github.io/vibey/main/) · [Volunteer with me](https://vibewithadam.matthewsteinberger.com/join-me)
 
 **This repository is a small tool too.** [`tools/build_resume.py`](tools/build_resume.py) is one Python file that renders this page, the PDF, Word and text résumés, a [JSON Resume](resume.json) file and [`llms.txt`](llms.txt) from a single set of facts, so no format can drift from another. The code is MIT; fork it for your own résumé.
+
+## Fixed-scope engagements
+
+If you need one of these outcomes, I have delivered it before. Each one is sold as a fixed scope, with the deliverables and an acceptance checklist agreed in writing before work starts.
+
+| Engagement | What you get |
+|---|---|
+| **[AI codebase and security review](SERVICES.md#ai-codebase-and-security-review)** | A severity-ranked findings report, a one-page executive summary and a phased roadmap. |
+| **[Production RAG chatbot in 30 days](SERVICES.md#production-rag-chatbot-in-30-days)** | A chatbot that answers from your documents and cites them, with evaluation, monitoring and a handoff. |
+| **[LLM cost and policy gateway](SERVICES.md#llm-cost-and-policy-gateway)** | One API in front of your AI vendors, with spend caps, allowlists and a tamper-evident audit trail. |
+| **[Okta and Entra ID governance fixes](SERVICES.md#okta-and-entra-id-governance-fixes)** | An access review, then groups, roles and policy managed from Git with drift detection. |
+| **[SOC 2 and OWASP LLM Top 10 readiness for an AI feature](SERVICES.md#soc-2-and-owasp-llm-top-10-readiness-for-an-ai-feature)** | A threat model and a control-gap list mapped to SOC 2, the OWASP LLM Top 10 and the NIST AI RMF. |
+
+Each is a fixed price, quoted after the written intake. Proof and full scope for each are in [SERVICES.md](SERVICES.md).
+
+**How I work:**
+
+- **Written first.** Every engagement starts with a short written intake instead of a discovery call. You answer on your own time, and I reply with a written scope. Calls are welcome, never required.
+- **Fixed scope, fixed price.** Deliverables and an acceptance checklist are agreed in writing before work starts, so we both know what done looks like.
+- **Predictable replies.** I answer messages in set windows each weekday, US Eastern time, so you always know when to expect a reply.
+
+**How I use AI.** I build with AI coding agents, run through vibey under the same tests and review gates I would hold a person to. I scope, review and sign off on every deliverable myself, and I will tell you which parts were agent-assisted. For sensitive work I switch off any platform or vendor setting that would let your code or messages train a model.
+
+**Start with the [written intake](freelance/intake.md).** It takes about ten minutes, and I reply with a written scope and a fixed price. Send it by [email](mailto:adam@matthewsteinberger.com).
 
 ## Highlights
 
@@ -110,10 +136,11 @@ Setup, including PostgreSQL, is in the [install guide](https://github.com/the-vi
 | Framing | PDF | Word | Text |
 |---|---|---|---|
 | General | [PDF](adam-steinberger-resume.pdf) | [DOCX](adam-steinberger-resume.docx) | [TXT](adam-steinberger-resume.txt) |
+| Freelance & contract | [PDF](adam-steinberger-resume-freelance.pdf) | [DOCX](adam-steinberger-resume-freelance.docx) | [TXT](adam-steinberger-resume-freelance.txt) |
 | Platform & identity focus | [PDF](adam-steinberger-resume-platform-identity.pdf) | [DOCX](adam-steinberger-resume-platform-identity.docx) | [TXT](adam-steinberger-resume-platform-identity.txt) |
 | Forward-deployed focus | [PDF](adam-steinberger-resume-forward-deployed.pdf) | [DOCX](adam-steinberger-resume-forward-deployed.docx) | [TXT](adam-steinberger-resume-forward-deployed.txt) |
 
-Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · [CITATION.cff](CITATION.cff) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
+Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · [profile.jsonld](profile.jsonld) (schema.org) · [CITATION.cff](CITATION.cff) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
 
 ---
 
