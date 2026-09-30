@@ -1,5 +1,12 @@
 .DS_Store
 ~.docx
-.~lock.adam-steinberger-resume.docx#
+.~lock.adam-steinberger-resume*.docx#
 .venv/
-adam-steinberger-resume.html
+__pycache__/
+
+# Intermediate HTML the builder renders on the way to PDF.
+adam-steinberger-resume*.html
+
+# Private, per-application material and local agent state. This repository is public.
+cover-letters/
+.qwenloop/
