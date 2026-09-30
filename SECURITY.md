@@ -1,6 +1,6 @@
 # Security Policy
 
-This repository contains only my résumé (PDF, DOCX, TXT, Markdown), a Scrum certificate, and the small script that generates those files. There is no application code and there are no releases.
+This repository contains only my résumé (PDF, DOCX, TXT, Markdown, JSON Resume, llms.txt), a Scrum certificate, and the small script that generates those files. There is no application code and there are no releases.
 
 ## Reporting a vulnerability
 
