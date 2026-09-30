@@ -1,98 +1,120 @@
 # Adam Matthew Steinberger
 
-**Staff Software Architect & AI Automation Engineer** — RAG systems, event-driven Azure microservices, and automation pipelines that the people who inherit them can actually run.
+**Staff Software Engineer · AI platforms, identity and agent infrastructure**
 
-Greenville, SC (remote / US remote) · [+1-864-517-4117](tel:+18645174117) · [adam@matthewsteinberger.com](mailto:adam@matthewsteinberger.com) · [linkedin.com/in/adammatthewsteinberger](https://www.linkedin.com/in/adammatthewsteinberger/) · [github.com/adammatthewsteinberger](https://github.com/adammatthewsteinberger) · [vibewithadam.matthewsteinberger.com](https://vibewithadam.matthewsteinberger.com) · [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
+I build AI platforms that other teams can safely build on: no stored secrets, every call on the record, and a person signing off on anything that can't be undone.
 
-> Available from September 2026 for Staff Software Architect, AI Automation Engineer, Staff/Principal AI Engineer, Solutions Architect, or Platform/Automation Engineer roles — W2 preferred, contract-to-hire OK.
+Greenville, SC (US remote) · [+1-864-517-4117](tel:+18645174117) · [adam@matthewsteinberger.com](mailto:adam@matthewsteinberger.com) · [linkedin.com/in/adammatthewsteinberger](https://www.linkedin.com/in/adammatthewsteinberger/) · [github.com/adammatthewsteinberger](https://github.com/adammatthewsteinberger) · [vibewithadam.matthewsteinberger.com](https://vibewithadam.matthewsteinberger.com)
 
-## Summary
+[![vibey on PyPI](https://img.shields.io/pypi/v/vibey-engine?label=vibey)](https://pypi.org/project/vibey-engine/) [![Code: MIT](https://img.shields.io/badge/code-MIT-yellow.svg)](LICENSE) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
 
-I build AI systems that actually work inside enterprise environments — production-grade platforms that handle real data, real security requirements, and real organizational complexity, *not demos*. **13+ years** across AI, cloud, fintech, insurance, healthcare, and cybersecurity. Most recently: **creator of vibey** (open source); before that, **sole architect of a multi-vendor AI governance gateway**, **co-lead of a 20-microservice AI payroll platform**, author of two identity-governance-as-code control planes and the shared Python platform library adopted by 17+ repositories — all on private AKS with secretless (OIDC / workload identity) delivery and supply-chain security in CI. The work starts with a business problem nobody has solved cleanly and ends with **something the people who inherit it can run** — architecture documented before code, junior developers trained in parallel, handoffs that hold. I document everything for the same reason a RAG pipeline cites its sources.
+> Available now for Staff+ engineering roles. Based in Greenville, SC; working US-remote.
 
-## Core Skills
+I've spent 13 years building production software for insurance, lending, healthcare and security teams, and most recently the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. In my own time I maintain vibey, an open-source conductor for AI coding agents.
 
-- **AI & LLM Systems:** RAG and vector search (pgvector, FAISS, Azure AI Search, Pinecone), multi-vendor LLM gateways with cost/policy governance, AI agents and multi-agent orchestration, MCP servers, structured outputs, HITL gating, LoRA fine-tuning; Azure OpenAI/Foundry, Claude, GPT, Gemini, Grok, Mistral, vLLM, Ollama, LangChain, Document Intelligence, Content Safety; OWASP LLM Top 10 / NIST AI RMF
-- **Azure & Cloud:** AKS (private clusters, workload identity, KEDA), Functions, App Service, Service Bus, Event Hubs, Key Vault, App Configuration, App Insights/OpenTelemetry, Data Explorer (KQL), Cosmos DB, PostgreSQL, Redis, Blob/Data Lake, App Gateway + WAF, Private Endpoints, Entra ID, Microsoft Graph; sovereign/government cloud; AWS (Textract, Lambda, S3)
-- **Platform, DevSecOps & Delivery:** Terraform, Bicep, Helm, Kustomize, Flux/Argo CD GitOps, Docker, GitHub Actions (OIDC federated credentials, self-hosted runners), build-once/promote-by-digest; Trivy, Semgrep, CodeQL, Bandit, Gitleaks/TruffleHog, Checkov, pip-audit, SBOM (Syft/CycloneDX), Cosign keyless signing, Kyverno/OPA admission; threat modeling (STRIDE), SOC 2 readiness, ADRs
-- **Identity & Governance:** Okta (core, IGA, Workflows), Microsoft Entra ID, SAML 2.0, OIDC/OAuth 2.0, workload identity federation, RBAC (control and data plane), governance-as-code reconciliation, SOX-aligned access governance, GxP-classified functional specifications
-- **Languages & Frameworks:** Python 3.11/3.12 (FastAPI, Flask, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, Next.js 15/16 + React 19, C#/.NET (Web API, MVC), Java Spring Boot, gRPC/REST, OpenAPI 3.1, Bash, SQL, KQL
-- **Quality & Data:** pytest, Hypothesis, mutmut, contract/e2e/chaos tests, mypy --strict, ruff, import-linter-enforced onion architecture; PostgreSQL, MongoDB, Snowflake, SQL Server, Oracle, Redis; ETL/API integrations (HubSpot, SharePoint, Salesforce, Outlook)
-- **Delivery & Leadership:** Discovery → documented solution → Jira decomposition → mentored handoff; Scrum (CSM), Security-First Scrum (author), evidence-based delivery (DORA/CHAOS/QSM), architecture documentation, mentoring
+## Open source
+
+**[vibey](https://github.com/the-vibey-project/vibey)** is where most of my current work happens. If you've left an AI coding agent running overnight, you've met the gap it fills. An agent can finish a task, but it can't interview you until the spec is sharp, keep going when one vendor's credits run out, or remember what was decided after a crash. vibey keeps all of that in a PostgreSQL ledger instead of a chat session, and moves work between engines without losing an open question.
+
+```bash
+uv tool install vibey-engine    # or: pipx install vibey-engine
+```
+
+Setup, including PostgreSQL, is in the [install guide](https://github.com/the-vibey-project/vibey#install). The [design paper](https://the-vibey-project.github.io/vibey/main/paper.pdf) explains why it works the way it does.
+
+**Good ways in, if you'd like to help:**
+
+- **Add an engine.** Each coding agent runs behind one engine contract, checked by a conformance suite (`vibey doctor --conformance`). Another agent CLI is a well-bounded first contribution.
+- **Write a skill.** vibey-skills is a 140-plugin Claude Code marketplace, and a plugin is mostly Markdown. If you know a field well, that knowledge is useful there.
+- **Try to break it.** Run it on a real repository and open an issue for whatever surprised you. The [contributing guide](https://github.com/the-vibey-project/vibey/blob/develop/CONTRIBUTING.md) is command-level, and it treats anything unclear as a bug in the guide.
+
+[Contributing](https://github.com/the-vibey-project/vibey/blob/develop/CONTRIBUTING.md) · [Open issues](https://github.com/the-vibey-project/vibey/issues) · [Docs](https://the-vibey-project.github.io/vibey/main/) · [Volunteer with me](https://vibewithadam.matthewsteinberger.com/join-me)
+
+**This repository is a small tool too.** [`tools/build_resume.py`](tools/build_resume.py) is one Python file that renders this page, the PDF, Word and text résumés, a [JSON Resume](resume.json) file and [`llms.txt`](llms.txt) from a single set of facts, so no format can drift from another. The code is MIT; fork it for your own résumé.
+
+## Highlights
+
+- **Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product teams moved onto, retiring the credentials their apps held; my platform library is used by 17+ repositories.
+- **Identity at depth.** Sole author of two identity-governance-as-code control planes (40 resource kinds, multi-tenant, no stored tenant secrets) and advisor to a SOX-regulated enterprise of about 5,700 identities.
+- **Handoffs that hold.** Co-led a 20-service AI payroll platform to production-ready architecture by day 45; the junior developer I trained alongside it now owns it.
+- **Open source, in public.** Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and passes only if no job is lost or run twice.
 
 ## Experience
 
-### The Vibey Project (open source) — Creator and maintainer
-*Aug 2026 – Present · Greenville, SC*
+### The Vibey Project (open source)
+**Creator and maintainer** · Aug 2026 – Present · Greenville, SC
 
-- **vibey** _(1.0.0 on PyPI; built with AI coding agents under its own CI gates)_ — a queue-based conductor that carries a change from spec interview through design, build, and review (opt-in Azure deployment) across Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity, and a local Qwen 2.5 Coder, calling a human only at recorded approval gates. One pip install ships all five runners and the release tooling.
-- **Nothing lost when an agent dies** — every decision, finding, and handoff is a row in an append-only PostgreSQL ledger (UPDATE/DELETE are no-ops); workers claim jobs under SKIP LOCKED leases; a handoff to another vendor must pass a model-free no-loss check or it retries, escalates, or parks for a human. A chaos test (500 jobs, 8 workers, 20% dropped mid-job) must end with **no job lost or run twice**.
-- **Gates and release automation** — 100% branch-coverage floors in CI on the conductor, all five runners, and vibey-gh, my stdlib-only release tool (merge train, provenance trailers, commit-derived versions, TestPyPI/PyPI); a Helm chart (KEDA, kopf operator) installed on minikube in CI. **~100k lines of Python source, ~121k lines of tests, 37 ADRs, 188 merged PRs, 11 PyPI releases** (Aug–Sep 2026).
-- **vibey-bootstrap** _(formerly azure-bootstrap; built at Vizius)_ — the firm's Python platform library through three major versions on PyPI, **adopted by 17+ repositories** (logging, alerting, dead-letter consumers, outbox); 86% coverage; four platforms refactored onto it.
+- **vibey** _(MIT; on PyPI as vibey-engine)_. A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. Built with AI coding agents working inside its own CI gates.
+- **Nothing is lost when an agent dies.** Every decision, finding and handoff is a row in an append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to another vendor must pass a model-free no-loss check or it retries, escalates or waits for a person. A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, and passes only if **no job is lost or run twice**.
+- **Held to its own gates.** 100% branch-coverage floors in CI, 75 architecture decision records, a Helm chart (KEDA, kopf operator) installed on minikube in CI, and 19 releases from 450+ merged pull requests since August 2026. The design is written up as a paper and the documentation as a book.
 
-### The Vizius Group — Senior Azure and AI Development Engineer
-*Sep 2025 – Aug 2026 · Greenville, SC*
+### The Vizius Group
+**Senior Azure and AI Development Engineer** · Sep 2025 – Aug 2026 · Greenville, SC
 
-- **AI governance gateway** _(sole architect, ~54k LOC)_ — one policy-enforced, OpenAI-compatible API in front of the full Azure AI surface plus Anthropic, OpenAI/Codex, Cursor, Grok, and Gemini: per-project allowlists, allow/deny/fallback policy with hot reload, multi-unit Redis rate limiting, per-call USD cost attribution with enforced spend caps (denial-of-wallet control), and an HMAC-signed, hash-chained, write-once audit trail; Entra ID app-role auth over workload identity — **no API keys in the path**. Agent sandboxing, egress policy, and SSRF checks mapped to OWASP LLM Top 10 / NIST AI RMF; Python SDK, CLI, MCP server, Next.js admin portal; 9 autoscaled pods on private AKS via GitOps. **Migrated three product teams onto it** and retired their app-held credentials.
-- **AI payroll automation platform** _(co-lead, ~420k LOC)_ — 20 microservices in an onion-architecture monorepo across four human-approved phases with the final submission modeled as irreversible; RAG over the document store, AI-directed spreadsheet corrections, earnings and report review. Owned Terraform, 20 Helm charts, Kustomize, GitOps, and 10 CI/CD workflows; 585 test modules across unit/integration/contract/e2e/smoke. Architecture **production-ready at day 45**; a junior developer trained in parallel now owns it.
-- **Technical report generation platform** _(lead, ~54k LOC)_ — turns electrical-testing instrument data into standards-aware client reports: mail-webhook ingestion with per-document fan-out, a multi-vendor parser seam, a deterministic deficiency analyzer (scraped standards plus LLM review), blocking data-quality gates, SAML 2.0 + Entra dual-issuer SSO, per-user bearer auth replacing a shared API key. **Eliminated silent false-success deploys**; wrote the SOC 2 readiness assessment, threat model, ADRs, and an evidence-based delivery model.
-- **Identity governance as code** _(sole author, two control planes)_ — a Kubernetes operator (kopf) that reconciles directory governance state against Git-declared custom resources with **fully secretless multi-tenant auth** (federated credentials, zero stored tenant secrets) and an LLM that drafts pull requests for judgment calls; and an IdP governance platform managing 40 resource kinds through six addressing patterns with drift classification (auto-remediate safe, PR + human approval for destructive), point-in-time reversion, and dual APM/SIEM log shipping. Plus a versioned, idempotent sync API for 114+ directory groups that replaced a low-code workflow.
-- **Multi-system ticket relay** _(sole author, ~20k LOC)_ — N-way sync with a symmetric schema (no privileged hub): version vectors, echo suppression, a conflict policy engine that downgrades unimplemented strategies to manual hold, edge HMAC verification with vault-backed per-tenant secrets, config-driven generic connector. **653 tests, 93% coverage**, mypy --strict clean, import-linter-enforced pure domain, property/mutation/chaos tests proving convergence.
-- **Multi-tenant observability portal** _(lead)_ — sub-second streaming, analytical, and federated APM/vendor/cost planes, **every payload tagged with its freshness**; CLI, REST, HMAC webhooks, MCP server, and SDK over one core; SAML SSO; KEDA.
-- **DevSecOps, secretless by default** — OIDC workload identity federation for 20 CI workflows in 9 repos, managed identity at runtime, CSI-driver vault secrets; supply-chain pipelines with SAST, SCA, IaC and secret scanning, SBOMs, keyless signing, and policy-as-code admission; cleared 24 IaC policy findings; **security self-reviews** closed an auth bypass, path traversal, SSRF, timing-unsafe comparison, query injection, and an over-scoped CI credential before release. Cross-tenant production migration on OIDC and least-privilege RBAC.
-- **Architecture & advisory** — **five formal architecture document sets (~180 pages)** including a three-tier package (43-page design, 10-page executive summary, one-sheet) and a STRIDE threat model; identity-governance advisory for a **SOX-regulated enterprise of ~5,700 identities** (market survey, platform decision report, API/SDK/MCP coverage assessment across eight platforms, GxP-classified functional specifications, SOX-to-IAM risk mapping); AI vendor terms comparison for legal and procurement.
-- **Enablement & thought leadership** — authored *Security-First Scrum* (framework, two training manuals, four AI-agent rulesets), an evidence-based delivery velocity playbook, and a **~110,000-word technical reference library** compiled into vibey-skills (18 plugins / 71 skills); mentored junior developers on three projects; built the firm's LinkedIn thought-leadership program end to end, including a narrative white paper on export-control compliance and cloud enclave architecture produced and written from recorded expert interviews.
+- **AI governance gateway** _(sole architect, ~54k lines)_. One OpenAI-compatible API in front of Azure AI, Anthropic, OpenAI, Cursor, Grok and Gemini, with per-project allowlists and fallback policy, Redis rate limits, per-call cost attribution with hard spend caps, and an HMAC-signed, hash-chained, write-once audit trail. Callers authenticate with Entra ID over workload identity, so no API keys sit in the path; agent sandboxing, egress policy and SSRF checks map to the OWASP LLM Top 10 and NIST AI RMF. **Three product teams moved onto it** and retired their app-held credentials.
+- **Identity governance as code** _(sole author, two control planes)_. A Kubernetes operator (kopf) that reconciles directory governance against Git-declared custom resources, with fully secretless multi-tenant auth and an LLM that drafts pull requests for judgment calls. A second platform manages 40 identity-provider resource kinds with drift classification: safe drift is fixed automatically, destructive changes wait for a pull request and a human approval, and any point in time can be restored. A versioned, idempotent sync API for 114+ directory groups **replaced a low-code workflow**.
+- **AI payroll automation platform** _(co-lead, ~420k lines)_. Twenty microservices across four human-approved phases, with the final submission modeled as irreversible; RAG over the document store, AI-directed spreadsheet corrections and earnings review. I owned the Terraform, 20 Helm charts, GitOps and 10 CI/CD workflows, backed by 585 test modules. The architecture was **production-ready at day 45**, and the junior developer I trained in parallel now owns it.
+- **Technical report platform** _(lead, ~54k lines)_. Turns electrical-testing instrument data into standards-aware client reports: mail-webhook ingestion with per-document fan-out, a multi-vendor parser seam, a deterministic deficiency analyzer with LLM review, and blocking data-quality gates. Added SAML 2.0 and Entra dual-issuer SSO, replaced a shared API key with per-user bearer auth, and wrote the SOC 2 readiness assessment, STRIDE threat model and ADRs. **Ended silent false-success deploys.**
+- **Secretless DevSecOps.** OIDC workload identity federation for 20 CI workflows across 9 repositories; supply-chain pipelines with SAST, SCA, IaC and secret scanning, SBOMs, keyless signing and policy-as-code admission. My own security reviews **caught an auth bypass, path traversal, SSRF, a timing-unsafe comparison, query injection and an over-scoped CI credential before release**. Led a cross-tenant production migration onto OIDC and least-privilege RBAC.
+- **Shared platform library.** The firm's Python library for logging, alerting, dead-letter consumers and the outbox pattern, through three major versions; **adopted by 17+ repositories** and four platforms. It now continues in the open as vibey-bootstrap, part of vibey.
+- **Also.** A multi-system ticket relay (N-way sync, 653 tests, 93% coverage, mypy --strict); a multi-tenant observability portal; five architecture document sets, about 180 pages; the *Security-First Scrum* framework and training manuals; mentoring junior developers on three projects.
 
-### The Apologist Project (volunteer) — Volunteer Software Architect — open-source-style contribution
-*Apr 2026 – Present · Remote*
+### The Apologist Project
+**Volunteer Software Architect** · Apr 2026 – Present · Remote
 
-- **Project Excite** — designed and built an **adapter-based relay microservice** handing seekers from the AI to live volunteers on Chatwoot or EchoGlobal: abstract adapter + concrete adapters, **explicit session state machine with idempotent teardown**, Redis-backed session manager, HMAC-verified webhooks, QStash-queued delivery, shared in-session @agent; three technical executive summaries and a unified relay schema reference came first. **Shipped across split PR stacks** (schema, relay lib/HTTP, backend proxy, client UI, admin monitoring) plus **security hardening** (XSS via DOMPurify, CORS allowlist, Sentry PII off, rate limiting) and CI/PHPUnit repair; ~68 commits.
+- **Project Excite.** An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
 
-### Adam Matthew Steinberger LLC — Senior Software Engineering Consultant (Mar – Aug 2025); independent product design (2026)
-*Mar 2025 – 2026 · Greenville, SC*
+### Adam Matthew Steinberger LLC
+**Senior Software Engineering Consultant** · Mar 2025 – 2026 · Greenville, SC
 
-- **Business plans and software architecture documents** _(2026)_ for two SaaS concepts — a mobile-first social platform (React Native, FastAPI, Azure Container Apps) and a decentralized confidential-AI protocol.
-- **Two RAG chatbots, 30 days each** — self-hosted _(non-profit)_: Mistral-7B + FAISS behind OpenAI-compatible vLLM, Grafana/Prometheus on every token, Docker on bare metal, **zero external dependencies**; cloud _(sales agency)_: Gemini RAG with API-driven web search.
-- **Web push notification system** _(non-profit, GodFocus)_ — timezone-aware scheduling, personalization, VAPID encryption; **159/159 tests, 85.84% coverage** via AI-assisted TDD in **5 billable hours against a 30+ hour estimate**.
-- **Codebase review & architecture** _(non-profit)_ — **190+ files / 59,000 lines in 10 hours**; surfaced 5% test coverage and missing auth middleware; delivered a technical brief, executive summary, and phased Onion roadmap.
+- **Two RAG chatbots, 30 days each.** One fully self-hosted for a non-profit (Mistral-7B, FAISS and vLLM, with Grafana and Prometheus on every token and no external dependencies); one cloud-based for a sales agency (Gemini RAG with API-driven web search).
+- **Codebase review.** 59,000 lines across 190+ files reviewed in 10 hours; found 5% test coverage and missing auth middleware, and delivered a technical brief, executive summary and phased roadmap.
 
-### Lima One Capital — Senior Software Engineer
-*May 2023 – Feb 2025 · Greenville, SC*
+### Lima One Capital
+**Senior Software Engineer** · May 2023 – Feb 2025 · Greenville, SC
 
-- **Rearchitected the core integration layer** from legacy Mulesoft APIs into NestJS microservices (gRPC + REST) on PostgreSQL.
-- **Full-stack .NET/React** work on a mortgage-broker platform: credit-report integrations and pricing-engine APIs.
-- **ETL pipelines and API connectors** across HubSpot, SharePoint, Snowflake, Salesforce, and third-party providers.
-- **Built Snow Portal**, a Snowflake job scheduler that **replaced Alteryx at a fraction of the cost**; automated HR-to-ITSM sync.
+- **Rearchitected the core integration layer** from legacy MuleSoft APIs into NestJS microservices (gRPC and REST) on PostgreSQL, with ETL pipelines and connectors across HubSpot, SharePoint, Snowflake and Salesforce.
+- **Built Snow Portal**, a Snowflake job scheduler that replaced Alteryx at a fraction of the cost; full-stack .NET and React work on a mortgage-broker platform (credit-report integrations, pricing-engine APIs).
 
 ### Earlier experience
 
-- **Transcat** — Senior Software Engineer, Rochester, NY (Apr 2022 – Jan 2023). *Led a team* delivering .NET Web APIs and a React front end for lab-equipment calibration; hardened the Magento channel.
-- **LeaseTrack** — Senior Software Engineer, Latham, NY (Jun 2021 – Apr 2022). Python + AWS Textract insurance-document parsing, plus a Java Spring Boot annotation system feeding the ML training pipeline.
-- **Akmazio Software** — Senior Software Engineer (founding engineer), Albany, NY (May 2020 – May 2021). *Founding engineer:* built the entire C#/.NET + MS SQL backend (DigitalOcean) for an advisor-matching platform; wrote the business plan, managed interns and a 1099 developer, ran a distributed Scrum test team.
-- **Bestpass by Fleetworthy** — Software Engineer, Albany, NY (Sep 2019 – Apr 2020). Toll-billing system in C# MVC + Knockout.js; *introduced automated unit testing* to a legacy codebase that had none.
-- **New York State Insurance Fund (NYSIF)** — Software Engineer, Albany, NY (Mar 2015 – Aug 2019). *Migrated VB6 systems to C# MVC*, refactored Oracle EDI integrations, mentored juniors, standardized engineering process.
-- **Town and Country Computer Services** — Junior Software Engineer, Schenectady, NY (Jul 2013 – Mar 2015). C# ASP.NET / SQL Server quoting, rating, and reporting apps used all day by insurance underwriters; *client-facing from day one*.
-- **GE HealthCare** — Junior Software Engineer, Barrington, IL (Aug 2012 – Feb 2013). Zero Footprint (ZFP), a browser-based JavaScript CT/MRI viewer for real-time 3D scrolling; *built the full i18n feature*. First Scrum team.
+- **Transcat**, Senior Software Engineer (Apr 2022 – Jan 2023). Led the team delivering .NET Web APIs and a React front end for lab-equipment calibration.
+- **LeaseTrack**, Senior Software Engineer (Jun 2021 – Apr 2022). Python and AWS Textract document parsing; a Java Spring Boot annotation system feeding an ML training pipeline.
+- **Akmazio Software**, Founding Engineer (May 2020 – May 2021). Built the full C#/.NET and SQL Server backend and wrote the business plan; managed interns and a contractor.
+- **Bestpass by Fleetworthy**, Software Engineer (Sep 2019 – Apr 2020). Introduced automated unit testing to a legacy toll-billing system that had none.
+- **New York State Insurance Fund**, Software Engineer (Mar 2015 – Aug 2019). Migrated VB6 systems to C# MVC, refactored Oracle EDI integrations and mentored junior engineers.
+- **Town and Country Computer Services**, Junior Software Engineer (Jul 2013 – Mar 2015). Insurance quoting, rating and reporting apps used all day by underwriters; client-facing from the first day.
+- **GE HealthCare**, Junior Software Engineer (Aug 2012 – Feb 2013). A browser-based CT/MRI viewer with real-time 3D scrolling; built its full internationalization feature.
 
-## Open Source
+## Skills
 
-- **[vibey](https://github.com/the-vibey-project/vibey) · [PyPI](https://pypi.org/project/vibey/) · [docs](https://the-vibey-project.github.io/vibey/main/)** — One repo, one PyPI distribution: the conductor, the claudeloop, codexloop, cursorloop, agyloop, and qwenloop runners _(never block on a human; tell rate-limit windows from exhausted credits)_, vibey-gh, and vibey-skills _(formerly vibe-engineering-skills)_.
-
-MIT-licensed. Contributors and volunteers welcome — [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
+- **AI & LLM systems:** Multi-vendor LLM gateways with cost and policy governance, agent sandboxing and egress policy, multi-agent orchestration, MCP servers, RAG (pgvector, FAISS, Azure AI Search, Pinecone), human-in-the-loop gating, structured outputs; Claude, Azure OpenAI/Foundry, GPT, Gemini, Mistral, vLLM, Ollama
+- **Identity & access:** Microsoft Entra ID, Okta (core, IGA, Workflows), SAML 2.0, OIDC/OAuth 2.0, workload identity federation, RBAC (control and data plane), governance-as-code reconciliation, SOX-aligned access governance, GxP-classified functional specifications
+- **Security & compliance:** Secretless delivery (OIDC federated credentials, managed identity, CSI-driver vault secrets); Trivy, Semgrep, CodeQL, Bandit, Gitleaks, Checkov, SBOM (Syft/CycloneDX), Cosign keyless signing, Kyverno/OPA admission; STRIDE threat modeling, SOC 2 readiness, OWASP LLM Top 10, NIST AI RMF
+- **Platform & cloud:** Private AKS (workload identity, KEDA), Terraform, Bicep, Helm, Kustomize, Flux/Argo CD GitOps, GitHub Actions, Service Bus, Event Hubs, Key Vault, Private Endpoints, App Gateway + WAF, OpenTelemetry, PostgreSQL, Redis, Cosmos DB, AWS
+- **Languages:** Python 3.12 (FastAPI, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, Next.js + React, C#/.NET, Java Spring Boot, SQL, KQL, Bash, gRPC/REST, OpenAPI
 
 ## Publications
 
-- **[Novice to Navigator: Your Guide to AI Chatbots for Business](https://vibewithadam.matthewsteinberger.com/novice-to-navigator)** — Plain-English guide to RAG chatbots for decision-makers; **first edition free online**, second edition in development _(ISBN 979-8274310628)_.
-- **[Ledger-Mediated Orchestration: Vendor-Independent Autonomous Software Delivery over a Pool of Coding Agents](https://the-vibey-project.github.io/vibey/main/paper.pdf)** — _(not refereed)_
+- **[Ledger-Mediated Orchestration: Vendor-Independent Autonomous Software Delivery over a Pool of Coding Agents](https://the-vibey-project.github.io/vibey/main/paper.pdf)**. Paper describing vibey's design (not peer reviewed).
+- **[Novice to Navigator: Your Guide to AI Chatbots for Business](https://vibewithadam.matthewsteinberger.com/novice-to-navigator)**. Plain-English guide to RAG chatbots for decision-makers; first edition free online (ISBN 979-8274310628).
 
-## Education & Certifications
+## Education & certification
 
-- **Skidmore College** — B.A., Computer Science (2010 – 2012)
-- **Rensselaer Polytechnic Institute** — Electrical and Electronics Engineering (2008 – 2010)
-- **Certified ScrumMaster (CSM)** — Scrum Alliance (2021)
+- **Skidmore College**, B.A., Computer Science (2010–2012)
+- **Rensselaer Polytechnic Institute**, Electrical and Electronics Engineering coursework (2008–2010)
+- **Certified ScrumMaster (CSM)**, Scrum Alliance (2021) · [certificate](scrum-certificate.pdf)
+
+## Formats
+
+| Framing | PDF | Word | Text |
+|---|---|---|---|
+| General | [PDF](adam-steinberger-resume.pdf) | [DOCX](adam-steinberger-resume.docx) | [TXT](adam-steinberger-resume.txt) |
+| Platform & identity focus | [PDF](adam-steinberger-resume-platform-identity.pdf) | [DOCX](adam-steinberger-resume-platform-identity.docx) | [TXT](adam-steinberger-resume-platform-identity.txt) |
+| Forward-deployed focus | [PDF](adam-steinberger-resume-forward-deployed.pdf) | [DOCX](adam-steinberger-resume-forward-deployed.docx) | [TXT](adam-steinberger-resume-forward-deployed.txt) |
+
+Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · [CITATION.cff](CITATION.cff). More about me and my work: [vibewithadam.matthewsteinberger.com](https://vibewithadam.matthewsteinberger.com).
 
 ---
 
-Formats: [PDF](adam-steinberger-resume.pdf) · [DOCX](adam-steinberger-resume.docx) · [TXT](adam-steinberger-resume.txt) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibewithadam.matthewsteinberger.com/hire-me](https://vibewithadam.matthewsteinberger.com/hire-me)
-
-License: code [MIT](LICENSE) · résumé content [CC BY 4.0](LICENSE-CONTENT.md) · builder: `tools/build_resume.py`
+Code [MIT](LICENSE) · résumé content [CC BY 4.0](LICENSE-CONTENT.md) · built by `tools/build_resume.py`. Found a broken link or a stale number? [Open an issue](https://github.com/adammatthewsteinberger/resume/issues); see [CONTRIBUTING.md](CONTRIBUTING.md).
