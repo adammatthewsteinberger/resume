@@ -8,11 +8,11 @@ Greenville, SC (US remote) · [+1-864-517-4117](tel:+18645174117) · [adam@matth
 
 [![vibey on PyPI](https://img.shields.io/pypi/v/vibey-engine?label=vibey)](https://pypi.org/project/vibey-engine/) [![Code: MIT](https://img.shields.io/badge/code-MIT-yellow.svg)](LICENSE) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
 
-> Available now for Staff+ engineering roles and for fixed-scope contract work. Based in Greenville, SC; working US-remote.
+> Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.
 
 **[Contribute to vibey](#open-source)** · [Hire me for a fixed-scope project](#fixed-scope-engagements) · [Hire me full-time](#experience)
 
-I've spent 13 years building production software for insurance, lending, healthcare and security teams, and most recently the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. In my own time I maintain vibey, an open-source conductor for AI coding agents.
+For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. Since August I've built vibey in the open: a conductor for AI coding agents.
 
 ## Open source
 
@@ -60,7 +60,7 @@ Each is a fixed price, quoted after the written intake. Proof and full scope for
 
 ## Highlights
 
-- **Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product teams moved onto, retiring the credentials their apps held; my platform library is used by 17+ repositories.
+- **Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.
 - **Identity at depth.** Sole author of two identity-governance-as-code control planes (40 resource kinds, multi-tenant, no stored tenant secrets) and advisor to a SOX-regulated enterprise of about 5,700 identities.
 - **Handoffs that hold.** Co-led a 20-service AI payroll platform to production-ready architecture by day 45; the junior developer I trained alongside it now owns it.
 - **Open source, in public.** Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and passes only if no job is lost or run twice.
@@ -70,9 +70,9 @@ Each is a fixed price, quoted after the written intake. Proof and full scope for
 ### The Vibey Project (open source)
 **Creator and maintainer** · Aug 2026 – Present · Greenville, SC
 
-- **vibey** _(MIT; on PyPI as vibey-engine)_. A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. Built with AI coding agents working inside its own CI gates.
+- **vibey** _(MIT; on PyPI as vibey-engine)_. A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. AI coding agents build it, and they answer to its own CI gates.
 - **Nothing is lost when an agent dies.** Every decision, finding and handoff is a row in an append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to another vendor must pass a model-free no-loss check or it retries, escalates or waits for a person. A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, and passes only if **no job is lost or run twice**.
-- **Held to its own gates.** 100% branch-coverage floors in CI, 75 architecture decision records, a Helm chart (KEDA, kopf operator) installed on minikube in CI, and 19 releases from 450+ merged pull requests since August 2026. The design is written up as a paper and the documentation as a book.
+- **Held to its own gates.** 100% branch-coverage floors in CI, 86 architecture decision records, and a Helm chart (KEDA, kopf operator) installed on minikube in CI. In its first two months: 596 merged pull requests and 25 releases. The design is a paper; the documentation is a book.
 
 ### The Vizius Group
 **Senior Azure and AI Development Engineer** · Sep 2025 – Aug 2026 · Greenville, SC
@@ -82,7 +82,7 @@ Each is a fixed price, quoted after the written intake. Proof and full scope for
 - **AI payroll automation platform** _(co-lead, ~420k lines)_. Twenty microservices across four human-approved phases, with the final submission modeled as irreversible; RAG over the document store, AI-directed spreadsheet corrections and earnings review. I owned the Terraform, 20 Helm charts, GitOps and 10 CI/CD workflows, backed by 585 test modules. The architecture was **production-ready at day 45**, and the junior developer I trained in parallel now owns it.
 - **Technical report platform** _(lead, ~54k lines)_. Turns electrical-testing instrument data into standards-aware client reports: mail-webhook ingestion with per-document fan-out, a multi-vendor parser seam, a deterministic deficiency analyzer with LLM review, and blocking data-quality gates. Added SAML 2.0 and Entra dual-issuer SSO, replaced a shared API key with per-user bearer auth, and wrote the SOC 2 readiness assessment, STRIDE threat model and ADRs. **Ended silent false-success deploys.**
 - **Secretless DevSecOps.** OIDC workload identity federation for 20 CI workflows across 9 repositories; supply-chain pipelines with SAST, SCA, IaC and secret scanning, SBOMs, keyless signing and policy-as-code admission. My own security reviews **caught an auth bypass, path traversal, SSRF, a timing-unsafe comparison, query injection and an over-scoped CI credential before release**. Led a cross-tenant production migration onto OIDC and least-privilege RBAC.
-- **Shared platform library.** The firm's Python library for logging, alerting, dead-letter consumers and the outbox pattern, through three major versions; **adopted by 17+ repositories** and four platforms. It now continues in the open as vibey-bootstrap, part of vibey.
+- **Shared platform library.** The firm's Python library for logging, alerting, dead-letter consumers and the outbox pattern, through three major versions; **adopted by 17+ repositories** and four platforms. It lives on in the open as vibey-bootstrap, part of vibey.
 - **Also.** A multi-system ticket relay (N-way sync, 653 tests, 93% coverage, mypy --strict); a multi-tenant observability portal; five architecture document sets, about 180 pages; the *Security-First Scrum* framework and training manuals; mentoring junior developers on three projects.
 
 ### The Apologist Project
@@ -91,7 +91,7 @@ Each is a fixed price, quoted after the written intake. Proof and full scope for
 - **Project Excite.** An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
 
 ### Adam Matthew Steinberger LLC
-**Senior Software Engineering Consultant** · Mar 2025 – 2026 · Greenville, SC
+**Senior Software Engineering Consultant** · Mar 2025 – Aug 2025 · Greenville, SC
 
 - **Two RAG chatbots, 30 days each.** One fully self-hosted for a non-profit (Mistral-7B, FAISS and vLLM, with Grafana and Prometheus on every token and no external dependencies); one cloud-based for a sales agency (Gemini RAG with API-driven web search).
 - **Codebase review.** 59,000 lines across 190+ files reviewed in 10 hours; found 5% test coverage and missing auth middleware, and delivered a technical brief, executive summary and phased roadmap.

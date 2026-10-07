@@ -19,8 +19,8 @@ Variants change the title, summary, highlights, skill order and which bullets ap
 They never change a fact. Bullets are written once, in EXPERIENCE, and referenced by key.
 
 Sources of truth: LinkedIn profile export (2026-08-18), vibewithadam.matthewsteinberger.com,
-GitHub, PyPI, and the-vibey-project/vibey at 4714d09 (vibey figures measured 2026-09-30:
-75 ADRs, 19 releases, 452 merged PRs, 140-plugin skills marketplace, chaos test at
+GitHub, PyPI, and the-vibey-project/vibey at vibey-v4.2.0 (vibey figures measured 2026-10-07:
+86 ADRs, 25 releases, 596 merged PRs, 149-plugin skills marketplace, chaos test at
 tests/infrastructure/db/test_chaos.py, 100% branch-coverage floors in ci.yml). No invented
 metrics. When a figure changes, change it here and rebuild.
 
@@ -83,15 +83,15 @@ EXPERIENCE = [
             "what": "**vibey** _(MIT; on PyPI as vibey-engine)_. A conductor that carries a change from a spec "
                     "interview through design, build and review, handing work between Claude Code, OpenAI Codex, "
                     "Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for "
-                    "the decisions that are theirs to make. Built with AI coding agents working inside its own CI gates.",
+                    "the decisions that are theirs to make. AI coding agents build it, and they answer to its own CI gates.",
             "ledger": "**Nothing is lost when an agent dies.** Every decision, finding and handoff is a row in an "
                       "append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to "
                       "another vendor must pass a model-free no-loss check or it retries, escalates or waits for a "
                       "person. A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, and passes "
                       "only if **no job is lost or run twice**.",
-            "gates": "**Held to its own gates.** 100% branch-coverage floors in CI, 75 architecture decision records, "
-                     "a Helm chart (KEDA, kopf operator) installed on minikube in CI, and 19 releases from 450+ merged "
-                     "pull requests since August 2026. The design is written up as a paper and the documentation as a book.",
+            "gates": "**Held to its own gates.** 100% branch-coverage floors in CI, 86 architecture decision records, "
+                     "and a Helm chart (KEDA, kopf operator) installed on minikube in CI. In its first two months: 596 "
+                     "merged pull requests and 25 releases. The design is a paper; the documentation is a book.",
         },
     },
     {
@@ -135,7 +135,7 @@ EXPERIENCE = [
                         "interviews, and an AI vendor-terms comparison for legal and procurement.",
             "library": "**Shared platform library.** The firm's Python library for logging, alerting, dead-letter "
                        "consumers and the outbox pattern, through three major versions; **adopted by 17+ repositories** "
-                       "and four platforms. It now continues in the open as vibey-bootstrap, part of vibey.",
+                       "and four platforms. It lives on in the open as vibey-bootstrap, part of vibey.",
             "relay": "**Multi-system ticket relay** _(sole author, ~20k lines)_. N-way sync with no privileged hub: "
                      "version vectors, echo suppression, a conflict-policy engine, and edge HMAC verification with "
                      "per-tenant secrets in a vault. 653 tests at 93% coverage, mypy --strict clean, with property, "
@@ -157,7 +157,7 @@ EXPERIENCE = [
     },
     {
         "key": "llc", "org": "Adam Matthew Steinberger LLC", "loc": "Greenville, SC",
-        "role": "Senior Software Engineering Consultant", "start": "2025-03", "end": "2026",
+        "role": "Senior Software Engineering Consultant", "start": "2025-03", "end": "2025-08",
         "bullets": {
             "chatbots": "**Two RAG chatbots, 30 days each.** One fully self-hosted for a non-profit (Mistral-7B, FAISS "
                         "and vLLM, with Grafana and Prometheus on every token and no external dependencies); one "
@@ -202,10 +202,10 @@ EARLIER = [
 
 OPEN_SOURCE = [
     ("vibey", VIBEY,
-     "Conductor for AI coding agents, five engine runners, the vibey-gh release tool and vibey-bootstrap. "
-     "MIT; pip install vibey-engine. Contributors welcome."),
+     "Conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and "
+     "krypton apps for desktop, mobile, web and VS Code. MIT; pip install vibey-engine. Contributors welcome."),
     ("vibey-skills", VIBEY,
-     "A 140-plugin Claude Code skills marketplace, shipped inside vibey."),
+     "A 149-plugin Claude Code skills marketplace, shipped inside vibey."),
 ]
 
 PUBLICATIONS = [
@@ -438,17 +438,16 @@ VARIANTS = {
         "title": "Staff Software Engineer · AI platforms, identity and agent infrastructure",
         "tagline": "I build AI platforms that other teams can safely build on: no stored secrets, every call on the "
                    "record, and a person signing off on anything that can't be undone.",
-        "availability": "Available now for Staff+ engineering roles and for fixed-scope contract work. Based in "
-                        "Greenville, SC; working US-remote.",
-        "summary": "I've spent 13 years building production software for insurance, lending, healthcare and security "
-                   "teams, and most recently the controls that let AI run safely inside them. My work is "
+        "availability": "Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.",
+        "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
+                   "teams. Lately I build the controls that let AI run safely inside them. My work is "
                    "identity-first: workload identity instead of stored keys, audit trails that can't be quietly "
                    "edited, and policy kept in Git where it can be reviewed. I write the architecture down before the "
                    "code, train the people who will own it, and hand over systems that keep running after I leave. "
-                   "In my own time I maintain vibey, an open-source conductor for AI coding agents.",
+                   "Since August I've built vibey in the open: a conductor for AI coding agents.",
         "highlights": [
             "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
-            "teams moved onto, retiring the credentials their apps held; my platform library is used by 17+ repositories.",
+            "teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.",
             "**Identity at depth.** Sole author of two identity-governance-as-code control planes (40 resource kinds, "
             "multi-tenant, no stored tenant secrets) and advisor to a SOX-regulated enterprise of about 5,700 identities.",
             "**Handoffs that hold.** Co-led a 20-service AI payroll platform to production-ready architecture by day 45; "
@@ -473,9 +472,9 @@ VARIANTS = {
         "title": "Independent AI Platform Engineer · fixed-scope AI, identity and security work",
         "tagline": "Senior engineering sold as a fixed scope: RAG chatbots, LLM gateways, identity governance and AI "
                    "security reviews, agreed in writing and handed over clean.",
-        "availability": "Taking fixed-scope and contract engagements now. Based in Greenville, SC; working US-remote.",
-        "summary": "I've spent 13 years building production software for insurance, lending, healthcare and security "
-                   "teams, and I now offer that work as fixed-scope engagements. I've delivered two RAG chatbots in "
+        "availability": "Taking fixed-scope and contract engagements now. US-remote.",
+        "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
+                   "teams. Now I sell that work as fixed-scope engagements. I've delivered two RAG chatbots in "
                    "30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that "
                    "three product teams adopted. Each engagement starts with a written intake and an acceptance "
                    "checklist, and ends with documentation your team can run without me.",
@@ -488,7 +487,7 @@ VARIANTS = {
             "pre-release reviews that caught an auth bypass, path traversal and SSRF.",
         ],
         "services": True,
-        "order": ["llc", "vizius", "vibey", "apologist", "limaone"],
+        "order": ["llc", "vibey", "vizius", "apologist", "limaone"],
         "skills": ["ai", "security", "identity", "languages"],
         "bullets": {
             "llc": ["chatbots", "review", "push"],
@@ -505,16 +504,15 @@ VARIANTS = {
         "title": "Staff Software Engineer · AI platform, identity and regulated deployments",
         "tagline": "Secretless, auditable AI platforms for environments where compliance and security are "
                    "requirements from the first day.",
-        "availability": "Available now for Staff+ roles in AI platform, identity and public-sector engineering. "
-                        "Based in Greenville, SC; working US-remote.",
-        "summary": "I've spent 13 years building production systems in regulated industries: insurance, lending, "
+        "availability": "Available now for Staff+ roles in AI platform, identity and public-sector engineering. US-remote.",
+        "summary": "For 14 years I've built production systems in regulated industries: insurance, lending, "
                    "healthcare and cybersecurity. I architect AI platforms whose identity, audit and supply-chain "
                    "controls hold up to review, with workload identity instead of stored secrets, hash-chained audit "
                    "trails, policy-as-code admission and governance reconciled from Git. I write the architecture down "
                    "before the code, train the people who inherit it, and hand off systems that keep running.",
         "highlights": [
             "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
-            "teams moved onto, retiring their app-held credentials; shared platform library adopted by 17+ repositories.",
+            "teams moved onto, and they retired their app-held credentials. My platform library runs in 17+ repositories.",
             "**Identity at depth.** Sole author of two identity-governance-as-code control planes (40 resource kinds, "
             "multi-tenant, no stored tenant secrets) and identity advisory for a SOX-regulated enterprise of about 5,700 identities.",
             "**Handoffs that hold.** Co-led a 20-service platform to production-ready architecture by day 45; the junior "
@@ -536,9 +534,8 @@ VARIANTS = {
         "title": "Forward Deployed AI Engineer · Enterprise AI, discovery to production",
         "tagline": "I embed with the business, break the messy problem into parts, and ship AI workflows the customer "
                    "can run after I leave.",
-        "availability": "Available now for forward-deployed and customer-facing AI engineering roles. Based in "
-                        "Greenville, SC; working US-remote.",
-        "summary": "For 13 years I've turned unclear business problems into production systems for insurance, lending, "
+        "availability": "Available now for forward-deployed and customer-facing AI engineering roles. US-remote.",
+        "summary": "For 14 years I've turned unclear business problems into production systems for insurance, lending, "
                    "healthcare and industrial-testing teams, as an employee, a founding engineer and an independent "
                    "consultant. My method is steady: discovery, a written solution, decomposition into work, then a "
                    "handoff to someone I've mentored. Most recently I led AI platforms that put language models into "
@@ -840,7 +837,7 @@ UPWORK_SKILLS = ["Retrieval Augmented Generation", "Large Language Model", "AI A
 
 def upwork_overview():
     hook = ("I put AI into production for teams that can't afford a leak: RAG chatbots on your own documents, LLM "
-            "gateways with spend caps and audit trails, and security reviews that find the gaps first. 13 years in "
+            "gateways with spend caps and audit trails, and security reviews that find the gaps first. 14 years in "
             "production; written-first, fixed-scope.")
     L = [hook, "", "What I deliver, each at a fixed price:"]
     L += [f"• {s['name']}: {s['pitch']}" for s in SERVICES]
