@@ -4,10 +4,10 @@ I embed with the business, break the messy problem into parts, and ship AI workf
 
 Greenville, SC (US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
 
-Available now for forward-deployed and customer-facing AI engineering roles. Based in Greenville, SC; working US-remote.
+Available now for forward-deployed and customer-facing AI engineering roles. US-remote.
 
 SUMMARY
-For 13 years I've turned unclear business problems into production systems for insurance, lending, healthcare and industrial-testing teams, as an employee, a founding engineer and an independent consultant. My method is steady: discovery, a written solution, decomposition into work, then a handoff to someone I've mentored. Most recently I led AI platforms that put language models into real operational work, such as payroll, engineering reports and identity governance, with a person approving every step that can't be undone.
+For 14 years I've turned unclear business problems into production systems for insurance, lending, healthcare and industrial-testing teams, as an employee, a founding engineer and an independent consultant. My method is steady: discovery, a written solution, decomposition into work, then a handoff to someone I've mentored. Most recently I led AI platforms that put language models into real operational work, such as payroll, engineering reports and identity governance, with a person approving every step that can't be undone.
 
 HIGHLIGHTS
 - Shipped in customer reality. Co-led a 20-service AI payroll platform to production-ready architecture by day 45, with human-approved phases and an irreversible final submission; the junior developer I trained alongside it now owns it.
@@ -18,9 +18,9 @@ EXPERIENCE
 
 The Vibey Project (open source) | Greenville, SC
 Creator and maintainer | Aug 2026 – Present
-- vibey (MIT; on PyPI as vibey-engine). A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. Built with AI coding agents working inside its own CI gates.
+- vibey (MIT; on PyPI as vibey-engine). A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. AI coding agents build it, and they answer to its own CI gates.
 - Nothing is lost when an agent dies. Every decision, finding and handoff is a row in an append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to another vendor must pass a model-free no-loss check or it retries, escalates or waits for a person. A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, and passes only if no job is lost or run twice.
-- Held to its own gates. 100% branch-coverage floors in CI, 75 architecture decision records, a Helm chart (KEDA, kopf operator) installed on minikube in CI, and 19 releases from 450+ merged pull requests since August 2026. The design is written up as a paper and the documentation as a book.
+- Held to its own gates. 100% branch-coverage floors in CI, 86 architecture decision records, and a Helm chart (KEDA, kopf operator) installed on minikube in CI. In its first two months: 596 merged pull requests and 25 releases. The design is a paper; the documentation is a book.
 
 The Vizius Group | Greenville, SC
 Senior Azure and AI Development Engineer | Sep 2025 – Aug 2026
@@ -36,7 +36,7 @@ Volunteer Software Architect | Apr 2026 – Present
 - Project Excite. An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
 
 Adam Matthew Steinberger LLC | Greenville, SC
-Senior Software Engineering Consultant | Mar 2025 – 2026
+Senior Software Engineering Consultant | Mar 2025 – Aug 2025
 - Two RAG chatbots, 30 days each. One fully self-hosted for a non-profit (Mistral-7B, FAISS and vLLM, with Grafana and Prometheus on every token and no external dependencies); one cloud-based for a sales agency (Gemini RAG with API-driven web search).
 - Codebase review. 59,000 lines across 190+ files reviewed in 10 hours; found 5% test coverage and missing auth middleware, and delivered a technical brief, executive summary and phased roadmap.
 - Web push notifications for a non-profit: timezone-aware scheduling and personalization; 159 of 159 tests passing at 86% coverage, delivered in 5 billable hours against a 30-hour estimate.
@@ -63,8 +63,8 @@ SKILLS
 - Delivery: Discovery, a written solution, decomposition into work, then a mentored handoff; executive summaries for stakeholders; Scrum (CSM); author of Security-First Scrum
 
 OPEN SOURCE
-- vibey (https://github.com/the-vibey-project/vibey): Conductor for AI coding agents, five engine runners, the vibey-gh release tool and vibey-bootstrap. MIT; pip install vibey-engine. Contributors welcome.
-- vibey-skills (https://github.com/the-vibey-project/vibey): A 140-plugin Claude Code skills marketplace, shipped inside vibey.
+- vibey (https://github.com/the-vibey-project/vibey): Conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and krypton apps for desktop, mobile, web and VS Code. MIT; pip install vibey-engine. Contributors welcome.
+- vibey-skills (https://github.com/the-vibey-project/vibey): A 149-plugin Claude Code skills marketplace, shipped inside vibey.
 Volunteer with me: https://vibewithadam.matthewsteinberger.com/join-me
 
 PUBLICATIONS
