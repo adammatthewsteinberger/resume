@@ -2,12 +2,12 @@
 
 > Staff Software Engineer · AI platforms, identity and agent infrastructure. I build AI platforms that other teams can safely build on: no stored secrets, every call on the record, and a person signing off on anything that can't be undone.
 
-I've spent 13 years building production software for insurance, lending, healthcare and security teams, and most recently the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. In my own time I maintain vibey, an open-source conductor for AI coding agents.
+For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. Since August I've built vibey in the open: a conductor for AI coding agents.
 
-Available now for Staff+ engineering roles and for fixed-scope contract work. Based in Greenville, SC; working US-remote.
+Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.
 
 Key facts, each traceable to the résumé and to public repositories:
-- Platforms other teams adopted. Sole architect of a policy-enforced LLM gateway that three product teams moved onto, retiring the credentials their apps held; my platform library is used by 17+ repositories.
+- Platforms other teams adopted. Sole architect of a policy-enforced LLM gateway that three product teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.
 - Identity at depth. Sole author of two identity-governance-as-code control planes (40 resource kinds, multi-tenant, no stored tenant secrets) and advisor to a SOX-regulated enterprise of about 5,700 identities.
 - Handoffs that hold. Co-led a 20-service AI payroll platform to production-ready architecture by day 45; the junior developer I trained alongside it now owns it.
 - Open source, in public. Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and passes only if no job is lost or run twice.

@@ -13,7 +13,7 @@ AI Platform Engineer | RAG, LLM Gateways, Okta/Entra & AI Security
 **Overview. The first 242 characters show before "more"** (3,256 / 5,000 characters)
 
 ```text
-I put AI into production for teams that can't afford a leak: RAG chatbots on your own documents, LLM gateways with spend caps and audit trails, and security reviews that find the gaps first. 13 years in production; written-first, fixed-scope.
+I put AI into production for teams that can't afford a leak: RAG chatbots on your own documents, LLM gateways with spend caps and audit trails, and security reviews that find the gaps first. 14 years in production; written-first, fixed-scope.
 
 What I deliver, each at a fixed price:
 • AI codebase and security review: A severity-ranked findings report, a one-page executive summary and a phased roadmap.

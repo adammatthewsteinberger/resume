@@ -4,10 +4,10 @@ Senior engineering sold as a fixed scope: RAG chatbots, LLM gateways, identity g
 
 Greenville, SC (US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
 
-Taking fixed-scope and contract engagements now. Based in Greenville, SC; working US-remote.
+Taking fixed-scope and contract engagements now. US-remote.
 
 SUMMARY
-I've spent 13 years building production software for insurance, lending, healthcare and security teams, and I now offer that work as fixed-scope engagements. I've delivered two RAG chatbots in 30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that three product teams adopted. Each engagement starts with a written intake and an acceptance checklist, and ends with documentation your team can run without me.
+For 14 years I've built production software for insurance, lending, healthcare and security teams. Now I sell that work as fixed-scope engagements. I've delivered two RAG chatbots in 30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that three product teams adopted. Each engagement starts with a written intake and an acceptance checklist, and ends with documentation your team can run without me.
 
 HIGHLIGHTS
 - Fast from zero. Two RAG chatbots delivered in 30 days each, one fully self-hosted so no data left the client's servers; a 59,000-line codebase reviewed in 10 hours with a phased roadmap.
@@ -25,10 +25,15 @@ Each is a fixed scope, starting with a written intake and an agreed acceptance c
 EXPERIENCE
 
 Adam Matthew Steinberger LLC | Greenville, SC
-Senior Software Engineering Consultant | Mar 2025 – 2026
+Senior Software Engineering Consultant | Mar 2025 – Aug 2025
 - Two RAG chatbots, 30 days each. One fully self-hosted for a non-profit (Mistral-7B, FAISS and vLLM, with Grafana and Prometheus on every token and no external dependencies); one cloud-based for a sales agency (Gemini RAG with API-driven web search).
 - Codebase review. 59,000 lines across 190+ files reviewed in 10 hours; found 5% test coverage and missing auth middleware, and delivered a technical brief, executive summary and phased roadmap.
 - Web push notifications for a non-profit: timezone-aware scheduling and personalization; 159 of 159 tests passing at 86% coverage, delivered in 5 billable hours against a 30-hour estimate.
+
+The Vibey Project (open source) | Greenville, SC
+Creator and maintainer | Aug 2026 – Present
+- vibey (MIT; on PyPI as vibey-engine). A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. AI coding agents build it, and they answer to its own CI gates.
+- Nothing is lost when an agent dies. Every decision, finding and handoff is a row in an append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to another vendor must pass a model-free no-loss check or it retries, escalates or waits for a person. A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, and passes only if no job is lost or run twice.
 
 The Vizius Group | Greenville, SC
 Senior Azure and AI Development Engineer | Sep 2025 – Aug 2026
@@ -36,11 +41,6 @@ Senior Azure and AI Development Engineer | Sep 2025 – Aug 2026
 - Identity governance as code (sole author, two control planes). A Kubernetes operator (kopf) that reconciles directory governance against Git-declared custom resources, with fully secretless multi-tenant auth and an LLM that drafts pull requests for judgment calls. A second platform manages 40 identity-provider resource kinds with drift classification: safe drift is fixed automatically, destructive changes wait for a pull request and a human approval, and any point in time can be restored. A versioned, idempotent sync API for 114+ directory groups replaced a low-code workflow.
 - Technical report platform (lead, ~54k lines). Turns electrical-testing instrument data into standards-aware client reports: mail-webhook ingestion with per-document fan-out, a multi-vendor parser seam, a deterministic deficiency analyzer with LLM review, and blocking data-quality gates. Added SAML 2.0 and Entra dual-issuer SSO, replaced a shared API key with per-user bearer auth, and wrote the SOC 2 readiness assessment, STRIDE threat model and ADRs. Ended silent false-success deploys.
 - Secretless DevSecOps. OIDC workload identity federation for 20 CI workflows across 9 repositories; supply-chain pipelines with SAST, SCA, IaC and secret scanning, SBOMs, keyless signing and policy-as-code admission. My own security reviews caught an auth bypass, path traversal, SSRF, a timing-unsafe comparison, query injection and an over-scoped CI credential before release. Led a cross-tenant production migration onto OIDC and least-privilege RBAC.
-
-The Vibey Project (open source) | Greenville, SC
-Creator and maintainer | Aug 2026 – Present
-- vibey (MIT; on PyPI as vibey-engine). A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. Built with AI coding agents working inside its own CI gates.
-- Nothing is lost when an agent dies. Every decision, finding and handoff is a row in an append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to another vendor must pass a model-free no-loss check or it retries, escalates or waits for a person. A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, and passes only if no job is lost or run twice.
 
 The Apologist Project | Remote
 Volunteer Software Architect | Apr 2026 – Present
@@ -67,8 +67,8 @@ SKILLS
 - Languages: Python 3.12 (FastAPI, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, Next.js + React, C#/.NET, Java Spring Boot, SQL, KQL, Bash, gRPC/REST, OpenAPI
 
 OPEN SOURCE
-- vibey (https://github.com/the-vibey-project/vibey): Conductor for AI coding agents, five engine runners, the vibey-gh release tool and vibey-bootstrap. MIT; pip install vibey-engine. Contributors welcome.
-- vibey-skills (https://github.com/the-vibey-project/vibey): A 140-plugin Claude Code skills marketplace, shipped inside vibey.
+- vibey (https://github.com/the-vibey-project/vibey): Conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and krypton apps for desktop, mobile, web and VS Code. MIT; pip install vibey-engine. Contributors welcome.
+- vibey-skills (https://github.com/the-vibey-project/vibey): A 149-plugin Claude Code skills marketplace, shipped inside vibey.
 Volunteer with me: https://vibewithadam.matthewsteinberger.com/join-me
 
 PUBLICATIONS
