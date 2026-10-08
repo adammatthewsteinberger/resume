@@ -133,12 +133,14 @@ Each is a fixed price, quoted after the written intake. Proof and full scope for
 
 ## Formats
 
-| Framing | PDF | Word | Text |
+| Audience | PDF | Word | Text |
 |---|---|---|---|
-| General | [PDF](adam-steinberger-resume.pdf) | [DOCX](adam-steinberger-resume.docx) | [TXT](adam-steinberger-resume.txt) |
+| Open source | [PDF](adam-steinberger-resume.pdf) | [DOCX](adam-steinberger-resume.docx) | [TXT](adam-steinberger-resume.txt) |
+| Non-profit | [PDF](adam-steinberger-resume-nonprofit.pdf) | [DOCX](adam-steinberger-resume-nonprofit.docx) | [TXT](adam-steinberger-resume-nonprofit.txt) |
+| University & academia | [PDF](adam-steinberger-resume-academia.pdf) | [DOCX](adam-steinberger-resume-academia.docx) | [TXT](adam-steinberger-resume-academia.txt) |
+| Government & military | [PDF](adam-steinberger-resume-government-military.pdf) | [DOCX](adam-steinberger-resume-government-military.docx) | [TXT](adam-steinberger-resume-government-military.txt) |
 | Freelance & contract | [PDF](adam-steinberger-resume-freelance.pdf) | [DOCX](adam-steinberger-resume-freelance.docx) | [TXT](adam-steinberger-resume-freelance.txt) |
-| Platform & identity focus | [PDF](adam-steinberger-resume-platform-identity.pdf) | [DOCX](adam-steinberger-resume-platform-identity.docx) | [TXT](adam-steinberger-resume-platform-identity.txt) |
-| Forward-deployed focus | [PDF](adam-steinberger-resume-forward-deployed.pdf) | [DOCX](adam-steinberger-resume-forward-deployed.docx) | [TXT](adam-steinberger-resume-forward-deployed.txt) |
+| Industry | [PDF](adam-steinberger-resume-industry.pdf) | [DOCX](adam-steinberger-resume-industry.docx) | [TXT](adam-steinberger-resume-industry.txt) |
 
 Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · [profile.jsonld](profile.jsonld) (schema.org) · [CITATION.cff](CITATION.cff) · [Scrum certificate](scrum-certificate.pdf) · Everything else: [vibewithadam.matthewsteinberger.com/join-me](https://vibewithadam.matthewsteinberger.com/join-me)
 
