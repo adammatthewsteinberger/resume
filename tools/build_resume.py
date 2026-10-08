@@ -15,8 +15,9 @@ so no format can drift from another:
     SERVICES.md                               fixed-scope engagements: scope, proof and price
     freelance/upwork.md, freelance/fiverr-pro.md   platform copy, checked against field limits
 
-Variants change the title, summary, highlights, skill order and which bullets appear.
-They never change a fact. Bullets are written once, in EXPERIENCE, and referenced by key.
+Variants are target audiences (open source, non-profit, academia, government or military,
+freelance, industry). They change the title, summary, highlights, skill order and which bullets
+appear. They never change a fact. Bullets are written once, in EXPERIENCE, and referenced by key.
 
 Sources of truth: LinkedIn profile export (2026-08-18), vibewithadam.matthewsteinberger.com,
 GitHub, PyPI, and the-vibey-project/vibey at vibey-v4.2.0 (vibey figures measured 2026-10-07:
@@ -431,10 +432,14 @@ def check_services():
 
 
 # ---------------------------------------------------------------- variants (the framings)
+# Display order is the dict order: open source, non-profit, academia, government or military,
+# freelance, industry. "default" is the canonical framing (README, resume.json, llms.txt) and
+# keeps its original filename. A "legacy" variant is still built, so old links keep working, but
+# is not listed in the Formats table or llms.txt.
 VARIANTS = {
     "default": {
         "stem": "adam-steinberger-resume",
-        "label": "General",
+        "label": "Open source",
         "title": "Staff Software Engineer · AI platforms, identity and agent infrastructure",
         "tagline": "I build AI platforms that other teams can safely build on: no stored secrets, every call on the "
                    "record, and a person signing off on anything that can't be undone.",
@@ -465,6 +470,107 @@ VARIANTS = {
                      "AI governance", "identity and access management", "workload identity", "secretless CI/CD",
                      "Kubernetes", "Python", "open source", "vibey", "RAG chatbot", "AI security review",
                      "freelance AI engineer"],
+    },
+    "nonprofit": {
+        "stem": "adam-steinberger-resume-nonprofit",
+        "label": "Non-profit",
+        "title": "Senior Software Engineer · AI and web platforms for mission-driven organizations",
+        "tagline": "I build software for mission-driven teams that keeps data on your own servers when it has to, is "
+                   "monitored on every request, and is handed over to the people who will run it.",
+        "availability": "Available now for engineering roles at mission-driven organizations. US-remote.",
+        "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
+                   "teams. Recently that has included non-profit work: a fully self-hosted RAG chatbot delivered in "
+                   "30 days, web push notifications delivered in 5 billable hours against a 30-hour estimate, and, "
+                   "since April, volunteer architecture for The Apologist Project. I write the architecture down "
+                   "before the code and train the people who will run what I build.",
+        "highlights": [
+            "**Self-hosted AI, no outside dependencies.** A RAG chatbot for a non-profit in 30 days on Mistral-7B, "
+            "FAISS and vLLM, with Grafana and Prometheus watching every token.",
+            "**Small scope, done fast.** Web push notifications for a non-profit, timezone-aware and personalized: "
+            "159 of 159 tests passing at 86% coverage, delivered in 5 billable hours against a 30-hour estimate.",
+            "**Volunteer architect.** Since April 2026, software architect for The Apologist Project, which hands "
+            "people from an AI chat to live volunteers.",
+            "**Open source, in public.** I maintain vibey (MIT), and its contributing guide and a volunteer page are "
+            "public.",
+        ],
+        "order": ["apologist", "llc", "vibey", "vizius", "limaone"],
+        "skills": ["ai", "platform", "security", "languages"],
+        "bullets": {
+            "llc": ["chatbots", "push", "review"],
+            "vibey": ["what", "ledger"],
+            "vizius": ["gateway", "identity", "devsecops", "library"],
+        },
+        "keywords": ["non-profit", "mission-driven organizations", "self-hosted RAG chatbot", "Mistral-7B", "vLLM",
+                     "FAISS", "Prometheus", "Grafana", "web push notifications", "volunteer software architect",
+                     "open source", "Python"],
+    },
+    "academia": {
+        "stem": "adam-steinberger-resume-academia",
+        "label": "University & academia",
+        "title": "Software Engineer · AI systems, open source and technical writing",
+        "tagline": "I build AI software whose claims can be checked: the design is a paper, the behavior is pinned by "
+                   "tests, and the code is open.",
+        "availability": "Available now for engineering roles at universities and research groups. US-remote.",
+        "summary": "For 14 years I've built production software, and lately I've written it up as carefully as I "
+                   "build it. vibey's design is a paper, its decisions are 86 architecture decision records, its "
+                   "documentation is a book, and its chaos test passes only if no job is lost or run twice. I also "
+                   "wrote a plain-English book on RAG chatbots for decision-makers, the Security-First Scrum "
+                   "framework and its training manuals, and I've mentored junior developers on three projects. The "
+                   "junior developer I trained alongside a 20-service platform now owns it.",
+        "highlights": [
+            "**Design written as a paper.** vibey's design is published as a paper (not peer reviewed), backed by 86 "
+            "architecture decision records and documentation written as a book.",
+            "**Claims pinned by tests.** A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, "
+            "and passes only if no job is lost or run twice; CI holds 100% branch-coverage floors.",
+            "**Teaching.** Trained the junior developer who now owns a 20-service platform, wrote the Security-First "
+            "Scrum framework and training manuals, and mentored junior developers on three projects.",
+            "**Open and licensed.** vibey is MIT-licensed, résumé content is CC BY 4.0, and anyone can volunteer.",
+        ],
+        "order": ["vibey", "vizius", "llc", "apologist", "limaone"],
+        "skills": ["ai", "quality", "languages", "data", "platform"],
+        "bullets": {
+            "vibey": ["what", "ledger", "gates"],
+            "vizius": ["payroll", "reports", "gateway", "library", "also"],
+            "llc": ["review", "chatbots"],
+        },
+        "keywords": ["university", "academia", "AI systems", "open source", "technical writing",
+                     "architecture decision records", "chaos testing", "mentoring", "Python"],
+    },
+    "government-military": {
+        "stem": "adam-steinberger-resume-government-military",
+        "label": "Government & military",
+        "title": "Staff Software Engineer · Secure, auditable AI platforms for government and defense",
+        "tagline": "Secretless, auditable AI platforms for environments where compliance and security are "
+                   "requirements from the first day.",
+        "availability": "Available now for Staff+ roles in government, defense and public-sector engineering. US-remote.",
+        "summary": "For 14 years I've built production systems in regulated industries: insurance, lending, "
+                   "healthcare and cybersecurity. I architect AI platforms whose identity, audit and supply-chain "
+                   "controls hold up to review: workload identity instead of stored secrets, hash-chained audit "
+                   "trails, signed builds with SBOMs, policy-as-code admission, and governance reconciled from Git. "
+                   "I also wrote a white paper on export-control compliance and cloud enclave architecture. I write "
+                   "the architecture down before the code, train the people who inherit it, and hand off systems "
+                   "that keep running.",
+        "highlights": [
+            "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
+            "teams moved onto, and they retired their app-held credentials. My platform library runs in 17+ repositories.",
+            "**Controls mapped to frameworks.** Agent sandboxing, egress policy and SSRF checks mapped to the OWASP "
+            "LLM Top 10 and NIST AI RMF; a SOC 2 readiness assessment and STRIDE threat model for a report platform.",
+            "**Secretless delivery and supply chain.** OIDC workload identity federation for 20 CI workflows across "
+            "9 repositories, with SBOMs, keyless signing and policy-as-code admission.",
+            "**Identity at depth.** Sole author of two identity-governance-as-code control planes (40 resource kinds, "
+            "multi-tenant, no stored tenant secrets) and identity advisory for a SOX-regulated enterprise of about "
+            "5,700 identities.",
+        ],
+        "order": ["vizius", "vibey", "llc", "apologist", "limaone"],
+        "skills": ["identity", "security", "platform", "ai", "languages"],
+        "bullets": {
+            "vibey": ["what", "ledger"],
+            "vizius": ["identity", "gateway", "devsecops", "advisory", "reports", "library", "also"],
+            "llc": ["review"],
+        },
+        "keywords": ["government", "defense", "public sector", "regulated environments",
+                     "workload identity federation", "NIST AI RMF", "OWASP LLM Top 10", "SOC 2", "export control",
+                     "SBOM", "supply-chain security", "policy as code", "Kubernetes", "Python"],
     },
     "freelance": {
         "stem": "adam-steinberger-resume-freelance",
@@ -498,7 +604,43 @@ VARIANTS = {
                      "SOC 2 readiness", "OWASP LLM Top 10", "Okta", "Microsoft Entra ID", "fixed-price",
                      "Upwork", "Fiverr Pro", "Python"],
     },
+    "industry": {
+        "stem": "adam-steinberger-resume-industry",
+        "label": "Industry",
+        "title": "Staff Software Engineer · Enterprise AI and platform engineering, discovery to production",
+        "tagline": "I turn unclear business problems into AI and platform software that product teams adopt and that "
+                   "keeps running after I hand it over.",
+        "availability": "Available now for Staff+ engineering roles in industry. US-remote.",
+        "summary": "For 14 years I've turned unclear business problems into production systems for insurance, lending, "
+                   "healthcare, manufacturing and industrial-testing teams. My method is steady: discovery, a written "
+                   "solution, decomposition into work, then a handoff to someone I've mentored. Most recently I "
+                   "architected AI platforms that put language models into real operational work, such as payroll, "
+                   "engineering reports and identity governance, with a person approving every step that can't be "
+                   "undone.",
+        "highlights": [
+            "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
+            "teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.",
+            "**Shipped in customer reality.** Co-led a 20-service AI payroll platform to production-ready architecture "
+            "by day 45, with human-approved phases and an irreversible final submission; the junior developer I "
+            "trained alongside it now owns it.",
+            "**Fast from zero.** Two RAG chatbots delivered in 30 days each for different clients; a 59,000-line "
+            "codebase reviewed in 10 hours with a phased roadmap.",
+            "**Replaced tools, not just added them.** Snow Portal replaced Alteryx at a fraction of the cost, and a "
+            "versioned sync API for 114+ directory groups replaced a low-code workflow.",
+        ],
+        "order": ["vizius", "limaone", "llc", "vibey", "apologist"],
+        "skills": ["ai", "platform", "data", "languages", "delivery"],
+        "bullets": {
+            "vizius": ["gateway", "payroll", "reports", "identity", "devsecops", "library"],
+            "llc": ["chatbots", "review"],
+            "vibey": ["what", "ledger"],
+        },
+        "keywords": ["Staff Software Engineer", "enterprise AI", "AI platform engineering", "LLM gateway", "RAG",
+                     "data integration", "insurance", "lending", "healthcare", "manufacturing", "Kubernetes",
+                     "Python", "TypeScript"],
+    },
     "platform-identity": {
+        "legacy": True,
         "stem": "adam-steinberger-resume-platform-identity",
         "label": "Platform & identity focus",
         "title": "Staff Software Engineer · AI platform, identity and regulated deployments",
@@ -529,6 +671,7 @@ VARIANTS = {
                      "supply-chain security", "Kubernetes", "Python"],
     },
     "forward-deployed": {
+        "legacy": True,
         "stem": "adam-steinberger-resume-forward-deployed",
         "label": "Forward-deployed focus",
         "title": "Forward Deployed AI Engineer · Enterprise AI, discovery to production",
@@ -562,8 +705,10 @@ VARIANTS = {
     },
 }
 
+LISTED = {k: v for k, v in VARIANTS.items() if not v.get("legacy")}
+
 # Experience order per variant: open source first, because it is current and public.
-ORDER = ["vibey", "vizius", "apologist", "llc", "limaone"]
+ORDER =["vibey", "vizius", "apologist", "llc", "limaone"]
 
 # ---------------------------------------------------------------- helpers
 MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
@@ -737,10 +882,10 @@ def md():
         L.append(f"- **{c}**, {org} ({yr}) · [certificate](scrum-certificate.pdf)")
     L.append("")
 
-    L += ["## Formats", "", "| Framing | PDF | Word | Text |", "|---|---|---|---|"]
-    for key in VARIANTS:
-        f = files(VARIANTS[key])
-        L.append(f"| {VARIANTS[key]['label']} | [PDF]({f['pdf']}) | [DOCX]({f['docx']}) | [TXT]({f['txt']}) |")
+    L += ["## Formats", "", "| Audience | PDF | Word | Text |", "|---|---|---|---|"]
+    for v_ in LISTED.values():
+        f = files(v_)
+        L.append(f"| {v_['label']} | [PDF]({f['pdf']}) | [DOCX]({f['docx']}) | [TXT]({f['txt']}) |")
     L.append("")
     L.append(f"Machine-readable: [resume.json](resume.json) (JSON Resume) · [llms.txt](llms.txt) · "
              f"[profile.jsonld](profile.jsonld) (schema.org) · [CITATION.cff](CITATION.cff) · "
@@ -1042,8 +1187,7 @@ def llms_txt():
     L.append(f"- [Résumé (Markdown)]({REPO}/blob/HEAD/README.md): the full résumé, including open-source work")
     L.append(f"- [Résumé (JSON Resume)]({RAW}/resume.json): structured, machine-readable")
     L.append(f"- [Profile (schema.org JSON-LD)]({RAW}/profile.jsonld): Person, with the engagements as offers")
-    for key in VARIANTS:
-        vv = VARIANTS[key]
+    for vv in LISTED.values():
         L.append(f"- [{vv['label']} résumé (text)]({RAW}/{files(vv)['txt']}): {plain(vv['title'])}")
     L += ["", "## Contact", ""]
     L.append(f"- [Email](mailto:{EMAIL})")

@@ -35,10 +35,12 @@ Available for contract work, each engagement a fixed scope with a written accept
 - [Résumé (Markdown)](https://github.com/adammatthewsteinberger/resume/blob/HEAD/README.md): the full résumé, including open-source work
 - [Résumé (JSON Resume)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/resume.json): structured, machine-readable
 - [Profile (schema.org JSON-LD)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/profile.jsonld): Person, with the engagements as offers
-- [General résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume.txt): Staff Software Engineer · AI platforms, identity and agent infrastructure
+- [Open source résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume.txt): Staff Software Engineer · AI platforms, identity and agent infrastructure
+- [Non-profit résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-nonprofit.txt): Senior Software Engineer · AI and web platforms for mission-driven organizations
+- [University & academia résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-academia.txt): Software Engineer · AI systems, open source and technical writing
+- [Government & military résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-government-military.txt): Staff Software Engineer · Secure, auditable AI platforms for government and defense
 - [Freelance & contract résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-freelance.txt): Independent AI Platform Engineer · fixed-scope AI, identity and security work
-- [Platform & identity focus résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-platform-identity.txt): Staff Software Engineer · AI platform, identity and regulated deployments
-- [Forward-deployed focus résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-forward-deployed.txt): Forward Deployed AI Engineer · Enterprise AI, discovery to production
+- [Industry résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-industry.txt): Staff Software Engineer · Enterprise AI and platform engineering, discovery to production
 
 ## Contact
 
