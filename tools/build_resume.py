@@ -1361,48 +1361,66 @@ def html_doc(v):
 # ---------------------------------------------------------------- LaTeX (→ PDF)
 def latex_doc(v):
     L = [
-        r"\documentclass[8.0pt,letterpaper]{article}",
-        r"\usepackage[letterpaper,top=0.25in,bottom=0.25in,left=0.32in,right=0.32in]{geometry}",
+        r"\documentclass[8.4pt,letterpaper]{article}",
+        r"\usepackage[letterpaper,top=0.34in,bottom=0.34in,left=0.42in,right=0.42in]{geometry}",
         r"\usepackage[utf8]{inputenc}",
         r"\usepackage[T1]{fontenc}",
-        r"\usepackage{lmodern}",
+        r"\usepackage{helvet}",
+        r"\renewcommand{\familydefault}{\sfdefault}",
         r"\usepackage{microtype}",
         r"\usepackage{xcolor}",
         r"\usepackage[hidelinks,pdfusetitle]{hyperref}",
         r"\usepackage{enumitem}",
         r"\usepackage{tabularx}",
         r"\usepackage{titlesec}",
+        r"\usepackage{fontawesome5}",
         "",
-        r"\definecolor{primary}{HTML}{0D2342}",
-        r"\definecolor{secondary}{HTML}{1A5288}",
-        r"\definecolor{ink}{HTML}{1A1F2C}",
-        r"\definecolor{muted}{HTML}{556270}",
-        r"\definecolor{rulecolor}{HTML}{CBD5E1}",
+        r"% Executive modern color palette",
+        r"\definecolor{primary}{HTML}{0F172A}    % Slate 900",
+        r"\definecolor{accent}{HTML}{1D4ED8}     % Blue 700",
+        r"\definecolor{ink}{HTML}{1E293B}        % Slate 800",
+        r"\definecolor{muted}{HTML}{64748B}      % Slate 500",
+        r"\definecolor{rulecolor}{HTML}{E2E8F0}  % Slate 200",
         "",
         r"\pagestyle{empty}",
-        r"\linespread{0.90}",
+        r"\linespread{0.94}",
         "",
-        r"\titleformat{\section}{\fontsize{8.2pt}{9.5pt}\bfseries\color{primary}}{}{0em}{\uppercase}[\vspace{-2pt}\color{rulecolor}\titlerule]",
-        r"\titlespacing*{\section}{0pt}{2pt}{1pt}",
+        r"% Section titles",
+        r"\titleformat{\section}{\fontsize{8.8pt}{10.2pt}\bfseries\color{primary}}{}{0em}{\uppercase}[\vspace{-2.5pt}\color{rulecolor}\titlerule]",
+        r"\titlespacing*{\section}{0pt}{4pt}{2.5pt}",
         "",
-        r"\setlist[itemize]{leftmargin=9pt,labelsep=3pt,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0.2pt}",
+        r"\setlist[itemize]{leftmargin=10.5pt,labelsep=4pt,topsep=0.5pt,partopsep=0pt,parsep=0pt,itemsep=1.2pt}",
+        r"\renewcommand\labelitemi{\color{accent}\fontsize{4.2pt}{4.2pt}\selectfont\faCircle}",
         "",
         r"\begin{document}",
         r"\color{ink}",
-        f"{{\\fontsize{{16pt}}{{18pt}}\\selectfont \\textbf{{\\color{{primary}}{tex_escape(NAME)}}}}}\\par\\vspace{{1pt}}",
-        f"{{\\fontsize{{9.2pt}}{{10.5pt}}\\selectfont \\textbf{{\\color{{secondary}}{tex_escape(v['title'])}}}}}\\par\\vspace{{1pt}}",
-        f"{{\\fontsize{{7.8pt}}{{9pt}}\\selectfont {tex_rich(v['tagline'])}}}\\par\\vspace{{1pt}}",
+        "",
+        r"% Header Block",
+        r"\begin{center}",
+        f"{{\\fontsize{{18pt}}{{20pt}}\\selectfont \\textbf{{\\color{{primary}}{tex_escape(NAME)}}}}}\\\\[1.5pt]",
+        f"{{\\fontsize{{9.2pt}}{{10.8pt}}\\selectfont \\textbf{{\\color{{accent}}{tex_escape(v['title'])}}}}}\\\\[2pt]",
+        f"{{\\fontsize{{8pt}}{{9.5pt}}\\selectfont {tex_rich(v['tagline'])}}}\\\\[3pt]",
     ]
-    contact_parts = []
-    for t, u in CONTACT:
-        esc_t = tex_escape(t)
-        if u:
-            contact_parts.append(f"\\href{{{u}}}{{{esc_t}}}")
-        else:
-            contact_parts.append(esc_t)
-    L.append(f"{{\\fontsize{{7.5pt}}{{8.5pt}}\\selectfont {r' {\\color{muted}\\textbullet} '.join(contact_parts)}}}\\par\\vspace{{1.2pt}}")
-    L.append(f"{{\\fontsize{{7.8pt}}{{9pt}}\\selectfont \\textbf{{{tex_escape(v['availability'])}}}}}\\par\\vspace{{1pt}}")
-    L.append(f"\\section*{{Summary}}\n{tex_rich(v['summary'])}\\par")
+
+    c_line1 = [
+        f"\\faMapMarker*\\ {tex_escape(CITY)}, {tex_escape(REGION)} (US remote)",
+        f"\\faPhone*\\ \\href{{tel:+18645174117}}{{{tex_escape(PHONE)}}}",
+        f"\\faEnvelope\\ \\href{{mailto:{EMAIL}}}{{{tex_escape(EMAIL)}}}"
+    ]
+    c_line2 = [
+        f"\\faLinkedin\\ \\href{{{PROFILES[0][2]}}}{{linkedin.com/in/{PROFILES[0][1]}}}",
+        f"\\faGithub\\ \\href{{{PROFILES[1][2]}}}{{github.com/{PROFILES[1][1]}}}",
+        f"\\faGlobe\\ \\href{{{SITE}}}{{vibewithadam.matthewsteinberger.com}}"
+    ]
+    dot = r"\quad{\color{rulecolor}\textbullet}\quad"
+    L.append(f"{{\\fontsize{{7.6pt}}{{9pt}}\\selectfont \\color{{muted}} {dot.join(c_line1)}}}\\\\[1.8pt]")
+    L.append(f"{{\\fontsize{{7.6pt}}{{9pt}}\\selectfont \\color{{muted}} {dot.join(c_line2)}}}\\\\[2.5pt]")
+    L.append(f"{{\\fontsize{{7.8pt}}{{9.2pt}}\\selectfont \\textbf{{{tex_escape(v['availability'])}}}}}")
+    L.append(r"\end{center}")
+    L.append(r"\vspace{-3pt}")
+
+    L.append(f"\\section*{{Summary}}\n{{\\fontsize{{7.8pt}}{{9.4pt}}\\selectfont {tex_rich(v['summary'])}}}\\par")
+
     L.append(f"\\section*{{Highlights}}\n\\begin{{itemize}}")
     for b in v["highlights"]:
         L.append(f"\\item {tex_rich(b)}")
@@ -1413,17 +1431,19 @@ def latex_doc(v):
         for s in SERVICES:
             L.append(f"\\item \\textbf{{{tex_escape(s['name'])}.}} {tex_escape(s['pitch'])}")
         L.append(r"\end{itemize}")
-        L.append(f"{{\\fontsize{{7.5pt}}{{8.5pt}}\\selectfont {tex_escape(SERVICES_NOTE)} Details and proof: \\href{{{REPO}/blob/HEAD/SERVICES.md}}{{SERVICES.md}}}}\\par")
+        L.append(f"{{\\fontsize{{7.5pt}}{{8.6pt}}\\selectfont {tex_escape(SERVICES_NOTE)} Details and proof: \\href{{{REPO}/blob/HEAD/SERVICES.md}}{{SERVICES.md}}}}\\par")
 
     L.append(r"\section*{Experience}")
-    for e, bullets in jobs(v):
+    for idx, (e, bullets) in enumerate(jobs(v)):
         org = tex_escape(e["org"])
         loc = tex_escape(e["loc"])
         dates = tex_escape(span(e["start"], e["end"]))
         role = tex_escape(e["role"])
-        L.append(r"\vspace{1pt}")
-        L.append(f"{{\\bfseries\\fontsize{{8.5pt}}{{10pt}}\\selectfont {org}}} {{\\color{{muted}}\\textbullet\\ {loc}}} \\hfill {{\\color{{muted}}\\fontsize{{7.8pt}}{{9pt}}\\selectfont {dates}}}\\par")
-        L.append(f"{{\\itshape\\fontsize{{7.8pt}}{{9pt}}\\selectfont {role}}}\\par")
+        L.append(r"\begin{samepage}")
+        L.append(r"\vspace{1.5pt}")
+        L.append(f"\\noindent{{\\bfseries\\fontsize{{8.6pt}}{{10pt}}\\selectfont {org}}} \\hfill {{\\color{{muted}}\\fontsize{{7.8pt}}{{9pt}}\\selectfont {dates}}}\\\\")
+        L.append(f"{{\\itshape\\fontsize{{7.8pt}}{{9pt}}\\selectfont {role}}} {{\\color{{muted}}\\textbullet\\ {loc}}}")
+        L.append(r"\end{samepage}")
         L.append(r"\begin{itemize}")
         for b in bullets:
             L.append(f"\\item {tex_rich(b)}")
@@ -1433,13 +1453,15 @@ def latex_doc(v):
     earlier_parts = []
     for org, role, loc, s, e, line in EARLIER:
         earlier_parts.append(f"\\textbf{{{tex_escape(org)}}}, {tex_escape(role)} ({s[:4]}--{e[:4]}). {tex_escape(line)}")
-    L.append(f"{{\\fontsize{{7.2pt}}{{8.2pt}}\\selectfont {r' {\\color{muted}\\textbullet} '.join(earlier_parts)}}}\\par")
+    earlier_str = r" \quad{\color{muted}\textbullet}\quad ".join(earlier_parts)
+    L.append(f"{{\\fontsize{{7.3pt}}{{8.5pt}}\\selectfont {earlier_str}}}\\par")
 
     L.append(r"\section*{Skills}")
     skills_lines = []
     for k, t in skills(v):
         skills_lines.append(f"\\textbf{{{tex_escape(k)}:}} {tex_rich(t)}")
-    L.append(f"{{\\fontsize{{7.5pt}}{{8.8pt}}\\selectfont {r' \\par '.join(skills_lines)}}}\\par")
+    skills_str = r"\\[2pt]".join(skills_lines)
+    L.append(f"{{\\fontsize{{7.5pt}}{{8.9pt}}\\selectfont {skills_str}}}\\par")
 
     L.append(r"\section*{Open source \& publications}\begin{itemize}")
     for n, u, desc in OPEN_SOURCE:
@@ -1454,7 +1476,8 @@ def latex_doc(v):
         edu_certs.append(f"\\textbf{{{tex_escape(s)}}}, {tex_escape(deg)} ({a}--{b})")
     for c, o, y in CERTS:
         edu_certs.append(f"\\textbf{{{tex_escape(c)}}}, {tex_escape(o)} ({y})")
-    L.append(f"{{\\fontsize{{7.5pt}}{{8.5pt}}\\selectfont {r' {\\color{muted}\\textbullet} '.join(edu_certs)}}}\\par")
+    edu_str = r" \quad{\color{muted}\textbullet}\quad ".join(edu_certs)
+    L.append(f"{{\\fontsize{{7.5pt}}{{8.8pt}}\\selectfont {edu_str}}}\\par")
 
     L.append(r"\end{document}")
     return "\n".join(L)
