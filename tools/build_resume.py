@@ -797,9 +797,42 @@ def rich(s):
     return "".join(out)
 
 
+def tex_escape(s):
+    replacements = [
+        ("\\", r"\textbackslash{}"),
+        ("&", r"\&"),
+        ("%", r"\%"),
+        ("$", r"\$"),
+        ("#", r"\#"),
+        ("_", r"\_"),
+        ("{", r"\{"),
+        ("}", r"\}"),
+        ("~", r"\textasciitilde{}"),
+        ("^", r"\textasciicircum{}"),
+    ]
+    for old, new in replacements:
+        s = s.replace(old, new)
+    return s
+
+
+def tex_rich(s):
+    out = []
+    for text, style in spans(s):
+        esc = tex_escape(text)
+        if style == "b":
+            out.append(f"\\textbf{{{esc}}}")
+        elif style == "i":
+            out.append(f"\\textit{{{esc}}}")
+        elif style == "muted":
+            out.append(f"{{\\color{{muted}}{esc}}}")
+        else:
+            out.append(esc)
+    return "".join(out)
+
+
 def files(v):
     s = v["stem"]
-    return {"pdf": f"{s}.pdf", "docx": f"{s}.docx", "txt": f"{s}.txt", "html": f"{s}.html"}
+    return {"pdf": f"{s}.pdf", "docx": f"{s}.docx", "txt": f"{s}.txt", "html": f"{s}.html", "tex": f"{s}.tex"}
 
 
 # ---------------------------------------------------------------- README (default framing, FOSS first)
@@ -1325,61 +1358,156 @@ def html_doc(v):
     return "".join(L)
 
 
-def chrome_path():
-    for p in (os.environ.get("CHROME"), "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-              shutil.which("google-chrome"), shutil.which("chromium"), shutil.which("chromium-browser")):
+# ---------------------------------------------------------------- LaTeX (→ PDF)
+def latex_doc(v):
+    L = [
+        r"\documentclass[8.0pt,letterpaper]{article}",
+        r"\usepackage[letterpaper,top=0.25in,bottom=0.25in,left=0.32in,right=0.32in]{geometry}",
+        r"\usepackage[utf8]{inputenc}",
+        r"\usepackage[T1]{fontenc}",
+        r"\usepackage{lmodern}",
+        r"\usepackage{microtype}",
+        r"\usepackage{xcolor}",
+        r"\usepackage[hidelinks,pdfusetitle]{hyperref}",
+        r"\usepackage{enumitem}",
+        r"\usepackage{tabularx}",
+        r"\usepackage{titlesec}",
+        "",
+        r"\definecolor{primary}{HTML}{0D2342}",
+        r"\definecolor{secondary}{HTML}{1A5288}",
+        r"\definecolor{ink}{HTML}{1A1F2C}",
+        r"\definecolor{muted}{HTML}{556270}",
+        r"\definecolor{rulecolor}{HTML}{CBD5E1}",
+        "",
+        r"\pagestyle{empty}",
+        r"\linespread{0.90}",
+        "",
+        r"\titleformat{\section}{\fontsize{8.2pt}{9.5pt}\bfseries\color{primary}}{}{0em}{\uppercase}[\vspace{-2pt}\color{rulecolor}\titlerule]",
+        r"\titlespacing*{\section}{0pt}{2pt}{1pt}",
+        "",
+        r"\setlist[itemize]{leftmargin=9pt,labelsep=3pt,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0.2pt}",
+        "",
+        r"\begin{document}",
+        r"\color{ink}",
+        f"{{\\fontsize{{16pt}}{{18pt}}\\selectfont \\textbf{{\\color{{primary}}{tex_escape(NAME)}}}}}\\par\\vspace{{1pt}}",
+        f"{{\\fontsize{{9.2pt}}{{10.5pt}}\\selectfont \\textbf{{\\color{{secondary}}{tex_escape(v['title'])}}}}}\\par\\vspace{{1pt}}",
+        f"{{\\fontsize{{7.8pt}}{{9pt}}\\selectfont {tex_rich(v['tagline'])}}}\\par\\vspace{{1pt}}",
+    ]
+    contact_parts = []
+    for t, u in CONTACT:
+        esc_t = tex_escape(t)
+        if u:
+            contact_parts.append(f"\\href{{{u}}}{{{esc_t}}}")
+        else:
+            contact_parts.append(esc_t)
+    L.append(f"{{\\fontsize{{7.5pt}}{{8.5pt}}\\selectfont {r' {\\color{muted}\\textbullet} '.join(contact_parts)}}}\\par\\vspace{{1.2pt}}")
+    L.append(f"{{\\fontsize{{7.8pt}}{{9pt}}\\selectfont \\textbf{{{tex_escape(v['availability'])}}}}}\\par\\vspace{{1pt}}")
+    L.append(f"\\section*{{Summary}}\n{tex_rich(v['summary'])}\\par")
+    L.append(f"\\section*{{Highlights}}\n\\begin{{itemize}}")
+    for b in v["highlights"]:
+        L.append(f"\\item {tex_rich(b)}")
+    L.append(r"\end{itemize}")
+
+    if v.get("services"):
+        L.append(r"\section*{Fixed-scope engagements}\begin{itemize}")
+        for s in SERVICES:
+            L.append(f"\\item \\textbf{{{tex_escape(s['name'])}.}} {tex_escape(s['pitch'])}")
+        L.append(r"\end{itemize}")
+        L.append(f"{{\\fontsize{{7.5pt}}{{8.5pt}}\\selectfont {tex_escape(SERVICES_NOTE)} Details and proof: \\href{{{REPO}/blob/HEAD/SERVICES.md}}{{SERVICES.md}}}}\\par")
+
+    L.append(r"\section*{Experience}")
+    for e, bullets in jobs(v):
+        org = tex_escape(e["org"])
+        loc = tex_escape(e["loc"])
+        dates = tex_escape(span(e["start"], e["end"]))
+        role = tex_escape(e["role"])
+        L.append(r"\vspace{1pt}")
+        L.append(f"{{\\bfseries\\fontsize{{8.5pt}}{{10pt}}\\selectfont {org}}} {{\\color{{muted}}\\textbullet\\ {loc}}} \\hfill {{\\color{{muted}}\\fontsize{{7.8pt}}{{9pt}}\\selectfont {dates}}}\\par")
+        L.append(f"{{\\itshape\\fontsize{{7.8pt}}{{9pt}}\\selectfont {role}}}\\par")
+        L.append(r"\begin{itemize}")
+        for b in bullets:
+            L.append(f"\\item {tex_rich(b)}")
+        L.append(r"\end{itemize}")
+
+    L.append(r"\section*{Earlier experience}")
+    earlier_parts = []
+    for org, role, loc, s, e, line in EARLIER:
+        earlier_parts.append(f"\\textbf{{{tex_escape(org)}}}, {tex_escape(role)} ({s[:4]}--{e[:4]}). {tex_escape(line)}")
+    L.append(f"{{\\fontsize{{7.2pt}}{{8.2pt}}\\selectfont {r' {\\color{muted}\\textbullet} '.join(earlier_parts)}}}\\par")
+
+    L.append(r"\section*{Skills}")
+    skills_lines = []
+    for k, t in skills(v):
+        skills_lines.append(f"\\textbf{{{tex_escape(k)}:}} {tex_rich(t)}")
+    L.append(f"{{\\fontsize{{7.5pt}}{{8.8pt}}\\selectfont {r' \\par '.join(skills_lines)}}}\\par")
+
+    L.append(r"\section*{Open source \& publications}\begin{itemize}")
+    for n, u, desc in OPEN_SOURCE:
+        L.append(f"\\item \\textbf{{\\href{{{u}}}{{{tex_escape(n)}}}}}. {tex_escape(desc)}")
+    for t, desc, u, _ in PUBLICATIONS:
+        L.append(f"\\item \\textbf{{\\href{{{u}}}{{{tex_escape(t)}}}}}. {tex_escape(desc)}")
+    L.append(r"\end{itemize}")
+
+    L.append(r"\section*{Education \& certification}")
+    edu_certs = []
+    for s, deg, a, b in EDUCATION:
+        edu_certs.append(f"\\textbf{{{tex_escape(s)}}}, {tex_escape(deg)} ({a}--{b})")
+    for c, o, y in CERTS:
+        edu_certs.append(f"\\textbf{{{tex_escape(c)}}}, {tex_escape(o)} ({y})")
+    L.append(f"{{\\fontsize{{7.5pt}}{{8.5pt}}\\selectfont {r' {\\color{muted}\\textbullet} '.join(edu_certs)}}}\\par")
+
+    L.append(r"\end{document}")
+    return "\n".join(L)
+
+
+def latex_compiler():
+    for cmd in ("pdflatex", "xelatex", "lualatex", "tectonic"):
+        p = shutil.which(cmd)
         if p and os.path.exists(p):
-            return p
+            return cmd
     return None
 
 
-def pdf(v, html_path, pdf_path):
-    chrome = chrome_path()
-    if not chrome:
-        print(f"  skipped {pdf_path}: Chrome not found (set CHROME=...)")
+def pdf(v, tex_path, pdf_path):
+    compiler = latex_compiler()
+    if not compiler:
+        print(f"  skipped {pdf_path}: LaTeX compiler (pdflatex/xelatex/tectonic) not found")
         return
-    if os.path.exists(pdf_path):
-        os.remove(pdf_path)
-    with tempfile.TemporaryDirectory() as profile:
-        # Headless Chrome sometimes lingers after printing, so wait for a complete PDF
-        # (size stable and ending in %%EOF), then stop the process ourselves.
-        proc = subprocess.Popen([chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                                 "--no-first-run", "--no-default-browser-check", "--disable-extensions",
-                                 f"--user-data-dir={profile}", f"--print-to-pdf={os.path.abspath(pdf_path)}",
-                                 "file://" + os.path.abspath(html_path)],
-                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        last, deadline = -1, time.time() + 90
-        while time.time() < deadline:
-            time.sleep(0.5)
-            if proc.poll() is not None and os.path.exists(pdf_path):
-                break
-            if os.path.exists(pdf_path):
-                size = os.path.getsize(pdf_path)
-                with open(pdf_path, "rb") as fh:
-                    fh.seek(max(0, size - 1024))
-                    done = b"%%EOF" in fh.read()
-                if done and size == last:
-                    break
-                last = size
-        if proc.poll() is None:
-            proc.terminate()
-            try:
-                proc.wait(timeout=10)
-            except subprocess.TimeoutExpired:
-                proc.kill()
-    if not os.path.exists(pdf_path):
-        raise RuntimeError(f"Chrome did not produce {pdf_path}")
+    with tempfile.TemporaryDirectory() as td:
+        tex_file = os.path.basename(tex_path)
+        shutil.copyfile(tex_path, os.path.join(td, tex_file))
+        if compiler == "tectonic":
+            cmd = ["tectonic", tex_file]
+        else:
+            cmd = [compiler, "-interaction=nonstopmode", tex_file]
+        res = subprocess.run(cmd, cwd=td, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out_pdf = os.path.join(td, os.path.splitext(tex_file)[0] + ".pdf")
+        if res.returncode != 0 or not os.path.exists(out_pdf):
+            err_msg = res.stdout.decode("latin1", errors="replace")
+            raise RuntimeError(f"{compiler} failed to compile {tex_path}:\n{err_msg[-1000:]}")
+        shutil.copyfile(out_pdf, pdf_path)
+
     try:
         from pypdf import PdfReader, PdfWriter
     except ImportError:
         print("  pypdf not installed: PDF written without metadata")
         return
-    writer = PdfWriter(clone_from=PdfReader(pdf_path))
-    writer.add_metadata({"/Title": f"{NAME}: {v['title']}", "/Author": NAME,
-                         "/Subject": plain(v["tagline"]), "/Keywords": ", ".join(v["keywords"]),
-                         "/Creator": "tools/build_resume.py"})
+
+    reader = PdfReader(pdf_path)
+    page_count = len(reader.pages)
+    if page_count != 2:
+        print(f"  WARNING: {pdf_path} is {page_count} pages (expected exactly 2 pages)")
+    writer = PdfWriter(clone_from=reader)
+    writer.add_metadata({
+        "/Title": f"{NAME}: {v['title']}",
+        "/Author": NAME,
+        "/Subject": plain(v["tagline"]),
+        "/Keywords": ", ".join(v["keywords"]),
+        "/Creator": "tools/build_resume.py (Markdown -> LaTeX -> PDF)",
+    })
     with open(pdf_path, "wb") as f:
         writer.write(f)
+
 
 
 # ---------------------------------------------------------------- DOCX
@@ -1514,8 +1642,9 @@ for key, v in VARIANTS.items():
     f = files(v)
     write(f["txt"], txt(v))
     write(f["html"], html_doc(v))
+    write(f["tex"], latex_doc(v))
     docx_doc(v, os.path.join(OUT, f["docx"]))
     if MAKE_PDF:
-        pdf(v, os.path.join(OUT, f["html"]), os.path.join(OUT, f["pdf"]))
+        pdf(v, os.path.join(OUT, f["tex"]), os.path.join(OUT, f["pdf"]))
     print(f"wrote {key}: {', '.join(sorted(f.values()))}")
 print("wrote README.md, SERVICES.md, freelance/, profile.jsonld, resume.json, llms.txt, CITATION.cff →", OUT)

@@ -1,0 +1,94 @@
+\documentclass[8.0pt,letterpaper]{article}
+\usepackage[letterpaper,top=0.25in,bottom=0.25in,left=0.32in,right=0.32in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+
+\definecolor{primary}{HTML}{0D2342}
+\definecolor{secondary}{HTML}{1A5288}
+\definecolor{ink}{HTML}{1A1F2C}
+\definecolor{muted}{HTML}{556270}
+\definecolor{rulecolor}{HTML}{CBD5E1}
+
+\pagestyle{empty}
+\linespread{0.90}
+
+\titleformat{\section}{\fontsize{8.2pt}{9.5pt}\bfseries\color{primary}}{}{0em}{\uppercase}[\vspace{-2pt}\color{rulecolor}\titlerule]
+\titlespacing*{\section}{0pt}{2pt}{1pt}
+
+\setlist[itemize]{leftmargin=9pt,labelsep=3pt,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0.2pt}
+
+\begin{document}
+\color{ink}
+{\fontsize{16pt}{18pt}\selectfont \textbf{\color{primary}Adam Matthew Steinberger}}\par\vspace{1pt}
+{\fontsize{9.2pt}{10.5pt}\selectfont \textbf{\color{secondary}Staff Software Engineer · Secure, auditable AI platforms for government and defense}}\par\vspace{1pt}
+{\fontsize{7.8pt}{9pt}\selectfont Secretless, auditable AI platforms for environments where compliance and security are requirements from the first day.}\par\vspace{1pt}
+{\fontsize{7.5pt}{8.5pt}\selectfont Greenville, SC (US remote) {\\color{muted}\\textbullet} \href{tel:+18645174117}{+1-864-517-4117} {\\color{muted}\\textbullet} \href{mailto:adam@matthewsteinberger.com}{adam@matthewsteinberger.com} {\\color{muted}\\textbullet} \href{https://www.linkedin.com/in/adammatthewsteinberger/}{linkedin.com/in/adammatthewsteinberger} {\\color{muted}\\textbullet} \href{https://github.com/adammatthewsteinberger}{github.com/adammatthewsteinberger} {\\color{muted}\\textbullet} \href{https://vibewithadam.matthewsteinberger.com}{vibewithadam.matthewsteinberger.com}}\par\vspace{1.2pt}
+{\fontsize{7.8pt}{9pt}\selectfont \textbf{Available now for Staff+ roles in government, defense and public-sector engineering. US-remote.}}\par\vspace{1pt}
+\section*{Summary}
+For 14 years I've built production systems in regulated industries: insurance, lending, healthcare and cybersecurity. I architect AI platforms whose identity, audit and supply-chain controls hold up to review: workload identity instead of stored secrets, hash-chained audit trails, signed builds with SBOMs, policy-as-code admission, and governance reconciled from Git. I build krypton and the vibey engine as a free, censorship-free Claude Code and Codex killer that writes code like a principal software engineer rather than slop, built toward an AGI platform with superintelligence coming soon. I also wrote a white paper on export-control compliance.\par
+\section*{Highlights}
+\begin{itemize}
+\item \textbf{Platforms other teams adopted.} Sole architect of a policy-enforced LLM gateway that three product teams moved onto, and they retired their app-held credentials. My platform library runs in 17+ repositories.
+\item \textbf{Controls mapped to frameworks.} Agent sandboxing, egress policy and SSRF checks mapped to the OWASP LLM Top 10 and NIST AI RMF; a SOC 2 readiness assessment and STRIDE threat model for a report platform.
+\item \textbf{Secretless delivery and supply chain.} OIDC workload identity federation for 20 CI workflows across 9 repositories, with SBOMs, keyless signing and policy-as-code admission.
+\item \textbf{Identity at depth.} Sole author of two identity-governance-as-code control planes (40 resource kinds, multi-tenant, no stored tenant secrets) and identity advisory for a SOX-regulated enterprise of about 5,700 identities.
+\end{itemize}
+\section*{Experience}
+\vspace{1pt}
+{\bfseries\fontsize{8.5pt}{10pt}\selectfont The Vizius Group} {\color{muted}\textbullet\ Greenville, SC} \hfill {\color{muted}\fontsize{7.8pt}{9pt}\selectfont Sep 2025 – Aug 2026}\par
+{\itshape\fontsize{7.8pt}{9pt}\selectfont Senior Azure and AI Development Engineer}\par
+\begin{itemize}
+\item \textbf{Identity governance as code} {\color{muted}(sole author, two control planes)}. A Kubernetes operator (kopf) that reconciles directory governance against Git-declared custom resources, with fully secretless multi-tenant auth and an LLM that drafts pull requests for judgment calls. A second platform manages 40 identity-provider resource kinds with drift classification: safe drift is fixed automatically, destructive changes wait for a pull request and a human approval, and any point in time can be restored. A versioned, idempotent sync API for 114+ directory groups \textbf{replaced a low-code workflow}.
+\item \textbf{AI governance gateway} {\color{muted}(sole architect, \textasciitilde{}54k lines)}. One OpenAI-compatible API in front of Azure AI, Anthropic, OpenAI, Cursor, Grok and Gemini, with per-project allowlists and fallback policy, Redis rate limits, per-call cost attribution with hard spend caps, and an HMAC-signed, hash-chained, write-once audit trail. Callers authenticate with Entra ID over workload identity, so no API keys sit in the path; agent sandboxing, egress policy and SSRF checks map to the OWASP LLM Top 10 and NIST AI RMF. \textbf{Three product teams moved onto it} and retired their app-held credentials.
+\item \textbf{Secretless DevSecOps.} OIDC workload identity federation for 20 CI workflows across 9 repositories; supply-chain pipelines with SAST, SCA, IaC and secret scanning, SBOMs, keyless signing and policy-as-code admission. My own security reviews \textbf{caught an auth bypass, path traversal, SSRF, a timing-unsafe comparison, query injection and an over-scoped CI credential before release}. Led a cross-tenant production migration onto OIDC and least-privilege RBAC.
+\item \textbf{Regulated advisory.} Identity-governance advisory for a SOX-regulated enterprise of about 5,700 identities: a platform decision report, API/SDK/MCP coverage across eight platforms, GxP-classified functional specifications and SOX-to-IAM risk mapping. Also a white paper on export-control compliance and cloud enclave architecture, written from recorded expert interviews, and an AI vendor-terms comparison for legal and procurement.
+\item \textbf{Technical report platform} {\color{muted}(lead, \textasciitilde{}54k lines)}. Turns electrical-testing instrument data into standards-aware client reports: mail-webhook ingestion with per-document fan-out, a multi-vendor parser seam, a deterministic deficiency analyzer with LLM review, and blocking data-quality gates. Added SAML 2.0 and Entra dual-issuer SSO, replaced a shared API key with per-user bearer auth, and wrote the SOC 2 readiness assessment, STRIDE threat model and ADRs. \textbf{Ended silent false-success deploys.}
+\item \textbf{Shared platform library.} The firm's Python library for logging, alerting, dead-letter consumers and the outbox pattern, through three major versions; \textbf{adopted by 17+ repositories} and four platforms. It lives on in the open as vibey-bootstrap, part of vibey.
+\item \textbf{Also.} A multi-system ticket relay (N-way sync, 653 tests, 93\% coverage, mypy --strict); a multi-tenant observability portal; five architecture document sets, about 180 pages; the \textit{Security-First Scrum} framework and training manuals; mentoring junior developers on three projects.
+\end{itemize}
+\vspace{1pt}
+{\bfseries\fontsize{8.5pt}{10pt}\selectfont The Vibey Project (open source)} {\color{muted}\textbullet\ Greenville, SC} \hfill {\color{muted}\fontsize{7.8pt}{9pt}\selectfont Aug 2026 – Present}\par
+{\itshape\fontsize{7.8pt}{9pt}\selectfont Creator and maintainer}\par
+\begin{itemize}
+\item \textbf{vibey \& krypton} {\color{muted}(MIT; on PyPI as vibey-engine)}. Built as a Claude Code and Codex replacement: completely free, censorship-free, and open to everyone. Writes code the way a principal software engineer does so users get rigorous, production-grade quality instead of code slop, completely free of charge—architected as an AGI platform with superintelligence coming soon.
+\item \textbf{Nothing is lost when an agent dies.} Every decision, finding and handoff is a row in an append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to another vendor must pass a model-free no-loss check or it retries, escalates or waits for a person. A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, and passes only if \textbf{no job is lost or run twice}.
+\end{itemize}
+\vspace{1pt}
+{\bfseries\fontsize{8.5pt}{10pt}\selectfont Adam Matthew Steinberger LLC} {\color{muted}\textbullet\ Greenville, SC} \hfill {\color{muted}\fontsize{7.8pt}{9pt}\selectfont Mar 2025 – Aug 2025}\par
+{\itshape\fontsize{7.8pt}{9pt}\selectfont Senior Software Engineering Consultant}\par
+\begin{itemize}
+\item \textbf{Codebase review.} 59,000 lines across 190+ files reviewed in 10 hours; found 5\% test coverage and missing auth middleware, and delivered a technical brief, executive summary and phased roadmap.
+\end{itemize}
+\vspace{1pt}
+{\bfseries\fontsize{8.5pt}{10pt}\selectfont The Apologist Project} {\color{muted}\textbullet\ Remote} \hfill {\color{muted}\fontsize{7.8pt}{9pt}\selectfont Apr 2026 – Present}\par
+{\itshape\fontsize{7.8pt}{9pt}\selectfont Volunteer Software Architect}\par
+\begin{itemize}
+\item \textbf{Project Excite.} An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
+\end{itemize}
+\vspace{1pt}
+{\bfseries\fontsize{8.5pt}{10pt}\selectfont Lima One Capital} {\color{muted}\textbullet\ Greenville, SC} \hfill {\color{muted}\fontsize{7.8pt}{9pt}\selectfont May 2023 – Feb 2025}\par
+{\itshape\fontsize{7.8pt}{9pt}\selectfont Senior Software Engineer}\par
+\begin{itemize}
+\item \textbf{Rearchitected the core integration layer} from legacy MuleSoft APIs into NestJS microservices (gRPC and REST) on PostgreSQL, with ETL pipelines and connectors across HubSpot, SharePoint, Snowflake and Salesforce.
+\item \textbf{Built Snow Portal}, a Snowflake job scheduler that replaced Alteryx at a fraction of the cost; full-stack .NET and React work on a mortgage-broker platform (credit-report integrations, pricing-engine APIs).
+\end{itemize}
+\section*{Earlier experience}
+{\fontsize{7.2pt}{8.2pt}\selectfont \textbf{Transcat}, Senior Software Engineer (2022--2023). Led the team delivering .NET Web APIs and a React front end for lab-equipment calibration. {\\color{muted}\\textbullet} \textbf{LeaseTrack}, Senior Software Engineer (2021--2022). Python and AWS Textract document parsing; a Java Spring Boot annotation system feeding an ML training pipeline. {\\color{muted}\\textbullet} \textbf{Akmazio Software}, Founding Engineer (2020--2021). Built the full C\#/.NET and SQL Server backend and wrote the business plan; managed interns and a contractor. {\\color{muted}\\textbullet} \textbf{Bestpass by Fleetworthy}, Software Engineer (2019--2020). Introduced automated unit testing to a legacy toll-billing system that had none. {\\color{muted}\\textbullet} \textbf{New York State Insurance Fund}, Software Engineer (2015--2019). Migrated VB6 systems to C\# MVC, refactored Oracle EDI integrations and mentored junior engineers. {\\color{muted}\\textbullet} \textbf{Town and Country Computer Services}, Junior Software Engineer (2013--2015). Insurance quoting, rating and reporting apps used all day by underwriters; client-facing from the first day. {\\color{muted}\\textbullet} \textbf{GE HealthCare}, Junior Software Engineer (2012--2013). A browser-based CT/MRI viewer with real-time 3D scrolling; built its full internationalization feature.}\par
+\section*{Skills}
+{\fontsize{7.5pt}{8.8pt}\selectfont \textbf{Identity \& access:} Microsoft Entra ID, Okta (core, IGA, Workflows), SAML 2.0, OIDC/OAuth 2.0, workload identity federation, RBAC (control and data plane), governance-as-code reconciliation, SOX-aligned access governance, GxP-classified functional specifications \\par \textbf{Security \& compliance:} Secretless delivery (OIDC federated credentials, managed identity, CSI-driver vault secrets); Trivy, Semgrep, CodeQL, Bandit, Gitleaks, Checkov, SBOM (Syft/CycloneDX), Cosign keyless signing, Kyverno/OPA admission; STRIDE threat modeling, SOC 2 readiness, OWASP LLM Top 10, NIST AI RMF \\par \textbf{Platform \& cloud:} Private AKS (workload identity, KEDA), Terraform, Bicep, Helm, Kustomize, Flux/Argo CD GitOps, GitHub Actions, Service Bus, Event Hubs, Key Vault, Private Endpoints, App Gateway + WAF, OpenTelemetry, PostgreSQL, Redis, Cosmos DB, AWS \\par \textbf{AI \& LLM systems:} Multi-vendor LLM gateways with cost and policy governance, agent sandboxing and egress policy, multi-agent orchestration, MCP servers, RAG (pgvector, FAISS, Azure AI Search, Pinecone), human-in-the-loop gating, structured outputs; Claude, Azure OpenAI/Foundry, GPT, Gemini, Mistral, vLLM, Ollama \\par \textbf{Languages:} Python 3.12 (FastAPI, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, Next.js + React, C\#/.NET, Java Spring Boot, SQL, KQL, Bash, gRPC/REST, OpenAPI}\par
+\section*{Open source \& publications}\begin{itemize}
+\item \textbf{\href{https://github.com/the-vibey-project/vibey}{vibey}}. A Claude Code and Codex killer: completely free, censorship-free, open-source conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and krypton apps for desktop, mobile, web and VS Code. Writes code like a principal software engineer with quality over slop, built toward AGI with superintelligence coming soon. MIT; pip install vibey-engine.
+\item \textbf{\href{https://github.com/the-vibey-project/vibey}{vibey-skills}}. A 149-plugin Claude Code skills marketplace, shipped inside vibey.
+\item \textbf{\href{https://the-vibey-project.github.io/vibey/main/paper.pdf}{Ledger-Mediated Orchestration: Vendor-Independent Autonomous Software Delivery over a Pool of Coding Agents}}. Paper describing vibey's design (not peer reviewed).
+\item \textbf{\href{https://vibewithadam.matthewsteinberger.com/novice-to-navigator}{Novice to Navigator: Your Guide to AI Chatbots for Business}}. Plain-English guide to RAG chatbots for decision-makers; first edition free online (ISBN 979-8274310628).
+\end{itemize}
+\section*{Education \& certification}
+{\fontsize{7.5pt}{8.5pt}\selectfont \textbf{Skidmore College}, B.A., Computer Science (2010--2012) {\\color{muted}\\textbullet} \textbf{Rensselaer Polytechnic Institute}, Electrical and Electronics Engineering coursework (2008--2010) {\\color{muted}\\textbullet} \textbf{Certified ScrumMaster (CSM)}, Scrum Alliance (2021)}\par
+\end{document}
