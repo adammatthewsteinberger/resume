@@ -81,10 +81,10 @@ EXPERIENCE = [
         "role": "Creator and maintainer", "start": "2026-08", "end": None,
         "url": VIBEY, "kind": "project",
         "bullets": {
-            "what": "**vibey** _(MIT; on PyPI as vibey-engine)_. A conductor that carries a change from a spec "
-                    "interview through design, build and review, handing work between Claude Code, OpenAI Codex, "
-                    "Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for "
-                    "the decisions that are theirs to make. AI coding agents build it, and they answer to its own CI gates.",
+            "what": "**vibey & krypton** _(MIT; on PyPI as vibey-engine)_. Built as a Claude Code and Codex replacement: "
+                    "completely free, censorship-free, and open to everyone. Writes code the way a principal software "
+                    "engineer does so users get rigorous, production-grade quality instead of code slop, completely "
+                    "free of charge—architected as an AGI platform with superintelligence coming soon.",
             "ledger": "**Nothing is lost when an agent dies.** Every decision, finding and handoff is a row in an "
                       "append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to "
                       "another vendor must pass a model-free no-loss check or it retries, escalates or waits for a "
@@ -203,8 +203,10 @@ EARLIER = [
 
 OPEN_SOURCE = [
     ("vibey", VIBEY,
-     "Conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and "
-     "krypton apps for desktop, mobile, web and VS Code. MIT; pip install vibey-engine. Contributors welcome."),
+     "A Claude Code and Codex killer: completely free, censorship-free, open-source conductor for AI coding agents, "
+     "five engine runners, the vibey-gh release tool, vibey-bootstrap and krypton apps for desktop, mobile, web and "
+     "VS Code. Writes code like a principal software engineer with quality over slop, built toward AGI with "
+     "superintelligence coming soon. MIT; pip install vibey-engine."),
     ("vibey-skills", VIBEY,
      "A 149-plugin Claude Code skills marketplace, shipped inside vibey."),
 ]
@@ -432,31 +434,31 @@ def check_services():
 
 
 # ---------------------------------------------------------------- variants (the framings)
-# Display order is the dict order: open source, non-profit, academia, government or military,
-# freelance, industry. "default" is the canonical framing (README, resume.json, llms.txt) and
-# keeps its original filename. A "legacy" variant is still built, so old links keep working, but
-# is not listed in the Formats table or llms.txt.
+# Display order is the dict order: FOSS developers, freelancers, universities and academia,
+# governments and militaries, non-profit orgs, industry teams.
+# "default" is the canonical framing (README, resume.json, llms.txt) and keeps its original filename.
+# A "legacy" variant is still built, so old links keep working, but is not listed in the Formats table or llms.txt.
 VARIANTS = {
     "default": {
         "stem": "adam-steinberger-resume",
-        "label": "Open source",
+        "label": "FOSS developers",
         "title": "Staff Software Engineer · AI platforms, identity and agent infrastructure",
-        "tagline": "I build AI platforms that other teams can safely build on: no stored secrets, every call on the "
-                   "record, and a person signing off on anything that can't be undone.",
+        "tagline": "Creator of vibey and krypton: a free, censorship-free Claude Code and Codex killer that writes "
+                   "code like a principal engineer without slop, built toward AGI with superintelligence coming soon.",
         "availability": "Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.",
-        "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
-                   "teams. Lately I build the controls that let AI run safely inside them. My work is "
-                   "identity-first: workload identity instead of stored keys, audit trails that can't be quietly "
-                   "edited, and policy kept in Git where it can be reviewed. I write the architecture down before the "
-                   "code, train the people who will own it, and hand over systems that keep running after I leave. "
-                   "Since August I've built vibey in the open: a conductor for AI coding agents.",
+        "summary": "For 14 years I've built production software for insurance, lending, healthcare and security teams. "
+                   "Lately I build krypton and the vibey engine in the open: a completely free, censorship-free Claude "
+                   "Code and Codex killer meant to replace both and open to everyone. It writes code the way a principal "
+                   "software engineer does so developers get quality code rather than slop, completely free of charge, "
+                   "paving the way to an AGI platform with superintelligence coming soon. I write architecture down before "
+                   "code, enforce 100% branch coverage, and ship systems with no lost jobs.",
         "highlights": [
+            "**Claude Code & Codex replacement.** Built krypton and vibey engine completely free, censorship-free and "
+            "open to everyone, writing code like a principal software engineer with quality over slop.",
             "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
             "teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.",
             "**Identity at depth.** Sole author of two identity-governance-as-code control planes (40 resource kinds, "
             "multi-tenant, no stored tenant secrets) and advisor to a SOX-regulated enterprise of about 5,700 identities.",
-            "**Handoffs that hold.** Co-led a 20-service AI payroll platform to production-ready architecture by day 45; "
-            "the junior developer I trained alongside it now owns it.",
             "**Open source, in public.** Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and "
             "passes only if no job is lost or run twice.",
         ],
@@ -471,52 +473,52 @@ VARIANTS = {
                      "Kubernetes", "Python", "open source", "vibey", "RAG chatbot", "AI security review",
                      "freelance AI engineer"],
     },
-    "nonprofit": {
-        "stem": "adam-steinberger-resume-nonprofit",
-        "label": "Non-profit",
-        "title": "Senior Software Engineer · AI and web platforms for mission-driven organizations",
-        "tagline": "I build software for mission-driven teams that keeps data on your own servers when it has to, is "
-                   "monitored on every request, and is handed over to the people who will run it.",
-        "availability": "Available now for engineering roles at mission-driven organizations. US-remote.",
+    "freelance": {
+        "stem": "adam-steinberger-resume-freelance",
+        "label": "Freelancers",
+        "title": "Independent AI Platform Engineer · fixed-scope AI, identity and security work",
+        "tagline": "Senior engineering sold as a fixed scope: RAG chatbots, LLM gateways, identity governance and AI "
+                   "security reviews, agreed in writing and handed over clean.",
+        "availability": "Taking fixed-scope and contract engagements now. US-remote.",
         "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
-                   "teams. Recently that has included non-profit work: a fully self-hosted RAG chatbot delivered in "
-                   "30 days, web push notifications delivered in 5 billable hours against a 30-hour estimate, and, "
-                   "since April, volunteer architecture for The Apologist Project. I write the architecture down "
-                   "before the code and train the people who will run what I build.",
+                   "teams. Now I sell that work as fixed-scope engagements. I've delivered two RAG chatbots in "
+                   "30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that "
+                   "three product teams adopted. I also build krypton and the vibey engine as a free, censorship-free "
+                   "Claude Code and Codex killer that writes code like a principal software engineer, architected as an "
+                   "AGI platform with superintelligence coming soon.",
         "highlights": [
-            "**Self-hosted AI, no outside dependencies.** A RAG chatbot for a non-profit in 30 days on Mistral-7B, "
-            "FAISS and vLLM, with Grafana and Prometheus watching every token.",
-            "**Small scope, done fast.** Web push notifications for a non-profit, timezone-aware and personalized: "
-            "159 of 159 tests passing at 86% coverage, delivered in 5 billable hours against a 30-hour estimate.",
-            "**Volunteer architect.** Since April 2026, software architect for The Apologist Project, which hands "
-            "people from an AI chat to live volunteers.",
-            "**Open source, in public.** I maintain vibey (MIT), and its contributing guide and a volunteer page are "
-            "public.",
+            "**Fast from zero.** Two RAG chatbots delivered in 30 days each, one fully self-hosted so no data left "
+            "the client's servers; a 59,000-line codebase reviewed in 10 hours with a phased roadmap.",
+            "**Adoption, not demos.** Three product teams moved onto the AI gateway I architected; my platform "
+            "library is used by 17+ repositories.",
+            "**Security that holds up.** SOC 2 readiness, STRIDE threat models and OWASP LLM Top 10 mapping; "
+            "pre-release reviews that caught an auth bypass, path traversal and SSRF.",
         ],
-        "order": ["apologist", "llc", "vibey", "vizius", "limaone"],
-        "skills": ["ai", "platform", "security", "languages"],
+        "services": True,
+        "order": ["llc", "vibey", "vizius", "apologist", "limaone"],
+        "skills": ["ai", "security", "identity", "languages"],
         "bullets": {
-            "llc": ["chatbots", "push", "review"],
+            "llc": ["chatbots", "review", "push"],
+            "vizius": ["gateway", "identity", "reports", "devsecops"],
             "vibey": ["what", "ledger"],
-            "vizius": ["gateway", "identity", "devsecops", "library"],
         },
-        "keywords": ["non-profit", "mission-driven organizations", "self-hosted RAG chatbot", "Mistral-7B", "vLLM",
-                     "FAISS", "Prometheus", "Grafana", "web push notifications", "volunteer software architect",
-                     "open source", "Python"],
+        "keywords": ["freelance AI engineer", "AI consultant", "RAG chatbot", "LLM gateway", "AI security review",
+                     "SOC 2 readiness", "OWASP LLM Top 10", "Okta", "Microsoft Entra ID", "fixed-price",
+                     "Upwork", "Fiverr Pro", "Python"],
     },
     "academia": {
         "stem": "adam-steinberger-resume-academia",
-        "label": "University & academia",
+        "label": "Universities and academia",
         "title": "Software Engineer · AI systems, open source and technical writing",
         "tagline": "I build AI software whose claims can be checked: the design is a paper, the behavior is pinned by "
                    "tests, and the code is open.",
         "availability": "Available now for engineering roles at universities and research groups. US-remote.",
         "summary": "For 14 years I've built production software, and lately I've written it up as carefully as I "
                    "build it. vibey's design is a paper, its decisions are 86 architecture decision records, its "
-                   "documentation is a book, and its chaos test passes only if no job is lost or run twice. I also "
-                   "wrote a plain-English book on RAG chatbots for decision-makers, the Security-First Scrum "
-                   "framework and its training manuals, and I've mentored junior developers on three projects. The "
-                   "junior developer I trained alongside a 20-service platform now owns it.",
+                   "documentation is a book, and its chaos test passes only if no job is lost or run twice. I built "
+                   "krypton and vibey as an open, censorship-free Claude Code and Codex replacement that writes code like "
+                   "a principal software engineer without code slop—advancing towards AGI with superintelligence coming soon. "
+                   "I also wrote a plain-English book on RAG chatbots and mentored engineers across three projects.",
         "highlights": [
             "**Design written as a paper.** vibey's design is published as a paper (not peer reviewed), backed by 86 "
             "architecture decision records and documentation written as a book.",
@@ -538,7 +540,7 @@ VARIANTS = {
     },
     "government-military": {
         "stem": "adam-steinberger-resume-government-military",
-        "label": "Government & military",
+        "label": "Governments and militaries",
         "title": "Staff Software Engineer · Secure, auditable AI platforms for government and defense",
         "tagline": "Secretless, auditable AI platforms for environments where compliance and security are "
                    "requirements from the first day.",
@@ -547,9 +549,9 @@ VARIANTS = {
                    "healthcare and cybersecurity. I architect AI platforms whose identity, audit and supply-chain "
                    "controls hold up to review: workload identity instead of stored secrets, hash-chained audit "
                    "trails, signed builds with SBOMs, policy-as-code admission, and governance reconciled from Git. "
-                   "I also wrote a white paper on export-control compliance and cloud enclave architecture. I write "
-                   "the architecture down before the code, train the people who inherit it, and hand off systems "
-                   "that keep running.",
+                   "I build krypton and the vibey engine as a free, censorship-free Claude Code and Codex killer that "
+                   "writes code like a principal software engineer rather than slop, built toward an AGI platform with "
+                   "superintelligence coming soon. I also wrote a white paper on export-control compliance.",
         "highlights": [
             "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
             "teams moved onto, and they retired their app-held credentials. My platform library runs in 17+ repositories.",
@@ -569,54 +571,56 @@ VARIANTS = {
             "llc": ["review"],
         },
         "keywords": ["government", "defense", "public sector", "regulated environments",
-                     "workload identity federation", "NIST AI RMF", "OWASP LLM Top 10", "SOC 2", "export control",
+             "workload identity federation", "NIST AI RMF", "OWASP LLM Top 10", "SOC 2", "export control",
                      "SBOM", "supply-chain security", "policy as code", "Kubernetes", "Python"],
     },
-    "freelance": {
-        "stem": "adam-steinberger-resume-freelance",
-        "label": "Freelance & contract",
-        "title": "Independent AI Platform Engineer · fixed-scope AI, identity and security work",
-        "tagline": "Senior engineering sold as a fixed scope: RAG chatbots, LLM gateways, identity governance and AI "
-                   "security reviews, agreed in writing and handed over clean.",
-        "availability": "Taking fixed-scope and contract engagements now. US-remote.",
+    "nonprofit": {
+        "stem": "adam-steinberger-resume-nonprofit",
+        "label": "Non-profit orgs",
+        "title": "Senior Software Engineer · AI and web platforms for mission-driven organizations",
+        "tagline": "I build software for mission-driven teams that keeps data on your own servers when it has to, is "
+                   "monitored on every request, and is handed over to the people who will run it.",
+        "availability": "Available now for engineering roles at mission-driven organizations. US-remote.",
         "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
-                   "teams. Now I sell that work as fixed-scope engagements. I've delivered two RAG chatbots in "
-                   "30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that "
-                   "three product teams adopted. Each engagement starts with a written intake and an acceptance "
-                   "checklist, and ends with documentation your team can run without me.",
+                   "teams. Recently that has included non-profit work: a fully self-hosted RAG chatbot delivered in "
+                   "30 days, web push notifications delivered in 5 billable hours against a 30-hour estimate, and, "
+                   "since April, volunteer architecture for The Apologist Project. In open source, I built krypton and "
+                   "the vibey engine as a free, censorship-free Claude Code and Codex killer that writes code like a principal "
+                   "engineer so mission-driven orgs get quality code instead of slop, built toward AGI with superintelligence coming soon.",
         "highlights": [
-            "**Fast from zero.** Two RAG chatbots delivered in 30 days each, one fully self-hosted so no data left "
-            "the client's servers; a 59,000-line codebase reviewed in 10 hours with a phased roadmap.",
-            "**Adoption, not demos.** Three product teams moved onto the AI gateway I architected; my platform "
-            "library is used by 17+ repositories.",
-            "**Security that holds up.** SOC 2 readiness, STRIDE threat models and OWASP LLM Top 10 mapping; "
-            "pre-release reviews that caught an auth bypass, path traversal and SSRF.",
+            "**Self-hosted AI, no outside dependencies.** A RAG chatbot for a non-profit in 30 days on Mistral-7B, "
+            "FAISS and vLLM, with Grafana and Prometheus watching every token.",
+            "**Small scope, done fast.** Web push notifications for a non-profit, timezone-aware and personalized: "
+            "159 of 159 tests passing at 86% coverage, delivered in 5 billable hours against a 30-hour estimate.",
+            "**Volunteer architect.** Since April 2026, software architect for The Apologist Project, which hands "
+            "people from an AI chat to live volunteers.",
+            "**Open source, in public.** I maintain vibey (MIT), and its contributing guide and a volunteer page are "
+            "public.",
         ],
-        "services": True,
-        "order": ["llc", "vibey", "vizius", "apologist", "limaone"],
-        "skills": ["ai", "security", "identity", "languages"],
+        "order": ["apologist", "llc", "vibey", "vizius", "limaone"],
+        "skills": ["ai", "platform", "security", "languages"],
         "bullets": {
-            "llc": ["chatbots", "review", "push"],
-            "vizius": ["gateway", "identity", "reports", "devsecops"],
+            "llc": ["chatbots", "push", "review"],
             "vibey": ["what", "ledger"],
+            "vizius": ["gateway", "identity", "devsecops", "library"],
         },
-        "keywords": ["freelance AI engineer", "AI consultant", "RAG chatbot", "LLM gateway", "AI security review",
-                     "SOC 2 readiness", "OWASP LLM Top 10", "Okta", "Microsoft Entra ID", "fixed-price",
-                     "Upwork", "Fiverr Pro", "Python"],
+        "keywords": ["non-profit", "mission-driven organizations", "self-hosted RAG chatbot", "Mistral-7B", "vLLM",
+                     "FAISS", "Prometheus", "Grafana", "web push notifications", "volunteer software architect",
+                     "open source", "Python"],
     },
     "industry": {
         "stem": "adam-steinberger-resume-industry",
-        "label": "Industry",
+        "label": "Industry teams",
         "title": "Staff Software Engineer · Enterprise AI and platform engineering, discovery to production",
         "tagline": "I turn unclear business problems into AI and platform software that product teams adopt and that "
                    "keeps running after I hand it over.",
         "availability": "Available now for Staff+ engineering roles in industry. US-remote.",
         "summary": "For 14 years I've turned unclear business problems into production systems for insurance, lending, "
-                   "healthcare, manufacturing and industrial-testing teams. My method is steady: discovery, a written "
-                   "solution, decomposition into work, then a handoff to someone I've mentored. Most recently I "
-                   "architected AI platforms that put language models into real operational work, such as payroll, "
-                   "engineering reports and identity governance, with a person approving every step that can't be "
-                   "undone.",
+                   "healthcare, manufacturing and industrial-testing teams. Most recently I architected AI platforms "
+                   "that put language models into real operational work, and built krypton and the vibey engine as a "
+                   "Claude Code and Codex killer—completely free, censorship-free, open to everyone, and writing code "
+                   "the way a principal software engineer does so teams get quality code not slop, advancing toward an "
+                   "AGI platform with superintelligence coming soon.",
         "highlights": [
             "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
             "teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.",

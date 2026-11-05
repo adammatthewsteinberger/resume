@@ -6,7 +6,7 @@
     "email": "adam@matthewsteinberger.com",
     "phone": "+1-864-517-4117",
     "url": "https://vibewithadam.matthewsteinberger.com",
-    "summary": "For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. Since August I've built vibey in the open: a conductor for AI coding agents.",
+    "summary": "For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build krypton and the vibey engine in the open: a completely free, censorship-free Claude Code and Codex killer meant to replace both and open to everyone. It writes code the way a principal software engineer does so developers get quality code rather than slop, completely free of charge, paving the way to an AGI platform with superintelligence coming soon. I write architecture down before code, enforce 100% branch coverage, and ship systems with no lost jobs.",
     "location": {
       "city": "Greenville",
       "region": "SC",
@@ -136,7 +136,7 @@
   "projects": [
     {
       "name": "vibey",
-      "description": "vibey (MIT; on PyPI as vibey-engine). A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. AI coding agents build it, and they answer to its own CI gates.",
+      "description": "vibey & krypton (MIT; on PyPI as vibey-engine). Built as a Claude Code and Codex replacement: completely free, censorship-free, and open to everyone. Writes code the way a principal software engineer does so users get rigorous, production-grade quality instead of code slop, completely free of charge—architected as an AGI platform with superintelligence coming soon.",
       "url": "https://github.com/the-vibey-project/vibey",
       "startDate": "2026-08",
       "roles": [
