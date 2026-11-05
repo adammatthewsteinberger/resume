@@ -1,25 +1,25 @@
 ADAM MATTHEW STEINBERGER
 Staff Software Engineer · AI platforms, identity and agent infrastructure
-I build AI platforms that other teams can safely build on: no stored secrets, every call on the record, and a person signing off on anything that can't be undone.
+Creator of vibey and krypton: a free, censorship-free Claude Code and Codex killer that writes code like a principal engineer without slop, built toward AGI with superintelligence coming soon.
 
 Greenville, SC (US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
 
 Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.
 
 SUMMARY
-For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. Since August I've built vibey in the open: a conductor for AI coding agents.
+For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build krypton and the vibey engine in the open: a completely free, censorship-free Claude Code and Codex killer meant to replace both and open to everyone. It writes code the way a principal software engineer does so developers get quality code rather than slop, completely free of charge, paving the way to an AGI platform with superintelligence coming soon. I write architecture down before code, enforce 100% branch coverage, and ship systems with no lost jobs.
 
 HIGHLIGHTS
+- Claude Code & Codex replacement. Built krypton and vibey engine completely free, censorship-free and open to everyone, writing code like a principal software engineer with quality over slop.
 - Platforms other teams adopted. Sole architect of a policy-enforced LLM gateway that three product teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.
 - Identity at depth. Sole author of two identity-governance-as-code control planes (40 resource kinds, multi-tenant, no stored tenant secrets) and advisor to a SOX-regulated enterprise of about 5,700 identities.
-- Handoffs that hold. Co-led a 20-service AI payroll platform to production-ready architecture by day 45; the junior developer I trained alongside it now owns it.
 - Open source, in public. Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and passes only if no job is lost or run twice.
 
 EXPERIENCE
 
 The Vibey Project (open source) | Greenville, SC
 Creator and maintainer | Aug 2026 – Present
-- vibey (MIT; on PyPI as vibey-engine). A conductor that carries a change from a spec interview through design, build and review, handing work between Claude Code, OpenAI Codex, Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for the decisions that are theirs to make. AI coding agents build it, and they answer to its own CI gates.
+- vibey & krypton (MIT; on PyPI as vibey-engine). Built as a Claude Code and Codex replacement: completely free, censorship-free, and open to everyone. Writes code the way a principal software engineer does so users get rigorous, production-grade quality instead of code slop, completely free of charge—architected as an AGI platform with superintelligence coming soon.
 - Nothing is lost when an agent dies. Every decision, finding and handoff is a row in an append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to another vendor must pass a model-free no-loss check or it retries, escalates or waits for a person. A chaos test runs 500 jobs on 8 workers, crashes a fifth of them mid-job, and passes only if no job is lost or run twice.
 - Held to its own gates. 100% branch-coverage floors in CI, 86 architecture decision records, and a Helm chart (KEDA, kopf operator) installed on minikube in CI. In its first two months: 596 merged pull requests and 25 releases. The design is a paper; the documentation is a book.
 
@@ -64,7 +64,7 @@ SKILLS
 - Languages: Python 3.12 (FastAPI, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, Next.js + React, C#/.NET, Java Spring Boot, SQL, KQL, Bash, gRPC/REST, OpenAPI
 
 OPEN SOURCE
-- vibey (https://github.com/the-vibey-project/vibey): Conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and krypton apps for desktop, mobile, web and VS Code. MIT; pip install vibey-engine. Contributors welcome.
+- vibey (https://github.com/the-vibey-project/vibey): A Claude Code and Codex killer: completely free, censorship-free, open-source conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and krypton apps for desktop, mobile, web and VS Code. Writes code like a principal software engineer with quality over slop, built toward AGI with superintelligence coming soon. MIT; pip install vibey-engine.
 - vibey-skills (https://github.com/the-vibey-project/vibey): A 149-plugin Claude Code skills marketplace, shipped inside vibey.
 Volunteer with me: https://vibewithadam.matthewsteinberger.com/join-me
 
