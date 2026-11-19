@@ -89,7 +89,9 @@ Each is a fixed price, quoted after the written intake. Proof and full scope for
 **Volunteer Software Architect** · Apr 2026 – Present · Remote
 
 - **Project Excite.** An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
+- **Categories found from the data, not a fixed list.** A monthly ELT system (Python, dbt, PostgreSQL and DuckDB) that clusters sentence embeddings, has a local open-weight model (Qwen3-4B) name each category, and publishes versioned marts. A 27 GB SQL dump (5.14 million rows) streams through on a 24 GB laptop in about six minutes, without restoring the source.
 - **Privacy built into the data.** A count reaches the public site only when ten different people stand behind it, no message text is ever published, each secret has exactly one reader, and the public run buttons sit behind a kill switch that starts off. The public portal is a Next.js app over a read-only API.
+- **Held to its own gates.** 100% branch coverage enforced across 4,500+ tests, 120 architecture decision records, and a Helm and Kustomize install with KEDA-scaled stage workers tested on minikube. A dbt step that ran 4 hours 20 minutes without finishing now builds in about a minute.
 
 ### Adam Matthew Steinberger LLC
 **Senior Software Engineering Consultant** · Mar 2025 – Aug 2025 · Greenville, SC
@@ -120,6 +122,7 @@ Each is a fixed price, quoted after the written intake. Proof and full scope for
 - **Security & compliance:** Secretless delivery (OIDC federated credentials, managed identity, CSI-driver vault secrets); Trivy, Semgrep, CodeQL, Bandit, Gitleaks, Checkov, SBOM (Syft/CycloneDX), Cosign keyless signing, Kyverno/OPA admission; STRIDE threat modeling, SOC 2 readiness, OWASP LLM Top 10, NIST AI RMF
 - **Platform & cloud:** Private AKS (workload identity, KEDA), Terraform, Bicep, Helm, Kustomize, Flux/Argo CD GitOps, GitHub Actions, Service Bus, Event Hubs, Key Vault, Private Endpoints, App Gateway + WAF, OpenTelemetry, PostgreSQL, Redis, Cosmos DB, AWS
 - **Languages:** Python 3.12 (FastAPI, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, Next.js + React, C#/.NET, Java Spring Boot, SQL, KQL, Bash, gRPC/REST, OpenAPI
+- **Data & integration:** PostgreSQL, Snowflake, SQL Server, Oracle, MongoDB, Redis, DuckDB; dbt and ELT pipelines; embeddings and clustering; ETL and API integrations (HubSpot, SharePoint, Salesforce, Microsoft Graph); event-driven pipelines (Service Bus, Event Hubs); data-quality gates; privacy thresholds on published counts
 
 ## Publications
 
