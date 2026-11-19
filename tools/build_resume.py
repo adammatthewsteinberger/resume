@@ -154,17 +154,21 @@ EXPERIENCE = [
                       "volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent "
                       "teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as "
                       "split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).",
-            "discover": "**Categories found from the data, not a fixed list.** A monthly ELT system (Python, dbt, "
-                        "PostgreSQL and DuckDB) that clusters sentence embeddings, has a local open-weight model "
-                        "(Qwen3-4B) name each category, and publishes versioned marts. A 27 GB SQL dump (5.14 million "
-                        "rows) streams through on a 24 GB laptop in about six minutes, without restoring the source.",
-            "privacy": "**Privacy built into the data.** A count reaches the public site only when ten different "
-                       "people stand behind it, no message text is ever published, each secret has exactly one "
-                       "reader, and the public run buttons sit behind a kill switch that starts off. The public "
-                       "portal is a Next.js app over a read-only API.",
-            "gates": "**Held to its own gates.** 100% branch coverage enforced across 4,500+ tests, 120 architecture "
-                     "decision records, and a Helm and Kustomize install with KEDA-scaled stage workers tested on "
-                     "minikube. A dbt step that ran 4 hours 20 minutes without finishing now builds in about a minute.",
+            "discover": "**Monthly insight pipeline** _(architect; Python, dbt, PostgreSQL, DuckDB)_. Finds what a "
+                        "month of messages was about with no fixed category list: embeddings are clustered into "
+                        "subjects, a local open-weight model (Qwen3-4B) names each one and rejects groups that are not "
+                        "subjects, and dbt publishes versioned categories as marts and a report. **A 27 GB dump of "
+                        "5.14 million rows runs end to end in about six minutes on a laptop**, streamed once and never "
+                        "restored.",
+            "privacy": "**Privacy as a rule the data cannot break.** A count is public only when ten different people "
+                       "stand behind it, a hidden cell takes its smallest visible neighbour with it, and no message "
+                       "text is ever published. Each secret has exactly one reader, so a compromised public portal "
+                       "still cannot reach the pipeline or the store that holds text, and the public run buttons sit "
+                       "behind a kill switch that starts off.",
+            "gates": "**Held to its own gates.** 120 architecture decision records, 100% branch coverage on 4,500+ "
+                     "tests, and a Helm and Kustomize install with KEDA-scaled workers exercised on minikube. **A dbt "
+                     "step that ran 4 hours 20 minutes without finishing now builds in about a minute**, and a test "
+                     "fails if the slow query shape returns.",
         },
     },
     {
@@ -474,6 +478,7 @@ VARIANTS = {
             "**Open source, in public.** Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and "
             "passes only if no job is lost or run twice.",
         ],
+        "pdf_omit": {"vizius": ["also"]},
         "skills": ["ai", "identity", "security", "platform", "languages"],
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
@@ -751,13 +756,16 @@ def span(start, end):
     return f"{fmt_date(start)} – {fmt_date(end)}"
 
 
-def jobs(v):
-    """(entry, [bullet text]) in display order for variant v."""
+def jobs(v, pdf=False):
+    """(entry, [bullet text]) in display order for variant v. A variant's "pdf_omit" drops bullets from the
+    two-page PDF only; every other format keeps them."""
     by_key = {e["key"]: e for e in EXPERIENCE}
     out = []
     for k in v.get("order", ORDER):
         e = by_key[k]
         keys = v["bullets"].get(k, list(e["bullets"]))
+        if pdf:
+            keys = [b for b in keys if b not in v.get("pdf_omit", {}).get(k, [])]
         out.append((e, [e["bullets"][b] for b in keys]))
     return out
 
@@ -832,7 +840,7 @@ def tex_escape(s):
     ]
     for old, new in replacements:
         s = s.replace(old, new)
-    return s
+    return s.replace("--", "-{}-")  # keep command-line flags such as mypy --strict from becoming an en dash
 
 
 def tex_rich(s):
@@ -1383,45 +1391,57 @@ def html_doc(v):
 # ---------------------------------------------------------------- LaTeX (→ PDF)
 def latex_doc(v):
     L = [
-        r"\documentclass[8.4pt,letterpaper]{article}",
-        r"\usepackage[letterpaper,top=0.34in,bottom=0.34in,left=0.42in,right=0.42in]{geometry}",
+        r"\documentclass[10pt,letterpaper]{article}",
+        r"\usepackage[letterpaper,top=0.42in,bottom=0.42in,left=0.6in,right=0.6in]{geometry}",
         r"\usepackage[utf8]{inputenc}",
         r"\usepackage[T1]{fontenc}",
         r"\usepackage{helvet}",
         r"\renewcommand{\familydefault}{\sfdefault}",
-        r"\usepackage{microtype}",
+        r"\usepackage[protrusion=true,expansion=true]{microtype}",
         r"\usepackage{xcolor}",
         r"\usepackage[hidelinks,pdfusetitle]{hyperref}",
         r"\usepackage{enumitem}",
-        r"\usepackage{tabularx}",
         r"\usepackage{titlesec}",
+        r"\usepackage{needspace}",
         r"\usepackage{fontawesome5}",
         "",
-        r"% Executive modern color palette",
-        r"\definecolor{primary}{HTML}{0F172A}    % Slate 900",
-        r"\definecolor{accent}{HTML}{1D4ED8}     % Blue 700",
-        r"\definecolor{ink}{HTML}{1E293B}        % Slate 800",
-        r"\definecolor{muted}{HTML}{64748B}      % Slate 500",
-        r"\definecolor{rulecolor}{HTML}{E2E8F0}  % Slate 200",
+        r"% Palette",
+        r"\definecolor{primary}{HTML}{0F172A}",
+        r"\definecolor{accent}{HTML}{1D4ED8}",
+        r"\definecolor{ink}{HTML}{1E293B}",
+        r"\definecolor{muted}{HTML}{64748B}",
+        r"\definecolor{rulecolor}{HTML}{CBD5E1}",
+        "",
+        r"% One type scale, used everywhere: name 20, title 10.5, body 9, meta 8.",
+        r"\newcommand{\szname}{\fontsize{20pt}{24pt}\selectfont}",
+        r"\newcommand{\sztitle}{\fontsize{10.5pt}{13pt}\selectfont}",
+        r"\newcommand{\szbody}{\fontsize{9pt}{11.1pt}\selectfont}",
+        r"\newcommand{\szmeta}{\fontsize{8pt}{10pt}\selectfont}",
+        r"\newcommand{\secfmt}[1]{\textls[110]{\MakeUppercase{#1}}}",
         "",
         r"\pagestyle{empty}",
-        r"\linespread{0.94}",
+        r"\setlength{\parindent}{0pt}",
+        r"\setlength{\parskip}{0pt}",
+        r"\raggedright",
+        r"\setlength{\emergencystretch}{3em}",
+        r"\clubpenalty=10000",
+        r"\widowpenalty=10000",
+        r"\displaywidowpenalty=10000",
+        r"\hyphenpenalty=2000",
         "",
-        r"% Section titles",
-        r"\titleformat{\section}{\fontsize{8.8pt}{10.2pt}\bfseries\color{primary}}{}{0em}{\uppercase}[\vspace{-2.5pt}\color{rulecolor}\titlerule]",
-        r"\titlespacing*{\section}{0pt}{4pt}{2.5pt}",
+        r"\titleformat{\section}{\fontsize{9pt}{11pt}\bfseries\color{primary}}{}{0em}{\secfmt}[\vspace{-1pt}\color{rulecolor}\titlerule]",
+        r"\titlespacing*{\section}{0pt}{7.5pt}{3.5pt}",
         "",
-        r"\setlist[itemize]{leftmargin=10.5pt,labelsep=4pt,topsep=0.5pt,partopsep=0pt,parsep=0pt,itemsep=1.2pt}",
-        r"\renewcommand\labelitemi{\color{accent}\fontsize{4.2pt}{4.2pt}\selectfont\faCircle}",
+        r"\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.5pt}",
+        r"\renewcommand\labelitemi{\raisebox{0.2ex}{\color{accent}\fontsize{4.5pt}{4.5pt}\selectfont\faCircle}}",
         "",
         r"\begin{document}",
-        r"\color{ink}",
+        r"\color{ink}\szbody",
         "",
-        r"% Header Block",
         r"\begin{center}",
-        f"{{\\fontsize{{18pt}}{{20pt}}\\selectfont \\textbf{{\\color{{primary}}{tex_escape(NAME)}}}}}\\\\[1.5pt]",
-        f"{{\\fontsize{{9.2pt}}{{10.8pt}}\\selectfont \\textbf{{\\color{{accent}}{tex_escape(v['title'])}}}}}\\\\[2pt]",
-        f"{{\\fontsize{{8pt}}{{9.5pt}}\\selectfont {tex_rich(v['tagline'])}}}\\\\[3pt]",
+        f"{{\\szname\\bfseries\\color{{primary}} {tex_escape(NAME)}}}\\\\[3pt]",
+        f"{{\\sztitle\\bfseries\\color{{accent}} {tex_escape(v['title'])}}}\\\\[4pt]",
+        f"{{\\szbody {tex_rich(v['tagline'])}}}\\\\[6pt]",
     ]
 
     c_line1 = [
@@ -1435,15 +1455,15 @@ def latex_doc(v):
         f"\\faGlobe\\ \\href{{{SITE}}}{{vibewithadam.matthewsteinberger.com}}"
     ]
     dot = r"\quad{\color{rulecolor}\textbullet}\quad"
-    L.append(f"{{\\fontsize{{7.6pt}}{{9pt}}\\selectfont \\color{{muted}} {dot.join(c_line1)}}}\\\\[1.8pt]")
-    L.append(f"{{\\fontsize{{7.6pt}}{{9pt}}\\selectfont \\color{{muted}} {dot.join(c_line2)}}}\\\\[2.5pt]")
-    L.append(f"{{\\fontsize{{7.8pt}}{{9.2pt}}\\selectfont \\textbf{{{tex_escape(v['availability'])}}}}}")
+    L.append(f"{{\\szmeta\\color{{muted}} {dot.join(c_line1)}}}\\\\[2pt]")
+    L.append(f"{{\\szmeta\\color{{muted}} {dot.join(c_line2)}}}\\\\[6pt]")
+    L.append(f"{{\\szbody\\bfseries {tex_escape(v['availability'])}}}")
     L.append(r"\end{center}")
-    L.append(r"\vspace{-3pt}")
+    L.append(r"\vspace{-6pt}")
 
-    L.append(f"\\section*{{Summary}}\n{{\\fontsize{{7.8pt}}{{9.4pt}}\\selectfont {tex_rich(v['summary'])}}}\\par")
+    L.append(f"\\section*{{Summary}}\n{tex_rich(v['summary'])}\\par")
 
-    L.append(f"\\section*{{Highlights}}\n\\begin{{itemize}}")
+    L.append("\\section*{Highlights}\n\\begin{itemize}")
     for b in v["highlights"]:
         L.append(f"\\item {tex_rich(b)}")
     L.append(r"\end{itemize}")
@@ -1453,37 +1473,34 @@ def latex_doc(v):
         for s in SERVICES:
             L.append(f"\\item \\textbf{{{tex_escape(s['name'])}.}} {tex_escape(s['pitch'])}")
         L.append(r"\end{itemize}")
-        L.append(f"{{\\fontsize{{7.5pt}}{{8.6pt}}\\selectfont {tex_escape(SERVICES_NOTE)} Details and proof: \\href{{{REPO}/blob/HEAD/SERVICES.md}}{{SERVICES.md}}}}\\par")
+        L.append(f"{{\\szmeta {tex_escape(SERVICES_NOTE)} Details and proof: \\href{{{REPO}/blob/HEAD/SERVICES.md}}{{SERVICES.md}}}}\\par")
 
     L.append(r"\section*{Experience}")
-    for idx, (e, bullets) in enumerate(jobs(v)):
+    for idx, (e, bullets) in enumerate(jobs(v, pdf=True)):
         org = tex_escape(e["org"])
         loc = tex_escape(e["loc"])
         dates = tex_escape(span(e["start"], e["end"]))
         role = tex_escape(e["role"])
-        L.append(r"\begin{samepage}")
-        L.append(r"\vspace{1.5pt}")
-        L.append(f"\\noindent{{\\bfseries\\fontsize{{8.6pt}}{{10pt}}\\selectfont {org}}} \\hfill {{\\color{{muted}}\\fontsize{{7.8pt}}{{9pt}}\\selectfont {dates}}}\\\\")
-        L.append(f"{{\\itshape\\fontsize{{7.8pt}}{{9pt}}\\selectfont {role}}} {{\\color{{muted}}\\textbullet\\ {loc}}}")
-        L.append(r"\end{samepage}")
+        L.append(r"\Needspace{4\baselineskip}")
+        L.append(r"\vspace{" + ("0pt" if idx == 0 else "3pt") + "}")
+        L.append(f"\\noindent{{\\bfseries\\fontsize{{10pt}}{{13pt}}\\selectfont {org}}} \\hfill {{\\color{{muted}}\\szmeta {dates}}}\\\\[1pt]")
+        L.append(f"{{\\itshape {role}}}{{\\color{{muted}}\\ \\textbullet\\ {loc}}}")
+        L.append(r"\vspace{2pt}")
         L.append(r"\begin{itemize}")
         for b in bullets:
             L.append(f"\\item {tex_rich(b)}")
         L.append(r"\end{itemize}")
 
     L.append(r"\section*{Earlier experience}")
-    earlier_parts = []
-    for org, role, loc, s, e, line in EARLIER:
-        earlier_parts.append(f"\\textbf{{{tex_escape(org)}}}, {tex_escape(role)} ({s[:4]}--{e[:4]}). {tex_escape(line)}")
-    earlier_str = r" \quad{\color{muted}\textbullet}\quad ".join(earlier_parts)
-    L.append(f"{{\\fontsize{{7.3pt}}{{8.5pt}}\\selectfont {earlier_str}}}\\par")
+    earlier_parts = [f"\\textbf{{{tex_escape(org)}}}, {tex_escape(role)} {{\\color{{muted}}({s[:4]}--{e[:4]})}}. {tex_escape(line)}"
+                     for org, role, loc, s, e, line in EARLIER]
+    L.append("{\\szmeta " + r"\hspace{1.1em}".join(earlier_parts) + "}\\par")
 
     L.append(r"\section*{Skills}")
     skills_lines = []
     for k, t in skills(v):
         skills_lines.append(f"\\textbf{{{tex_escape(k)}:}} {tex_rich(t)}")
-    skills_str = r"\\[2pt]".join(skills_lines)
-    L.append(f"{{\\fontsize{{7.5pt}}{{8.9pt}}\\selectfont {skills_str}}}\\par")
+    L.append("{\\szmeta " + r"\par\vspace{2pt}".join(skills_lines) + "}\\par")
 
     L.append(r"\section*{Open source \& publications}\begin{itemize}")
     for n, u, desc in OPEN_SOURCE:
@@ -1492,14 +1509,11 @@ def latex_doc(v):
         L.append(f"\\item \\textbf{{\\href{{{u}}}{{{tex_escape(t)}}}}}. {tex_escape(desc)}")
     L.append(r"\end{itemize}")
 
+    L.append(r"\Needspace{4\baselineskip}")
     L.append(r"\section*{Education \& certification}")
-    edu_certs = []
-    for s, deg, a, b in EDUCATION:
-        edu_certs.append(f"\\textbf{{{tex_escape(s)}}}, {tex_escape(deg)} ({a}--{b})")
-    for c, o, y in CERTS:
-        edu_certs.append(f"\\textbf{{{tex_escape(c)}}}, {tex_escape(o)} ({y})")
-    edu_str = r" \quad{\color{muted}\textbullet}\quad ".join(edu_certs)
-    L.append(f"{{\\fontsize{{7.5pt}}{{8.8pt}}\\selectfont {edu_str}}}\\par")
+    edu = [f"\\textbf{{{tex_escape(s_)}}}, {tex_escape(d.replace('Electrical and Electronics Engineering coursework', 'Electrical Engineering coursework'))} {{\\color{{muted}}({a}--{b})}}" for s_, d, a, b in EDUCATION]
+    edu += [f"\\textbf{{{tex_escape(c)}}}, {tex_escape(o)} {{\\color{{muted}}({y})}}" for c, o, y in CERTS]
+    L.append("{\\szmeta " + r"\hspace{1.1em}".join(edu) + "}\\par")
 
     L.append(r"\end{document}")
     return "\n".join(L)
