@@ -89,6 +89,7 @@ Each is a fixed price, quoted after the written intake. Proof and full scope for
 **Volunteer Software Architect** · Apr 2026 – Present · Remote
 
 - **Project Excite.** An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
+- **Privacy built into the data.** A count reaches the public site only when ten different people stand behind it, no message text is ever published, each secret has exactly one reader, and the public run buttons sit behind a kill switch that starts off. The public portal is a Next.js app over a read-only API.
 
 ### Adam Matthew Steinberger LLC
 **Senior Software Engineering Consultant** · Mar 2025 – Aug 2025 · Greenville, SC
