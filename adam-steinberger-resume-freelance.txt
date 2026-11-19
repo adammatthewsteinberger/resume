@@ -45,7 +45,7 @@ Senior Azure and AI Development Engineer | Sep 2025 – Aug 2026
 The Apologist Project | Remote
 Volunteer Software Architect | Apr 2026 – Present
 - Project Excite. An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
-- Categories found from the data, not a fixed list. A monthly ELT system (Python, dbt, PostgreSQL and DuckDB) that clusters sentence embeddings, has a local open-weight model (Qwen3-4B) name each category, and publishes versioned marts. A 27 GB SQL dump (5.14 million rows) streams through on a 24 GB laptop in about six minutes, without restoring the source.
+- Monthly insight pipeline (architect; Python, dbt, PostgreSQL, DuckDB). Finds what a month of messages was about with no fixed category list: embeddings are clustered into subjects, a local open-weight model (Qwen3-4B) names each one and rejects groups that are not subjects, and dbt publishes versioned categories as marts and a report. A 27 GB dump of 5.14 million rows runs end to end in about six minutes on a laptop, streamed once and never restored.
 
 Lima One Capital | Greenville, SC
 Senior Software Engineer | May 2023 – Feb 2025

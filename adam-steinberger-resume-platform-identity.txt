@@ -35,7 +35,7 @@ Senior Azure and AI Development Engineer | Sep 2025 – Aug 2026
 
 The Apologist Project | Remote
 Volunteer Software Architect | Apr 2026 – Present
-- Privacy built into the data. A count reaches the public site only when ten different people stand behind it, no message text is ever published, each secret has exactly one reader, and the public run buttons sit behind a kill switch that starts off. The public portal is a Next.js app over a read-only API.
+- Privacy as a rule the data cannot break. A count is public only when ten different people stand behind it, a hidden cell takes its smallest visible neighbour with it, and no message text is ever published. Each secret has exactly one reader, so a compromised public portal still cannot reach the pipeline or the store that holds text, and the public run buttons sit behind a kill switch that starts off.
 
 Adam Matthew Steinberger LLC | Greenville, SC
 Senior Software Engineering Consultant | Mar 2025 – Aug 2025
