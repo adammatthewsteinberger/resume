@@ -918,14 +918,16 @@ def md():
         L.append(f"### {e['org']}")
         L.append(f"**{e['role']}** · {span(e['start'], e['end'])} · {e['loc']}")
         L.append("")
-        L += [f"- {b}" for b in bullets]
+        # The README has no page limit, so it shows every bullet of the volunteer entry in full.
+        L += [f"- {b}" for b in (list(e["bullets"].values()) if e["key"] == "apologist" else bullets)]
         L.append("")
     L += ["### Earlier experience", ""]
     for org, role, loc, s, e, line in EARLIER:
         L.append(f"- **{org}**, {role} ({span(s, e)}). {line}")
     L.append("")
 
-    L += ["## Skills", ""] + [f"- **{k}:** {t}" for k, t in skills(v)] + [""]
+    readme_skills = skills(v) + ([SKILL_SETS["data"]] if "data" not in v["skills"] else [])
+    L += ["## Skills", ""] + [f"- **{k}:** {t}" for k, t in readme_skills] + [""]
 
     L += ["## Publications", ""]
     for title, desc, url, _ in PUBLICATIONS:
