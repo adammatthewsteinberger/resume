@@ -1,15 +1,15 @@
 # Adam Matthew Steinberger
 
-> Staff Software Engineer · AI platforms, identity and agent infrastructure. I build AI platforms that other teams can safely build on: no stored secrets, every call on the record, and a person signing off on anything that can't be undone.
+> Staff Software Engineer · AI platforms, identity and agent infrastructure. Creator of vibey and krypton: a free, censorship-free Claude Code and Codex killer that writes code like a principal engineer without slop, built toward AGI with superintelligence coming soon.
 
-For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build the controls that let AI run safely inside them. My work is identity-first: workload identity instead of stored keys, audit trails that can't be quietly edited, and policy kept in Git where it can be reviewed. I write the architecture down before the code, train the people who will own it, and hand over systems that keep running after I leave. Since August I've built vibey in the open: a conductor for AI coding agents.
+For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build krypton and the vibey engine in the open: a completely free, censorship-free Claude Code and Codex killer meant to replace both and open to everyone. It writes code the way a principal software engineer does so developers get quality code rather than slop, completely free of charge, paving the way to an AGI platform with superintelligence coming soon. I write architecture down before code, enforce 100% branch coverage, and ship systems with no lost jobs.
 
 Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.
 
 Key facts, each traceable to the résumé and to public repositories:
+- Claude Code & Codex replacement. Built krypton and vibey engine completely free, censorship-free and open to everyone, writing code like a principal software engineer with quality over slop.
 - Platforms other teams adopted. Sole architect of a policy-enforced LLM gateway that three product teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.
 - Identity at depth. Sole author of two identity-governance-as-code control planes (40 resource kinds, multi-tenant, no stored tenant secrets) and advisor to a SOX-regulated enterprise of about 5,700 identities.
-- Handoffs that hold. Co-led a 20-service AI payroll platform to production-ready architecture by day 45; the junior developer I trained alongside it now owns it.
 - Open source, in public. Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and passes only if no job is lost or run twice.
 
 ## Open source
@@ -35,12 +35,12 @@ Available for contract work, each engagement a fixed scope with a written accept
 - [Résumé (Markdown)](https://github.com/adammatthewsteinberger/resume/blob/HEAD/README.md): the full résumé, including open-source work
 - [Résumé (JSON Resume)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/resume.json): structured, machine-readable
 - [Profile (schema.org JSON-LD)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/profile.jsonld): Person, with the engagements as offers
-- [Open source résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume.txt): Staff Software Engineer · AI platforms, identity and agent infrastructure
-- [Non-profit résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-nonprofit.txt): Senior Software Engineer · AI and web platforms for mission-driven organizations
-- [University & academia résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-academia.txt): Software Engineer · AI systems, open source and technical writing
-- [Government & military résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-government-military.txt): Staff Software Engineer · Secure, auditable AI platforms for government and defense
-- [Freelance & contract résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-freelance.txt): Independent AI Platform Engineer · fixed-scope AI, identity and security work
-- [Industry résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-industry.txt): Staff Software Engineer · Enterprise AI and platform engineering, discovery to production
+- [FOSS developers résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume.txt): Staff Software Engineer · AI platforms, identity and agent infrastructure
+- [Freelancers résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-freelance.txt): Independent AI Platform Engineer · fixed-scope AI, identity and security work
+- [Universities and academia résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-academia.txt): Software Engineer · AI systems, open source and technical writing
+- [Governments and militaries résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-government-military.txt): Staff Software Engineer · Secure, auditable AI platforms for government and defense
+- [Non-profit orgs résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-nonprofit.txt): Senior Software Engineer · AI and web platforms for mission-driven organizations
+- [Industry teams résumé (text)](https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD/adam-steinberger-resume-industry.txt): Staff Software Engineer · Enterprise AI and platform engineering, discovery to production
 
 ## Contact
 

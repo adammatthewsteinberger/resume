@@ -81,10 +81,10 @@ EXPERIENCE = [
         "role": "Creator and maintainer", "start": "2026-08", "end": None,
         "url": VIBEY, "kind": "project",
         "bullets": {
-            "what": "**vibey** _(MIT; on PyPI as vibey-engine)_. A conductor that carries a change from a spec "
-                    "interview through design, build and review, handing work between Claude Code, OpenAI Codex, "
-                    "Cursor Agent, Google Antigravity and local open-weight models, and asking a person only for "
-                    "the decisions that are theirs to make. AI coding agents build it, and they answer to its own CI gates.",
+            "what": "**vibey & krypton** _(MIT; on PyPI as vibey-engine)_. Built as a Claude Code and Codex replacement: "
+                    "completely free, censorship-free, and open to everyone. Writes code the way a principal software "
+                    "engineer does so users get rigorous, production-grade quality instead of code slop, completely "
+                    "free of charge—architected as an AGI platform with superintelligence coming soon.",
             "ledger": "**Nothing is lost when an agent dies.** Every decision, finding and handoff is a row in an "
                       "append-only PostgreSQL ledger. Workers claim jobs under SKIP LOCKED leases, and a handoff to "
                       "another vendor must pass a model-free no-loss check or it retries, escalates or waits for a "
@@ -214,8 +214,10 @@ EARLIER = [
 
 OPEN_SOURCE = [
     ("vibey", VIBEY,
-     "Conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and "
-     "krypton apps for desktop, mobile, web and VS Code. MIT; pip install vibey-engine. Contributors welcome."),
+     "A Claude Code and Codex killer: completely free, censorship-free, open-source conductor for AI coding agents, "
+     "five engine runners, the vibey-gh release tool, vibey-bootstrap and krypton apps for desktop, mobile, web and "
+     "VS Code. Writes code like a principal software engineer with quality over slop, built toward AGI with "
+     "superintelligence coming soon. MIT; pip install vibey-engine."),
     ("vibey-skills", VIBEY,
      "A 149-plugin Claude Code skills marketplace, shipped inside vibey."),
 ]
@@ -444,31 +446,31 @@ def check_services():
 
 
 # ---------------------------------------------------------------- variants (the framings)
-# Display order is the dict order: open source, non-profit, academia, government or military,
-# freelance, industry. "default" is the canonical framing (README, resume.json, llms.txt) and
-# keeps its original filename. A "legacy" variant is still built, so old links keep working, but
-# is not listed in the Formats table or llms.txt.
+# Display order is the dict order: FOSS developers, freelancers, universities and academia,
+# governments and militaries, non-profit orgs, industry teams.
+# "default" is the canonical framing (README, resume.json, llms.txt) and keeps its original filename.
+# A "legacy" variant is still built, so old links keep working, but is not listed in the Formats table or llms.txt.
 VARIANTS = {
     "default": {
         "stem": "adam-steinberger-resume",
-        "label": "Open source",
+        "label": "FOSS developers",
         "title": "Staff Software Engineer · AI platforms, identity and agent infrastructure",
-        "tagline": "I build AI platforms that other teams can safely build on: no stored secrets, every call on the "
-                   "record, and a person signing off on anything that can't be undone.",
+        "tagline": "Creator of vibey and krypton: a free, censorship-free Claude Code and Codex killer that writes "
+                   "code like a principal engineer without slop, built toward AGI with superintelligence coming soon.",
         "availability": "Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.",
-        "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
-                   "teams. Lately I build the controls that let AI run safely inside them. My work is "
-                   "identity-first: workload identity instead of stored keys, audit trails that can't be quietly "
-                   "edited, and policy kept in Git where it can be reviewed. I write the architecture down before the "
-                   "code, train the people who will own it, and hand over systems that keep running after I leave. "
-                   "Since August I've built vibey in the open: a conductor for AI coding agents.",
+        "summary": "For 14 years I've built production software for insurance, lending, healthcare and security teams. "
+                   "Lately I build krypton and the vibey engine in the open: a completely free, censorship-free Claude "
+                   "Code and Codex killer meant to replace both and open to everyone. It writes code the way a principal "
+                   "software engineer does so developers get quality code rather than slop, completely free of charge, "
+                   "paving the way to an AGI platform with superintelligence coming soon. I write architecture down before "
+                   "code, enforce 100% branch coverage, and ship systems with no lost jobs.",
         "highlights": [
+            "**Claude Code & Codex replacement.** Built krypton and vibey engine completely free, censorship-free and "
+            "open to everyone, writing code like a principal software engineer with quality over slop.",
             "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
             "teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.",
             "**Identity at depth.** Sole author of two identity-governance-as-code control planes (40 resource kinds, "
             "multi-tenant, no stored tenant secrets) and advisor to a SOX-regulated enterprise of about 5,700 identities.",
-            "**Handoffs that hold.** Co-led a 20-service AI payroll platform to production-ready architecture by day 45; "
-            "the junior developer I trained alongside it now owns it.",
             "**Open source, in public.** Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and "
             "passes only if no job is lost or run twice.",
         ],
@@ -484,53 +486,53 @@ VARIANTS = {
                      "Kubernetes", "Python", "open source", "vibey", "RAG chatbot", "AI security review",
                      "freelance AI engineer"],
     },
-    "nonprofit": {
-        "stem": "adam-steinberger-resume-nonprofit",
-        "label": "Non-profit",
-        "title": "Senior Software Engineer · AI and web platforms for mission-driven organizations",
-        "tagline": "I build software for mission-driven teams that keeps data on your own servers when it has to, is "
-                   "monitored on every request, and is handed over to the people who will run it.",
-        "availability": "Available now for engineering roles at mission-driven organizations. US-remote.",
+    "freelance": {
+        "stem": "adam-steinberger-resume-freelance",
+        "label": "Freelancers",
+        "title": "Independent AI Platform Engineer · fixed-scope AI, identity and security work",
+        "tagline": "Senior engineering sold as a fixed scope: RAG chatbots, LLM gateways, identity governance and AI "
+                   "security reviews, agreed in writing and handed over clean.",
+        "availability": "Taking fixed-scope and contract engagements now. US-remote.",
         "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
-                   "teams. Recently that has included non-profit work: a fully self-hosted RAG chatbot delivered in "
-                   "30 days, web push notifications delivered in 5 billable hours against a 30-hour estimate, and, "
-                   "since April, volunteer architecture for The Apologist Project. I write the architecture down "
-                   "before the code and train the people who will run what I build.",
+                   "teams. Now I sell that work as fixed-scope engagements. I've delivered two RAG chatbots in "
+                   "30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that "
+                   "three product teams adopted. I also build krypton and the vibey engine as a free, censorship-free "
+                   "Claude Code and Codex killer that writes code like a principal software engineer, architected as an "
+                   "AGI platform with superintelligence coming soon.",
         "highlights": [
-            "**Self-hosted AI, no outside dependencies.** A RAG chatbot for a non-profit in 30 days on Mistral-7B, "
-            "FAISS and vLLM, with Grafana and Prometheus watching every token.",
-            "**Small scope, done fast.** Web push notifications for a non-profit, timezone-aware and personalized: "
-            "159 of 159 tests passing at 86% coverage, delivered in 5 billable hours against a 30-hour estimate.",
-            "**Volunteer architect.** Since April 2026, software architect for The Apologist Project, which hands "
-            "people from an AI chat to live volunteers.",
-            "**Open source, in public.** I maintain vibey (MIT), and its contributing guide and a volunteer page are "
-            "public.",
+            "**Fast from zero.** Two RAG chatbots delivered in 30 days each, one fully self-hosted so no data left "
+            "the client's servers; a 59,000-line codebase reviewed in 10 hours with a phased roadmap.",
+            "**Adoption, not demos.** Three product teams moved onto the AI gateway I architected; my platform "
+            "library is used by 17+ repositories.",
+            "**Security that holds up.** SOC 2 readiness, STRIDE threat models and OWASP LLM Top 10 mapping; "
+            "pre-release reviews that caught an auth bypass, path traversal and SSRF.",
         ],
-        "order": ["apologist", "llc", "vibey", "vizius", "limaone"],
-        "skills": ["ai", "platform", "security", "languages"],
+        "services": True,
+        "order": ["llc", "vibey", "vizius", "apologist", "limaone"],
+        "skills": ["ai", "security", "identity", "languages"],
         "bullets": {
-            "llc": ["chatbots", "push", "review"],
-            "apologist": ["excite", "discover", "privacy", "gates"],
+            "llc": ["chatbots", "review", "push"],
+            "vizius": ["gateway", "identity", "reports", "devsecops"],
+            "apologist": ["excite", "discover"],
             "vibey": ["what", "ledger"],
-            "vizius": ["gateway", "identity", "devsecops", "library"],
         },
-        "keywords": ["non-profit", "mission-driven organizations", "self-hosted RAG chatbot", "Mistral-7B", "vLLM",
-                     "FAISS", "Prometheus", "Grafana", "web push notifications", "volunteer software architect",
-                     "open source", "Python"],
+        "keywords": ["freelance AI engineer", "AI consultant", "RAG chatbot", "LLM gateway", "AI security review",
+                     "SOC 2 readiness", "OWASP LLM Top 10", "Okta", "Microsoft Entra ID", "fixed-price",
+                     "Upwork", "Fiverr Pro", "Python"],
     },
     "academia": {
         "stem": "adam-steinberger-resume-academia",
-        "label": "University & academia",
+        "label": "Universities and academia",
         "title": "Software Engineer · AI systems, open source and technical writing",
         "tagline": "I build AI software whose claims can be checked: the design is a paper, the behavior is pinned by "
                    "tests, and the code is open.",
         "availability": "Available now for engineering roles at universities and research groups. US-remote.",
         "summary": "For 14 years I've built production software, and lately I've written it up as carefully as I "
                    "build it. vibey's design is a paper, its decisions are 86 architecture decision records, its "
-                   "documentation is a book, and its chaos test passes only if no job is lost or run twice. I also "
-                   "wrote a plain-English book on RAG chatbots for decision-makers, the Security-First Scrum "
-                   "framework and its training manuals, and I've mentored junior developers on three projects. The "
-                   "junior developer I trained alongside a 20-service platform now owns it.",
+                   "documentation is a book, and its chaos test passes only if no job is lost or run twice. I built "
+                   "krypton and vibey as an open, censorship-free Claude Code and Codex replacement that writes code like "
+                   "a principal software engineer without code slop—advancing towards AGI with superintelligence coming soon. "
+                   "I also wrote a plain-English book on RAG chatbots and mentored engineers across three projects.",
         "highlights": [
             "**Design written as a paper.** vibey's design is published as a paper (not peer reviewed), backed by 86 "
             "architecture decision records and documentation written as a book.",
@@ -553,7 +555,7 @@ VARIANTS = {
     },
     "government-military": {
         "stem": "adam-steinberger-resume-government-military",
-        "label": "Government & military",
+        "label": "Governments and militaries",
         "title": "Staff Software Engineer · Secure, auditable AI platforms for government and defense",
         "tagline": "Secretless, auditable AI platforms for environments where compliance and security are "
                    "requirements from the first day.",
@@ -562,9 +564,9 @@ VARIANTS = {
                    "healthcare and cybersecurity. I architect AI platforms whose identity, audit and supply-chain "
                    "controls hold up to review: workload identity instead of stored secrets, hash-chained audit "
                    "trails, signed builds with SBOMs, policy-as-code admission, and governance reconciled from Git. "
-                   "I also wrote a white paper on export-control compliance and cloud enclave architecture. I write "
-                   "the architecture down before the code, train the people who inherit it, and hand off systems "
-                   "that keep running.",
+                   "I build krypton and the vibey engine as a free, censorship-free Claude Code and Codex killer that "
+                   "writes code like a principal software engineer rather than slop, built toward an AGI platform with "
+                   "superintelligence coming soon. I also wrote a white paper on export-control compliance.",
         "highlights": [
             "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
             "teams moved onto, and they retired their app-held credentials. My platform library runs in 17+ repositories.",
@@ -585,55 +587,57 @@ VARIANTS = {
             "llc": ["review"],
         },
         "keywords": ["government", "defense", "public sector", "regulated environments",
-                     "workload identity federation", "NIST AI RMF", "OWASP LLM Top 10", "SOC 2", "export control",
+             "workload identity federation", "NIST AI RMF", "OWASP LLM Top 10", "SOC 2", "export control",
                      "SBOM", "supply-chain security", "policy as code", "Kubernetes", "Python"],
     },
-    "freelance": {
-        "stem": "adam-steinberger-resume-freelance",
-        "label": "Freelance & contract",
-        "title": "Independent AI Platform Engineer · fixed-scope AI, identity and security work",
-        "tagline": "Senior engineering sold as a fixed scope: RAG chatbots, LLM gateways, identity governance and AI "
-                   "security reviews, agreed in writing and handed over clean.",
-        "availability": "Taking fixed-scope and contract engagements now. US-remote.",
+    "nonprofit": {
+        "stem": "adam-steinberger-resume-nonprofit",
+        "label": "Non-profit orgs",
+        "title": "Senior Software Engineer · AI and web platforms for mission-driven organizations",
+        "tagline": "I build software for mission-driven teams that keeps data on your own servers when it has to, is "
+                   "monitored on every request, and is handed over to the people who will run it.",
+        "availability": "Available now for engineering roles at mission-driven organizations. US-remote.",
         "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
-                   "teams. Now I sell that work as fixed-scope engagements. I've delivered two RAG chatbots in "
-                   "30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that "
-                   "three product teams adopted. Each engagement starts with a written intake and an acceptance "
-                   "checklist, and ends with documentation your team can run without me.",
+                   "teams. Recently that has included non-profit work: a fully self-hosted RAG chatbot delivered in "
+                   "30 days, web push notifications delivered in 5 billable hours against a 30-hour estimate, and, "
+                   "since April, volunteer architecture for The Apologist Project. In open source, I built krypton and "
+                   "the vibey engine as a free, censorship-free Claude Code and Codex killer that writes code like a principal "
+                   "engineer so mission-driven orgs get quality code instead of slop, built toward AGI with superintelligence coming soon.",
         "highlights": [
-            "**Fast from zero.** Two RAG chatbots delivered in 30 days each, one fully self-hosted so no data left "
-            "the client's servers; a 59,000-line codebase reviewed in 10 hours with a phased roadmap.",
-            "**Adoption, not demos.** Three product teams moved onto the AI gateway I architected; my platform "
-            "library is used by 17+ repositories.",
-            "**Security that holds up.** SOC 2 readiness, STRIDE threat models and OWASP LLM Top 10 mapping; "
-            "pre-release reviews that caught an auth bypass, path traversal and SSRF.",
+            "**Self-hosted AI, no outside dependencies.** A RAG chatbot for a non-profit in 30 days on Mistral-7B, "
+            "FAISS and vLLM, with Grafana and Prometheus watching every token.",
+            "**Small scope, done fast.** Web push notifications for a non-profit, timezone-aware and personalized: "
+            "159 of 159 tests passing at 86% coverage, delivered in 5 billable hours against a 30-hour estimate.",
+            "**Volunteer architect.** Since April 2026, software architect for The Apologist Project, which hands "
+            "people from an AI chat to live volunteers.",
+            "**Open source, in public.** I maintain vibey (MIT), and its contributing guide and a volunteer page are "
+            "public.",
         ],
-        "services": True,
-        "order": ["llc", "vibey", "vizius", "apologist", "limaone"],
-        "skills": ["ai", "security", "identity", "languages"],
+        "order": ["apologist", "llc", "vibey", "vizius", "limaone"],
+        "skills": ["ai", "platform", "security", "languages"],
         "bullets": {
-            "llc": ["chatbots", "review", "push"],
-            "vizius": ["gateway", "identity", "reports", "devsecops"],
-            "apologist": ["excite", "discover"],
+            "llc": ["chatbots", "push", "review"],
             "vibey": ["what", "ledger"],
+            "vizius": ["gateway", "identity", "devsecops", "library"],
+            "apologist": ["excite", "discover", "privacy", "gates"],
         },
-        "keywords": ["freelance AI engineer", "AI consultant", "RAG chatbot", "LLM gateway", "AI security review",
-                     "SOC 2 readiness", "OWASP LLM Top 10", "Okta", "Microsoft Entra ID", "fixed-price",
-                     "Upwork", "Fiverr Pro", "Python"],
+        "keywords": ["non-profit", "mission-driven organizations", "self-hosted RAG chatbot", "Mistral-7B", "vLLM",
+                     "FAISS", "Prometheus", "Grafana", "web push notifications", "volunteer software architect",
+                     "open source", "Python"],
     },
     "industry": {
         "stem": "adam-steinberger-resume-industry",
-        "label": "Industry",
+        "label": "Industry teams",
         "title": "Staff Software Engineer · Enterprise AI and platform engineering, discovery to production",
         "tagline": "I turn unclear business problems into AI and platform software that product teams adopt and that "
                    "keeps running after I hand it over.",
         "availability": "Available now for Staff+ engineering roles in industry. US-remote.",
         "summary": "For 14 years I've turned unclear business problems into production systems for insurance, lending, "
-                   "healthcare, manufacturing and industrial-testing teams. My method is steady: discovery, a written "
-                   "solution, decomposition into work, then a handoff to someone I've mentored. Most recently I "
-                   "architected AI platforms that put language models into real operational work, such as payroll, "
-                   "engineering reports and identity governance, with a person approving every step that can't be "
-                   "undone.",
+                   "healthcare, manufacturing and industrial-testing teams. Most recently I architected AI platforms "
+                   "that put language models into real operational work, and built krypton and the vibey engine as a "
+                   "Claude Code and Codex killer—completely free, censorship-free, open to everyone, and writing code "
+                   "the way a principal software engineer does so teams get quality code not slop, advancing toward an "
+                   "AGI platform with superintelligence coming soon.",
         "highlights": [
             "**Platforms other teams adopted.** Sole architect of a policy-enforced LLM gateway that three product "
             "teams moved onto, and they retired the credentials their apps held. My platform library runs in 17+ repositories.",
@@ -813,9 +817,42 @@ def rich(s):
     return "".join(out)
 
 
+def tex_escape(s):
+    replacements = [
+        ("\\", r"\textbackslash{}"),
+        ("&", r"\&"),
+        ("%", r"\%"),
+        ("$", r"\$"),
+        ("#", r"\#"),
+        ("_", r"\_"),
+        ("{", r"\{"),
+        ("}", r"\}"),
+        ("~", r"\textasciitilde{}"),
+        ("^", r"\textasciicircum{}"),
+    ]
+    for old, new in replacements:
+        s = s.replace(old, new)
+    return s
+
+
+def tex_rich(s):
+    out = []
+    for text, style in spans(s):
+        esc = tex_escape(text)
+        if style == "b":
+            out.append(f"\\textbf{{{esc}}}")
+        elif style == "i":
+            out.append(f"\\textit{{{esc}}}")
+        elif style == "muted":
+            out.append(f"{{\\color{{muted}}{esc}}}")
+        else:
+            out.append(esc)
+    return "".join(out)
+
+
 def files(v):
     s = v["stem"]
-    return {"pdf": f"{s}.pdf", "docx": f"{s}.docx", "txt": f"{s}.txt", "html": f"{s}.html"}
+    return {"pdf": f"{s}.pdf", "docx": f"{s}.docx", "txt": f"{s}.txt", "html": f"{s}.html", "tex": f"{s}.tex"}
 
 
 # ---------------------------------------------------------------- README (default framing, FOSS first)
@@ -1341,61 +1378,179 @@ def html_doc(v):
     return "".join(L)
 
 
-def chrome_path():
-    for p in (os.environ.get("CHROME"), "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-              shutil.which("google-chrome"), shutil.which("chromium"), shutil.which("chromium-browser")):
+# ---------------------------------------------------------------- LaTeX (→ PDF)
+def latex_doc(v):
+    L = [
+        r"\documentclass[8.4pt,letterpaper]{article}",
+        r"\usepackage[letterpaper,top=0.34in,bottom=0.34in,left=0.42in,right=0.42in]{geometry}",
+        r"\usepackage[utf8]{inputenc}",
+        r"\usepackage[T1]{fontenc}",
+        r"\usepackage{helvet}",
+        r"\renewcommand{\familydefault}{\sfdefault}",
+        r"\usepackage{microtype}",
+        r"\usepackage{xcolor}",
+        r"\usepackage[hidelinks,pdfusetitle]{hyperref}",
+        r"\usepackage{enumitem}",
+        r"\usepackage{tabularx}",
+        r"\usepackage{titlesec}",
+        r"\usepackage{fontawesome5}",
+        "",
+        r"% Executive modern color palette",
+        r"\definecolor{primary}{HTML}{0F172A}    % Slate 900",
+        r"\definecolor{accent}{HTML}{1D4ED8}     % Blue 700",
+        r"\definecolor{ink}{HTML}{1E293B}        % Slate 800",
+        r"\definecolor{muted}{HTML}{64748B}      % Slate 500",
+        r"\definecolor{rulecolor}{HTML}{E2E8F0}  % Slate 200",
+        "",
+        r"\pagestyle{empty}",
+        r"\linespread{0.94}",
+        "",
+        r"% Section titles",
+        r"\titleformat{\section}{\fontsize{8.8pt}{10.2pt}\bfseries\color{primary}}{}{0em}{\uppercase}[\vspace{-2.5pt}\color{rulecolor}\titlerule]",
+        r"\titlespacing*{\section}{0pt}{4pt}{2.5pt}",
+        "",
+        r"\setlist[itemize]{leftmargin=10.5pt,labelsep=4pt,topsep=0.5pt,partopsep=0pt,parsep=0pt,itemsep=1.2pt}",
+        r"\renewcommand\labelitemi{\color{accent}\fontsize{4.2pt}{4.2pt}\selectfont\faCircle}",
+        "",
+        r"\begin{document}",
+        r"\color{ink}",
+        "",
+        r"% Header Block",
+        r"\begin{center}",
+        f"{{\\fontsize{{18pt}}{{20pt}}\\selectfont \\textbf{{\\color{{primary}}{tex_escape(NAME)}}}}}\\\\[1.5pt]",
+        f"{{\\fontsize{{9.2pt}}{{10.8pt}}\\selectfont \\textbf{{\\color{{accent}}{tex_escape(v['title'])}}}}}\\\\[2pt]",
+        f"{{\\fontsize{{8pt}}{{9.5pt}}\\selectfont {tex_rich(v['tagline'])}}}\\\\[3pt]",
+    ]
+
+    c_line1 = [
+        f"\\faMapMarker*\\ {tex_escape(CITY)}, {tex_escape(REGION)} (US remote)",
+        f"\\faPhone*\\ \\href{{tel:+18645174117}}{{{tex_escape(PHONE)}}}",
+        f"\\faEnvelope\\ \\href{{mailto:{EMAIL}}}{{{tex_escape(EMAIL)}}}"
+    ]
+    c_line2 = [
+        f"\\faLinkedin\\ \\href{{{PROFILES[0][2]}}}{{linkedin.com/in/{PROFILES[0][1]}}}",
+        f"\\faGithub\\ \\href{{{PROFILES[1][2]}}}{{github.com/{PROFILES[1][1]}}}",
+        f"\\faGlobe\\ \\href{{{SITE}}}{{vibewithadam.matthewsteinberger.com}}"
+    ]
+    dot = r"\quad{\color{rulecolor}\textbullet}\quad"
+    L.append(f"{{\\fontsize{{7.6pt}}{{9pt}}\\selectfont \\color{{muted}} {dot.join(c_line1)}}}\\\\[1.8pt]")
+    L.append(f"{{\\fontsize{{7.6pt}}{{9pt}}\\selectfont \\color{{muted}} {dot.join(c_line2)}}}\\\\[2.5pt]")
+    L.append(f"{{\\fontsize{{7.8pt}}{{9.2pt}}\\selectfont \\textbf{{{tex_escape(v['availability'])}}}}}")
+    L.append(r"\end{center}")
+    L.append(r"\vspace{-3pt}")
+
+    L.append(f"\\section*{{Summary}}\n{{\\fontsize{{7.8pt}}{{9.4pt}}\\selectfont {tex_rich(v['summary'])}}}\\par")
+
+    L.append(f"\\section*{{Highlights}}\n\\begin{{itemize}}")
+    for b in v["highlights"]:
+        L.append(f"\\item {tex_rich(b)}")
+    L.append(r"\end{itemize}")
+
+    if v.get("services"):
+        L.append(r"\section*{Fixed-scope engagements}\begin{itemize}")
+        for s in SERVICES:
+            L.append(f"\\item \\textbf{{{tex_escape(s['name'])}.}} {tex_escape(s['pitch'])}")
+        L.append(r"\end{itemize}")
+        L.append(f"{{\\fontsize{{7.5pt}}{{8.6pt}}\\selectfont {tex_escape(SERVICES_NOTE)} Details and proof: \\href{{{REPO}/blob/HEAD/SERVICES.md}}{{SERVICES.md}}}}\\par")
+
+    L.append(r"\section*{Experience}")
+    for idx, (e, bullets) in enumerate(jobs(v)):
+        org = tex_escape(e["org"])
+        loc = tex_escape(e["loc"])
+        dates = tex_escape(span(e["start"], e["end"]))
+        role = tex_escape(e["role"])
+        L.append(r"\begin{samepage}")
+        L.append(r"\vspace{1.5pt}")
+        L.append(f"\\noindent{{\\bfseries\\fontsize{{8.6pt}}{{10pt}}\\selectfont {org}}} \\hfill {{\\color{{muted}}\\fontsize{{7.8pt}}{{9pt}}\\selectfont {dates}}}\\\\")
+        L.append(f"{{\\itshape\\fontsize{{7.8pt}}{{9pt}}\\selectfont {role}}} {{\\color{{muted}}\\textbullet\\ {loc}}}")
+        L.append(r"\end{samepage}")
+        L.append(r"\begin{itemize}")
+        for b in bullets:
+            L.append(f"\\item {tex_rich(b)}")
+        L.append(r"\end{itemize}")
+
+    L.append(r"\section*{Earlier experience}")
+    earlier_parts = []
+    for org, role, loc, s, e, line in EARLIER:
+        earlier_parts.append(f"\\textbf{{{tex_escape(org)}}}, {tex_escape(role)} ({s[:4]}--{e[:4]}). {tex_escape(line)}")
+    earlier_str = r" \quad{\color{muted}\textbullet}\quad ".join(earlier_parts)
+    L.append(f"{{\\fontsize{{7.3pt}}{{8.5pt}}\\selectfont {earlier_str}}}\\par")
+
+    L.append(r"\section*{Skills}")
+    skills_lines = []
+    for k, t in skills(v):
+        skills_lines.append(f"\\textbf{{{tex_escape(k)}:}} {tex_rich(t)}")
+    skills_str = r"\\[2pt]".join(skills_lines)
+    L.append(f"{{\\fontsize{{7.5pt}}{{8.9pt}}\\selectfont {skills_str}}}\\par")
+
+    L.append(r"\section*{Open source \& publications}\begin{itemize}")
+    for n, u, desc in OPEN_SOURCE:
+        L.append(f"\\item \\textbf{{\\href{{{u}}}{{{tex_escape(n)}}}}}. {tex_escape(desc)}")
+    for t, desc, u, _ in PUBLICATIONS:
+        L.append(f"\\item \\textbf{{\\href{{{u}}}{{{tex_escape(t)}}}}}. {tex_escape(desc)}")
+    L.append(r"\end{itemize}")
+
+    L.append(r"\section*{Education \& certification}")
+    edu_certs = []
+    for s, deg, a, b in EDUCATION:
+        edu_certs.append(f"\\textbf{{{tex_escape(s)}}}, {tex_escape(deg)} ({a}--{b})")
+    for c, o, y in CERTS:
+        edu_certs.append(f"\\textbf{{{tex_escape(c)}}}, {tex_escape(o)} ({y})")
+    edu_str = r" \quad{\color{muted}\textbullet}\quad ".join(edu_certs)
+    L.append(f"{{\\fontsize{{7.5pt}}{{8.8pt}}\\selectfont {edu_str}}}\\par")
+
+    L.append(r"\end{document}")
+    return "\n".join(L)
+
+
+def latex_compiler():
+    for cmd in ("pdflatex", "xelatex", "lualatex", "tectonic"):
+        p = shutil.which(cmd)
         if p and os.path.exists(p):
-            return p
+            return cmd
     return None
 
 
-def pdf(v, html_path, pdf_path):
-    chrome = chrome_path()
-    if not chrome:
-        print(f"  skipped {pdf_path}: Chrome not found (set CHROME=...)")
+def pdf(v, tex_path, pdf_path):
+    compiler = latex_compiler()
+    if not compiler:
+        print(f"  skipped {pdf_path}: LaTeX compiler (pdflatex/xelatex/tectonic) not found")
         return
-    if os.path.exists(pdf_path):
-        os.remove(pdf_path)
-    with tempfile.TemporaryDirectory() as profile:
-        # Headless Chrome sometimes lingers after printing, so wait for a complete PDF
-        # (size stable and ending in %%EOF), then stop the process ourselves.
-        proc = subprocess.Popen([chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                                 "--no-first-run", "--no-default-browser-check", "--disable-extensions",
-                                 f"--user-data-dir={profile}", f"--print-to-pdf={os.path.abspath(pdf_path)}",
-                                 "file://" + os.path.abspath(html_path)],
-                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        last, deadline = -1, time.time() + 90
-        while time.time() < deadline:
-            time.sleep(0.5)
-            if proc.poll() is not None and os.path.exists(pdf_path):
-                break
-            if os.path.exists(pdf_path):
-                size = os.path.getsize(pdf_path)
-                with open(pdf_path, "rb") as fh:
-                    fh.seek(max(0, size - 1024))
-                    done = b"%%EOF" in fh.read()
-                if done and size == last:
-                    break
-                last = size
-        if proc.poll() is None:
-            proc.terminate()
-            try:
-                proc.wait(timeout=10)
-            except subprocess.TimeoutExpired:
-                proc.kill()
-    if not os.path.exists(pdf_path):
-        raise RuntimeError(f"Chrome did not produce {pdf_path}")
+    with tempfile.TemporaryDirectory() as td:
+        tex_file = os.path.basename(tex_path)
+        shutil.copyfile(tex_path, os.path.join(td, tex_file))
+        if compiler == "tectonic":
+            cmd = ["tectonic", tex_file]
+        else:
+            cmd = [compiler, "-interaction=nonstopmode", tex_file]
+        res = subprocess.run(cmd, cwd=td, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out_pdf = os.path.join(td, os.path.splitext(tex_file)[0] + ".pdf")
+        if res.returncode != 0 or not os.path.exists(out_pdf):
+            err_msg = res.stdout.decode("latin1", errors="replace")
+            raise RuntimeError(f"{compiler} failed to compile {tex_path}:\n{err_msg[-1000:]}")
+        shutil.copyfile(out_pdf, pdf_path)
+
     try:
         from pypdf import PdfReader, PdfWriter
     except ImportError:
         print("  pypdf not installed: PDF written without metadata")
         return
-    writer = PdfWriter(clone_from=PdfReader(pdf_path))
-    writer.add_metadata({"/Title": f"{NAME}: {v['title']}", "/Author": NAME,
-                         "/Subject": plain(v["tagline"]), "/Keywords": ", ".join(v["keywords"]),
-                         "/Creator": "tools/build_resume.py"})
+
+    reader = PdfReader(pdf_path)
+    page_count = len(reader.pages)
+    if page_count != 2:
+        print(f"  WARNING: {pdf_path} is {page_count} pages (expected exactly 2 pages)")
+    writer = PdfWriter(clone_from=reader)
+    writer.add_metadata({
+        "/Title": f"{NAME}: {v['title']}",
+        "/Author": NAME,
+        "/Subject": plain(v["tagline"]),
+        "/Keywords": ", ".join(v["keywords"]),
+        "/Creator": "tools/build_resume.py (Markdown -> LaTeX -> PDF)",
+    })
     with open(pdf_path, "wb") as f:
         writer.write(f)
+
 
 
 # ---------------------------------------------------------------- DOCX
@@ -1530,8 +1685,9 @@ for key, v in VARIANTS.items():
     f = files(v)
     write(f["txt"], txt(v))
     write(f["html"], html_doc(v))
+    write(f["tex"], latex_doc(v))
     docx_doc(v, os.path.join(OUT, f["docx"]))
     if MAKE_PDF:
-        pdf(v, os.path.join(OUT, f["html"]), os.path.join(OUT, f["pdf"]))
+        pdf(v, os.path.join(OUT, f["tex"]), os.path.join(OUT, f["pdf"]))
     print(f"wrote {key}: {', '.join(sorted(f.values()))}")
 print("wrote README.md, SERVICES.md, freelance/, profile.jsonld, resume.json, llms.txt, CITATION.cff →", OUT)
