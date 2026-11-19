@@ -1394,7 +1394,10 @@ def latex_doc(v):
         r"\documentclass[10pt,letterpaper]{article}",
         r"\usepackage[letterpaper,top=0.42in,bottom=0.42in,left=0.6in,right=0.6in]{geometry}",
         r"\usepackage[utf8]{inputenc}",
+        r"\usepackage{cmap}",
         r"\usepackage[T1]{fontenc}",
+        r"\input{glyphtounicode}",
+        r"\ifdefined\pdfgentounicode\pdfgentounicode=1\fi",
         r"\usepackage{helvet}",
         r"\renewcommand{\familydefault}{\sfdefault}",
         r"\usepackage[protrusion=true,expansion=true]{microtype}",
@@ -1403,7 +1406,6 @@ def latex_doc(v):
         r"\usepackage{enumitem}",
         r"\usepackage{titlesec}",
         r"\usepackage{needspace}",
-        r"\usepackage{fontawesome5}",
         "",
         r"% Palette",
         r"\definecolor{primary}{HTML}{0F172A}",
@@ -1417,7 +1419,7 @@ def latex_doc(v):
         r"\newcommand{\sztitle}{\fontsize{10.5pt}{13pt}\selectfont}",
         r"\newcommand{\szbody}{\fontsize{9pt}{11.1pt}\selectfont}",
         r"\newcommand{\szmeta}{\fontsize{8pt}{10pt}\selectfont}",
-        r"\newcommand{\secfmt}[1]{\textls[110]{\MakeUppercase{#1}}}",
+        r"\newcommand{\secfmt}[1]{\MakeUppercase{#1}}",
         "",
         r"\pagestyle{empty}",
         r"\setlength{\parindent}{0pt}",
@@ -1433,7 +1435,7 @@ def latex_doc(v):
         r"\titlespacing*{\section}{0pt}{7.5pt}{3.5pt}",
         "",
         r"\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.5pt}",
-        r"\renewcommand\labelitemi{\raisebox{0.2ex}{\color{accent}\fontsize{4.5pt}{4.5pt}\selectfont\faCircle}}",
+        r"\renewcommand\labelitemi{{\color{accent}\textbullet}}",
         "",
         r"\begin{document}",
         r"\color{ink}\szbody",
@@ -1445,16 +1447,16 @@ def latex_doc(v):
     ]
 
     c_line1 = [
-        f"\\faMapMarker*\\ {tex_escape(CITY)}, {tex_escape(REGION)} (US remote)",
-        f"\\faPhone*\\ \\href{{tel:+18645174117}}{{{tex_escape(PHONE)}}}",
-        f"\\faEnvelope\\ \\href{{mailto:{EMAIL}}}{{{tex_escape(EMAIL)}}}"
+        f"{tex_escape(CITY)}, {tex_escape(REGION)} (US remote)",
+        f"\\href{{tel:+18645174117}}{{{tex_escape(PHONE)}}}",
+        f"\\href{{mailto:{EMAIL}}}{{{tex_escape(EMAIL)}}}"
     ]
     c_line2 = [
-        f"\\faLinkedin\\ \\href{{{PROFILES[0][2]}}}{{linkedin.com/in/{PROFILES[0][1]}}}",
-        f"\\faGithub\\ \\href{{{PROFILES[1][2]}}}{{github.com/{PROFILES[1][1]}}}",
-        f"\\faGlobe\\ \\href{{{SITE}}}{{vibewithadam.matthewsteinberger.com}}"
+        f"\\href{{{PROFILES[0][2]}}}{{linkedin.com/in/{PROFILES[0][1]}}}",
+        f"\\href{{{PROFILES[1][2]}}}{{github.com/{PROFILES[1][1]}}}",
+        f"\\href{{{SITE}}}{{vibewithadam.matthewsteinberger.com}}"
     ]
-    dot = r"\quad{\color{rulecolor}\textbullet}\quad"
+    dot = r"\ {\color{rulecolor}\textbar}\ "
     L.append(f"{{\\szmeta\\color{{muted}} {dot.join(c_line1)}}}\\\\[2pt]")
     L.append(f"{{\\szmeta\\color{{muted}} {dot.join(c_line2)}}}\\\\[6pt]")
     L.append(f"{{\\szbody\\bfseries {tex_escape(v['availability'])}}}")
@@ -1475,7 +1477,7 @@ def latex_doc(v):
         L.append(r"\end{itemize}")
         L.append(f"{{\\szmeta {tex_escape(SERVICES_NOTE)} Details and proof: \\href{{{REPO}/blob/HEAD/SERVICES.md}}{{SERVICES.md}}}}\\par")
 
-    L.append(r"\section*{Experience}")
+    L.append(r"\section*{Professional Experience}")
     for idx, (e, bullets) in enumerate(jobs(v, pdf=True)):
         org = tex_escape(e["org"])
         loc = tex_escape(e["loc"])
@@ -1491,10 +1493,11 @@ def latex_doc(v):
             L.append(f"\\item {tex_rich(b)}")
         L.append(r"\end{itemize}")
 
-    L.append(r"\section*{Earlier experience}")
-    earlier_parts = [f"\\textbf{{{tex_escape(org)}}}, {tex_escape(role)} {{\\color{{muted}}({s[:4]}--{e[:4]})}}. {tex_escape(line)}"
-                     for org, role, loc, s, e, line in EARLIER]
-    L.append("{\\szmeta " + r"\hspace{1.1em}".join(earlier_parts) + "}\\par")
+    L.append(r"\section*{Earlier Experience}")
+    L.append(r"\begingroup\szmeta\setlist[itemize]{itemsep=0.8pt}\begin{itemize}")
+    for org, role, loc, s_, e_, line in EARLIER:
+        L.append(f"\\item \\textbf{{{tex_escape(org)}}}, {tex_escape(role)} {{\\color{{muted}}({s_[:4]}--{e_[:4]})}}. {tex_escape(line)}")
+    L.append(r"\end{itemize}\endgroup")
 
     L.append(r"\section*{Skills}")
     skills_lines = []
@@ -1502,7 +1505,7 @@ def latex_doc(v):
         skills_lines.append(f"\\textbf{{{tex_escape(k)}:}} {tex_rich(t)}")
     L.append("{\\szmeta " + r"\par\vspace{2pt}".join(skills_lines) + "}\\par")
 
-    L.append(r"\section*{Open source \& publications}\begin{itemize}")
+    L.append(r"\section*{Open Source and Publications}\begin{itemize}")
     for n, u, desc in OPEN_SOURCE:
         L.append(f"\\item \\textbf{{\\href{{{u}}}{{{tex_escape(n)}}}}}. {tex_escape(desc)}")
     for t, desc, u, _ in PUBLICATIONS:
@@ -1510,10 +1513,10 @@ def latex_doc(v):
     L.append(r"\end{itemize}")
 
     L.append(r"\Needspace{4\baselineskip}")
-    L.append(r"\section*{Education \& certification}")
-    edu = [f"\\textbf{{{tex_escape(s_)}}}, {tex_escape(d.replace('Electrical and Electronics Engineering coursework', 'Electrical Engineering coursework'))} {{\\color{{muted}}({a}--{b})}}" for s_, d, a, b in EDUCATION]
+    L.append(r"\section*{Education and Certifications}")
+    edu = [f"\\textbf{{{tex_escape(s_)}}}, {tex_escape(d)} {{\\color{{muted}}({a_}--{b_})}}" for s_, d, a_, b_ in EDUCATION]
     edu += [f"\\textbf{{{tex_escape(c)}}}, {tex_escape(o)} {{\\color{{muted}}({y})}}" for c, o, y in CERTS]
-    L.append("{\\szmeta " + r"\hspace{1.1em}".join(edu) + "}\\par")
+    L.append("{\\szmeta " + r" {\color{rulecolor}\textbar} ".join(edu) + "}\\par")
 
     L.append(r"\end{document}")
     return "\n".join(L)
