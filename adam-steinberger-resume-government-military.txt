@@ -38,7 +38,8 @@ Senior Software Engineering Consultant | Mar 2025 – Aug 2025
 
 The Apologist Project | Remote
 Volunteer Software Architect | Apr 2026 – Present
-- Project Excite. An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
+- Privacy built into the data. A count reaches the public site only when ten different people stand behind it, no message text is ever published, each secret has exactly one reader, and the public run buttons sit behind a kill switch that starts off. The public portal is a Next.js app over a read-only API.
+- Held to its own gates. 100% branch coverage enforced across 4,500+ tests, 120 architecture decision records, and a Helm and Kustomize install with KEDA-scaled stage workers tested on minikube. A dbt step that ran 4 hours 20 minutes without finishing now builds in about a minute.
 
 Lima One Capital | Greenville, SC
 Senior Software Engineer | May 2023 – Feb 2025

@@ -33,7 +33,8 @@ Senior Azure and AI Development Engineer | Sep 2025 – Aug 2026
 
 The Apologist Project | Remote
 Volunteer Software Architect | Apr 2026 – Present
-- Project Excite. An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
+- Categories found from the data, not a fixed list. A monthly ELT system (Python, dbt, PostgreSQL and DuckDB) that clusters sentence embeddings, has a local open-weight model (Qwen3-4B) name each category, and publishes versioned marts. A 27 GB SQL dump (5.14 million rows) streams through on a 24 GB laptop in about six minutes, without restoring the source.
+- Privacy built into the data. A count reaches the public site only when ten different people stand behind it, no message text is ever published, each secret has exactly one reader, and the public run buttons sit behind a kill switch that starts off. The public portal is a Next.js app over a read-only API.
 
 Adam Matthew Steinberger LLC | Greenville, SC
 Senior Software Engineering Consultant | Mar 2025 – Aug 2025
@@ -57,7 +58,7 @@ EARLIER EXPERIENCE
 
 SKILLS
 - AI & LLM systems: Multi-vendor LLM gateways with cost and policy governance, agent sandboxing and egress policy, multi-agent orchestration, MCP servers, RAG (pgvector, FAISS, Azure AI Search, Pinecone), human-in-the-loop gating, structured outputs; Claude, Azure OpenAI/Foundry, GPT, Gemini, Mistral, vLLM, Ollama
-- Data & integration: PostgreSQL, Snowflake, SQL Server, Oracle, MongoDB, Redis; ETL and API integrations (HubSpot, SharePoint, Salesforce, Microsoft Graph); event-driven pipelines (Service Bus, Event Hubs); data-quality gates
+- Data & integration: PostgreSQL, Snowflake, SQL Server, Oracle, MongoDB, Redis, DuckDB; dbt and ELT pipelines; embeddings and clustering; ETL and API integrations (HubSpot, SharePoint, Salesforce, Microsoft Graph); event-driven pipelines (Service Bus, Event Hubs); data-quality gates; privacy thresholds on published counts
 - Languages: Python 3.12 (FastAPI, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, Next.js + React, C#/.NET, Java Spring Boot, SQL, KQL, Bash, gRPC/REST, OpenAPI
 - Platform & security: Kubernetes (AKS, KEDA), Terraform, Helm, GitOps, GitHub Actions; Entra ID, Okta, SAML/OIDC, workload identity; STRIDE threat modeling, SOC 2 readiness, OWASP LLM Top 10
 - Delivery: Discovery, a written solution, decomposition into work, then a mentored handoff; executive summaries for stakeholders; Scrum (CSM); author of Security-First Scrum

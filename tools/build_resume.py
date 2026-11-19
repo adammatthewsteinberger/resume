@@ -154,6 +154,17 @@ EXPERIENCE = [
                       "volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent "
                       "teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as "
                       "split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).",
+            "discover": "**Categories found from the data, not a fixed list.** A monthly ELT system (Python, dbt, "
+                        "PostgreSQL and DuckDB) that clusters sentence embeddings, has a local open-weight model "
+                        "(Qwen3-4B) name each category, and publishes versioned marts. A 27 GB SQL dump (5.14 million "
+                        "rows) streams through on a 24 GB laptop in about six minutes, without restoring the source.",
+            "privacy": "**Privacy built into the data.** A count reaches the public site only when ten different "
+                       "people stand behind it, no message text is ever published, each secret has exactly one "
+                       "reader, and the public run buttons sit behind a kill switch that starts off. The public "
+                       "portal is a Next.js app over a read-only API.",
+            "gates": "**Held to its own gates.** 100% branch coverage enforced across 4,500+ tests, 120 architecture "
+                     "decision records, and a Helm and Kustomize install with KEDA-scaled stage workers tested on "
+                     "minikube. A dbt step that ran 4 hours 20 minutes without finishing now builds in about a minute.",
         },
     },
     {
@@ -248,8 +259,9 @@ SKILL_SETS = {
                 "pytest, Hypothesis, mutation and chaos testing, contract and end-to-end tests, mypy --strict, ruff, "
                 "import-linter-enforced onion architecture"),
     "data": ("Data & integration",
-             "PostgreSQL, Snowflake, SQL Server, Oracle, MongoDB, Redis; ETL and API integrations (HubSpot, SharePoint, "
-             "Salesforce, Microsoft Graph); event-driven pipelines (Service Bus, Event Hubs); data-quality gates"),
+             "PostgreSQL, Snowflake, SQL Server, Oracle, MongoDB, Redis, DuckDB; dbt and ELT pipelines; embeddings and "
+             "clustering; ETL and API integrations (HubSpot, SharePoint, Salesforce, Microsoft Graph); event-driven "
+             "pipelines (Service Bus, Event Hubs); data-quality gates; privacy thresholds on published counts"),
     "platform_fd": ("Platform & security",
                     "Kubernetes (AKS, KEDA), Terraform, Helm, GitOps, GitHub Actions; Entra ID, Okta, SAML/OIDC, workload "
                     "identity; STRIDE threat modeling, SOC 2 readiness, OWASP LLM Top 10"),
@@ -464,6 +476,7 @@ VARIANTS = {
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
             "vizius": ["gateway", "identity", "payroll", "reports", "devsecops", "library", "also"],
+            "apologist": ["excite", "privacy"],
             "llc": ["chatbots", "review"],
         },
         "keywords": ["Staff Software Engineer", "AI platform engineering", "agent orchestration", "LLM gateway",
@@ -497,6 +510,7 @@ VARIANTS = {
         "skills": ["ai", "platform", "security", "languages"],
         "bullets": {
             "llc": ["chatbots", "push", "review"],
+            "apologist": ["excite", "discover", "privacy", "gates"],
             "vibey": ["what", "ledger"],
             "vizius": ["gateway", "identity", "devsecops", "library"],
         },
@@ -531,6 +545,7 @@ VARIANTS = {
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
             "vizius": ["payroll", "reports", "gateway", "library", "also"],
+            "apologist": ["discover", "privacy"],
             "llc": ["review", "chatbots"],
         },
         "keywords": ["university", "academia", "AI systems", "open source", "technical writing",
@@ -566,6 +581,7 @@ VARIANTS = {
         "bullets": {
             "vibey": ["what", "ledger"],
             "vizius": ["identity", "gateway", "devsecops", "advisory", "reports", "library", "also"],
+            "apologist": ["privacy", "gates"],
             "llc": ["review"],
         },
         "keywords": ["government", "defense", "public sector", "regulated environments",
@@ -598,6 +614,7 @@ VARIANTS = {
         "bullets": {
             "llc": ["chatbots", "review", "push"],
             "vizius": ["gateway", "identity", "reports", "devsecops"],
+            "apologist": ["excite", "discover"],
             "vibey": ["what", "ledger"],
         },
         "keywords": ["freelance AI engineer", "AI consultant", "RAG chatbot", "LLM gateway", "AI security review",
@@ -632,6 +649,7 @@ VARIANTS = {
         "skills": ["ai", "platform", "data", "languages", "delivery"],
         "bullets": {
             "vizius": ["gateway", "payroll", "reports", "identity", "devsecops", "library"],
+            "apologist": ["discover", "privacy", "gates"],
             "llc": ["chatbots", "review"],
             "vibey": ["what", "ledger"],
         },
@@ -664,6 +682,7 @@ VARIANTS = {
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
             "vizius": ["identity", "gateway", "devsecops", "advisory", "payroll", "reports", "library", "also"],
+            "apologist": ["privacy"],
             "llc": ["chatbots", "review"],
         },
         "keywords": ["Staff Software Engineer", "identity and access management", "workload identity federation",
@@ -697,6 +716,7 @@ VARIANTS = {
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
             "vizius": ["payroll", "reports", "gateway", "identity", "advisory", "also"],
+            "apologist": ["discover", "privacy"],
             "llc": ["chatbots", "review", "push"],
         },
         "keywords": ["Forward Deployed Engineer", "Forward Deployed AI Engineer", "enterprise AI", "RAG",
