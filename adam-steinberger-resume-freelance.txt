@@ -44,8 +44,8 @@ Senior Azure and AI Development Engineer | Sep 2025 – Aug 2026
 
 The Apologist Project | Remote
 Volunteer Software Architect | Apr 2026 – Present
+- APG Insight (architect; Python, dbt, PostgreSQL, DuckDB). A monthly pipeline that works out what people ask a nonprofit's AI chat about, with no fixed category list: multilingual embeddings are clustered into 40 micro-topics and merged into 12 categories, a local open-weight model (Qwen3-4B) judges whether each is a real subject and names it, and every message joins up to three. Categories are stability-checked across refits and keep their keys from run to run. Discovery and assignment for 120,901 messages take about two minutes on a laptop; a 27 GB, 5.14-million-row dump is read in 2.5 minutes without being restored.
 - Project Excite. An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
-- Monthly insight pipeline (architect; Python, dbt, PostgreSQL, DuckDB). Finds what a month of messages was about with no fixed category list: embeddings are clustered into subjects, a local open-weight model (Qwen3-4B) names each one and rejects groups that are not subjects, and dbt publishes versioned categories as marts and a report. A 27 GB dump of 5.14 million rows runs end to end in about six minutes on a laptop, streamed once and never restored.
 
 Lima One Capital | Greenville, SC
 Senior Software Engineer | May 2023 – Feb 2025

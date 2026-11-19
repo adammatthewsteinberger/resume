@@ -107,8 +107,8 @@ For 14 years I've built production software for insurance, lending, healthcare a
 {\itshape Volunteer Software Architect}{\color{muted}\ \textbullet\ Remote}
 \vspace{2pt}
 \begin{itemize}
+\item \textbf{APG Insight} {\color{muted}(architect; Python, dbt, PostgreSQL, DuckDB)}. A monthly pipeline that works out what people ask a nonprofit's AI chat about, with no fixed category list: multilingual embeddings are clustered into 40 micro-topics and merged into 12 categories, a local open-weight model (Qwen3-4B) judges whether each is a real subject and names it, and every message joins up to three. Categories are stability-checked across refits and keep their keys from run to run. \textbf{Discovery and assignment for 120,901 messages take about two minutes on a laptop; a 27 GB, 5.14-million-row dump is read in 2.5 minutes without being restored.}
 \item \textbf{Project Excite.} An adapter-based relay service that hands people from an AI chat to live volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).
-\item \textbf{Monthly insight pipeline} {\color{muted}(architect; Python, dbt, PostgreSQL, DuckDB)}. Finds what a month of messages was about with no fixed category list: embeddings are clustered into subjects, a local open-weight model (Qwen3-4B) names each one and rejects groups that are not subjects, and dbt publishes versioned categories as marts and a report. \textbf{A 27 GB dump of 5.14 million rows runs end to end in about six minutes on a laptop}, streamed once and never restored.
 \end{itemize}
 \Needspace{4\baselineskip}
 \vspace{3pt}
