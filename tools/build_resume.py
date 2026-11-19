@@ -487,7 +487,7 @@ VARIANTS = {
             "**Open source, in public.** Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and "
             "passes only if no job is lost or run twice.",
         ],
-        "pdf_omit": {"vizius": ["also", "library"]},
+        "pdf_omit": {"vizius": ["also", "library", "reports"], "llc": ["review"]},
         "skills": ["ai", "identity", "security", "platform", "languages"],
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
@@ -523,6 +523,7 @@ VARIANTS = {
         ],
         "services": True,
         "order": ["llc", "vibey", "vizius", "apologist", "limaone"],
+        "pdf_omit": {"llc": ["push"], "apologist": ["excite"]},
         "skills": ["ai", "security", "identity", "languages"],
         "bullets": {
             "llc": ["chatbots", "review", "push"],
@@ -699,6 +700,7 @@ VARIANTS = {
             "**Handoffs that hold.** Co-led a 20-service platform to production-ready architecture by day 45; the junior "
             "developer trained in parallel now owns it.",
         ],
+        "pdf_omit": {"vizius": ["also", "library"]},
         "skills": ["identity", "security", "ai", "platform", "languages"],
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
@@ -1405,7 +1407,7 @@ def html_doc(v):
 def latex_doc(v):
     L = [
         r"\documentclass[10pt,letterpaper]{article}",
-        r"\usepackage[letterpaper,top=0.42in,bottom=0.42in,left=0.6in,right=0.6in]{geometry}",
+        r"\usepackage[letterpaper,top=0.4in,bottom=0.4in,left=0.6in,right=0.6in]{geometry}",
         r"\usepackage[utf8]{inputenc}",
         r"\usepackage{cmap}",
         r"\usepackage[T1]{fontenc}",
@@ -1430,7 +1432,7 @@ def latex_doc(v):
         r"% One type scale, used everywhere: name 20, title 10.5, body 9, meta 8.",
         r"\newcommand{\szname}{\fontsize{20pt}{24pt}\selectfont}",
         r"\newcommand{\sztitle}{\fontsize{10.5pt}{13pt}\selectfont}",
-        r"\newcommand{\szbody}{\fontsize{9pt}{11.1pt}\selectfont}",
+        r"\newcommand{\szbody}{\fontsize{9pt}{10.8pt}\selectfont}",
         r"\newcommand{\szmeta}{\fontsize{8pt}{10pt}\selectfont}",
         r"\newcommand{\secfmt}[1]{\MakeUppercase{#1}}",
         "",
@@ -1445,9 +1447,9 @@ def latex_doc(v):
         r"\hyphenpenalty=2000",
         "",
         r"\titleformat{\section}{\fontsize{9pt}{11pt}\bfseries\color{primary}}{}{0em}{\secfmt}[\vspace{-1pt}\color{rulecolor}\titlerule]",
-        r"\titlespacing*{\section}{0pt}{7.5pt}{3.5pt}",
+        r"\titlespacing*{\section}{0pt}{6pt}{3pt}",
         "",
-        r"\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.5pt}",
+        r"\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.1pt}",
         r"\renewcommand\labelitemi{{\color{accent}\textbullet}}",
         "",
         r"\begin{document}",
@@ -1507,7 +1509,7 @@ def latex_doc(v):
         L.append(r"\end{itemize}")
 
     L.append(r"\section*{Earlier Experience}")
-    L.append(r"\begingroup\szmeta\setlist[itemize]{itemsep=0.8pt}\begin{itemize}")
+    L.append(r"\begingroup\szmeta\begin{itemize}[leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1pt]")
     for org, role, loc, s_, e_, line in EARLIER:
         L.append(f"\\item \\textbf{{{tex_escape(org)}}}, {tex_escape(role)} {{\\color{{muted}}({s_[:4]}--{e_[:4]})}}. {tex_escape(line)}")
     L.append(r"\end{itemize}\endgroup")
@@ -1527,9 +1529,9 @@ def latex_doc(v):
 
     L.append(r"\Needspace{4\baselineskip}")
     L.append(r"\section*{Education and Certifications}")
-    edu = [f"\\textbf{{{tex_escape(s_)}}}, {tex_escape(d)} {{\\color{{muted}}({a_}--{b_})}}" for s_, d, a_, b_ in EDUCATION]
+    edu = [f"\\textbf{{{tex_escape(s_)}}}, {tex_escape(d.replace('Electrical and Electronics Engineering coursework', 'Electrical Engineering coursework'))} {{\\color{{muted}}({a_}--{b_})}}" for s_, d, a_, b_ in EDUCATION]
     edu += [f"\\textbf{{{tex_escape(c)}}}, {tex_escape(o)} {{\\color{{muted}}({y})}}" for c, o, y in CERTS]
-    L.append("{\\szmeta " + r" {\color{rulecolor}\textbar} ".join(edu) + "}\\par")
+    L.append("{\\szmeta " + "; ".join(edu) + "}\\par")
 
     L.append(r"\end{document}")
     return "\n".join(L)
@@ -1541,6 +1543,35 @@ def latex_compiler():
         if p and os.path.exists(p):
             return cmd
     return None
+
+
+ATS_HEADINGS = ["SUMMARY", "PROFESSIONAL EXPERIENCE", "EARLIER EXPERIENCE", "SKILLS", "EDUCATION AND CERTIFICATIONS"]
+
+
+def ats_check(reader, v):
+    """What an applicant-tracking parser needs from the PDF's text layer: real text in reading order, standard section
+    headings, contact details as plain text, a real bullet character, and no icon glyphs or letter-spaced words."""
+    text = "\n".join((page.extract_text() or "") for page in reader.pages)
+    problems = []
+    if len(text) < 2000:
+        problems.append("the text layer is nearly empty")
+    for heading in ATS_HEADINGS:
+        if heading not in text:
+            problems.append(f"missing section heading {heading!r}")
+    if text.find("SUMMARY") > text.find("PROFESSIONAL EXPERIENCE") >= 0:
+        problems.append("sections are out of order")
+    for needle in (EMAIL, PHONE):
+        if needle not in text:
+            problems.append(f"contact detail {needle!r} is not in the text")
+    if any(0xE000 <= ord(c) <= 0xF8FF or ord(c) in (0x25CB, 0x25CF) for c in text):
+        problems.append("icon or private-use glyphs in the text layer")
+    if re.search(r"\b(?:[A-Z] ){4,}[A-Z]\b", text):
+        problems.append("letter-spaced words")
+    if re.search(r"[a-z0-9\)][|][A-Za-z]", text):
+        problems.append("words glued across a separator")
+    if "\u2022" not in text:
+        problems.append("no bullet character in the text")
+    return problems
 
 
 def pdf(v, tex_path, pdf_path):
@@ -1572,7 +1603,12 @@ def pdf(v, tex_path, pdf_path):
     page_count = len(reader.pages)
     if page_count != 2:
         print(f"  WARNING: {pdf_path} is {page_count} pages (expected exactly 2 pages)")
+    ats_problems = ats_check(reader, v)
+    for problem in ats_problems:
+        print(f"  WARNING: {pdf_path} is not ATS-safe: {problem}")
     writer = PdfWriter(clone_from=reader)
+    from pypdf.generic import NameObject, TextStringObject
+    writer._root_object[NameObject("/Lang")] = TextStringObject("en-US")  # the document language, for parsers and readers
     writer.add_metadata({
         "/Title": f"{NAME}: {v['title']}",
         "/Author": NAME,

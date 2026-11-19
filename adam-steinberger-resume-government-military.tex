@@ -1,5 +1,5 @@
 \documentclass[10pt,letterpaper]{article}
-\usepackage[letterpaper,top=0.42in,bottom=0.42in,left=0.6in,right=0.6in]{geometry}
+\usepackage[letterpaper,top=0.4in,bottom=0.4in,left=0.6in,right=0.6in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
@@ -24,7 +24,7 @@
 % One type scale, used everywhere: name 20, title 10.5, body 9, meta 8.
 \newcommand{\szname}{\fontsize{20pt}{24pt}\selectfont}
 \newcommand{\sztitle}{\fontsize{10.5pt}{13pt}\selectfont}
-\newcommand{\szbody}{\fontsize{9pt}{11.1pt}\selectfont}
+\newcommand{\szbody}{\fontsize{9pt}{10.8pt}\selectfont}
 \newcommand{\szmeta}{\fontsize{8pt}{10pt}\selectfont}
 \newcommand{\secfmt}[1]{\MakeUppercase{#1}}
 
@@ -39,9 +39,9 @@
 \hyphenpenalty=2000
 
 \titleformat{\section}{\fontsize{9pt}{11pt}\bfseries\color{primary}}{}{0em}{\secfmt}[\vspace{-1pt}\color{rulecolor}\titlerule]
-\titlespacing*{\section}{0pt}{7.5pt}{3.5pt}
+\titlespacing*{\section}{0pt}{6pt}{3pt}
 
-\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.5pt}
+\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.1pt}
 \renewcommand\labelitemi{{\color{accent}\textbullet}}
 
 \begin{document}
@@ -116,7 +116,7 @@ For 14 years I've built production systems in regulated industries: insurance, l
 \item \textbf{Built Snow Portal}, a Snowflake job scheduler that replaced Alteryx at a fraction of the cost; full-stack .NET and React work on a mortgage-broker platform (credit-report integrations, pricing-engine APIs).
 \end{itemize}
 \section*{Earlier Experience}
-\begingroup\szmeta\setlist[itemize]{itemsep=0.8pt}\begin{itemize}
+\begingroup\szmeta\begin{itemize}[leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1pt]
 \item \textbf{Transcat}, Senior Software Engineer {\color{muted}(2022--2023)}. Led the team delivering .NET Web APIs and a React front end for lab-equipment calibration.
 \item \textbf{LeaseTrack}, Senior Software Engineer {\color{muted}(2021--2022)}. Python and AWS Textract document parsing; a Java Spring Boot annotation system feeding an ML training pipeline.
 \item \textbf{Akmazio Software}, Founding Engineer {\color{muted}(2020--2021)}. Built the full C\#/.NET and SQL Server backend and wrote the business plan; managed interns and a contractor.
@@ -135,5 +135,5 @@ For 14 years I've built production systems in regulated industries: insurance, l
 \end{itemize}
 \Needspace{4\baselineskip}
 \section*{Education and Certifications}
-{\szmeta \textbf{Skidmore College}, B.A., Computer Science {\color{muted}(2010--2012)} {\color{rulecolor}\textbar} \textbf{Rensselaer Polytechnic Institute}, Electrical and Electronics Engineering coursework {\color{muted}(2008--2010)} {\color{rulecolor}\textbar} \textbf{Certified ScrumMaster (CSM)}, Scrum Alliance {\color{muted}(2021)}}\par
+{\szmeta \textbf{Skidmore College}, B.A., Computer Science {\color{muted}(2010--2012)}; \textbf{Rensselaer Polytechnic Institute}, Electrical Engineering coursework {\color{muted}(2008--2010)}; \textbf{Certified ScrumMaster (CSM)}, Scrum Alliance {\color{muted}(2021)}}\par
 \end{document}
