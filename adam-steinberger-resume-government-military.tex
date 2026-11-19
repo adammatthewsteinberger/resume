@@ -1,7 +1,10 @@
 \documentclass[10pt,letterpaper]{article}
-\usepackage[letterpaper,top=0.42in,bottom=0.42in,left=0.6in,right=0.6in]{geometry}
+\usepackage[letterpaper,top=0.4in,bottom=0.4in,left=0.6in,right=0.6in]{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage{cmap}
 \usepackage[T1]{fontenc}
+\input{glyphtounicode}
+\ifdefined\pdfgentounicode\pdfgentounicode=1\fi
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage[protrusion=true,expansion=true]{microtype}
@@ -10,7 +13,6 @@
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{needspace}
-\usepackage{fontawesome5}
 
 % Palette
 \definecolor{primary}{HTML}{0F172A}
@@ -22,9 +24,9 @@
 % One type scale, used everywhere: name 20, title 10.5, body 9, meta 8.
 \newcommand{\szname}{\fontsize{20pt}{24pt}\selectfont}
 \newcommand{\sztitle}{\fontsize{10.5pt}{13pt}\selectfont}
-\newcommand{\szbody}{\fontsize{9pt}{11.1pt}\selectfont}
+\newcommand{\szbody}{\fontsize{9pt}{10.8pt}\selectfont}
 \newcommand{\szmeta}{\fontsize{8pt}{10pt}\selectfont}
-\newcommand{\secfmt}[1]{\textls[110]{\MakeUppercase{#1}}}
+\newcommand{\secfmt}[1]{\MakeUppercase{#1}}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
@@ -37,10 +39,10 @@
 \hyphenpenalty=2000
 
 \titleformat{\section}{\fontsize{9pt}{11pt}\bfseries\color{primary}}{}{0em}{\secfmt}[\vspace{-1pt}\color{rulecolor}\titlerule]
-\titlespacing*{\section}{0pt}{7.5pt}{3.5pt}
+\titlespacing*{\section}{0pt}{6pt}{3pt}
 
-\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.5pt}
-\renewcommand\labelitemi{\raisebox{0.2ex}{\color{accent}\fontsize{4.5pt}{4.5pt}\selectfont\faCircle}}
+\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.1pt}
+\renewcommand\labelitemi{{\color{accent}\textbullet}}
 
 \begin{document}
 \color{ink}\szbody
@@ -49,8 +51,8 @@
 {\szname\bfseries\color{primary} Adam Matthew Steinberger}\\[3pt]
 {\sztitle\bfseries\color{accent} Staff Software Engineer · Secure, auditable AI platforms for government and defense}\\[4pt]
 {\szbody Secretless, auditable AI platforms for environments where compliance and security are requirements from the first day.}\\[6pt]
-{\szmeta\color{muted} \faMapMarker*\ Greenville, SC (US remote)\quad{\color{rulecolor}\textbullet}\quad\faPhone*\ \href{tel:+18645174117}{+1-864-517-4117}\quad{\color{rulecolor}\textbullet}\quad\faEnvelope\ \href{mailto:adam@matthewsteinberger.com}{adam@matthewsteinberger.com}}\\[2pt]
-{\szmeta\color{muted} \faLinkedin\ \href{https://www.linkedin.com/in/adammatthewsteinberger/}{linkedin.com/in/adammatthewsteinberger}\quad{\color{rulecolor}\textbullet}\quad\faGithub\ \href{https://github.com/adammatthewsteinberger}{github.com/adammatthewsteinberger}\quad{\color{rulecolor}\textbullet}\quad\faGlobe\ \href{https://vibewithadam.matthewsteinberger.com}{vibewithadam.matthewsteinberger.com}}\\[6pt]
+{\szmeta\color{muted} Greenville, SC (US remote)\ {\color{rulecolor}\textbar}\ \href{tel:+18645174117}{+1-864-517-4117}\ {\color{rulecolor}\textbar}\ \href{mailto:adam@matthewsteinberger.com}{adam@matthewsteinberger.com}}\\[2pt]
+{\szmeta\color{muted} \href{https://www.linkedin.com/in/adammatthewsteinberger/}{linkedin.com/in/adammatthewsteinberger}\ {\color{rulecolor}\textbar}\ \href{https://github.com/adammatthewsteinberger}{github.com/adammatthewsteinberger}\ {\color{rulecolor}\textbar}\ \href{https://vibewithadam.matthewsteinberger.com}{vibewithadam.matthewsteinberger.com}}\\[6pt]
 {\szbody\bfseries Available now for Staff+ roles in government, defense and public-sector engineering. US-remote.}
 \end{center}
 \vspace{-6pt}
@@ -63,7 +65,7 @@ For 14 years I've built production systems in regulated industries: insurance, l
 \item \textbf{Secretless delivery and supply chain.} OIDC workload identity federation for 20 CI workflows across 9 repositories, with SBOMs, keyless signing and policy-as-code admission.
 \item \textbf{Identity at depth.} Sole author of two identity-governance-as-code control planes (40 resource kinds, multi-tenant, no stored tenant secrets) and identity advisory for a SOX-regulated enterprise of about 5,700 identities.
 \end{itemize}
-\section*{Experience}
+\section*{Professional Experience}
 \Needspace{4\baselineskip}
 \vspace{0pt}
 \noindent{\bfseries\fontsize{10pt}{13pt}\selectfont The Vizius Group} \hfill {\color{muted}\szmeta Sep 2025 – Aug 2026}\\[1pt]
@@ -113,17 +115,25 @@ For 14 years I've built production systems in regulated industries: insurance, l
 \item \textbf{Rearchitected the core integration layer} from legacy MuleSoft APIs into NestJS microservices (gRPC and REST) on PostgreSQL, with ETL pipelines and connectors across HubSpot, SharePoint, Snowflake and Salesforce.
 \item \textbf{Built Snow Portal}, a Snowflake job scheduler that replaced Alteryx at a fraction of the cost; full-stack .NET and React work on a mortgage-broker platform (credit-report integrations, pricing-engine APIs).
 \end{itemize}
-\section*{Earlier experience}
-{\szmeta \textbf{Transcat}, Senior Software Engineer {\color{muted}(2022--2023)}. Led the team delivering .NET Web APIs and a React front end for lab-equipment calibration.\hspace{1.1em}\textbf{LeaseTrack}, Senior Software Engineer {\color{muted}(2021--2022)}. Python and AWS Textract document parsing; a Java Spring Boot annotation system feeding an ML training pipeline.\hspace{1.1em}\textbf{Akmazio Software}, Founding Engineer {\color{muted}(2020--2021)}. Built the full C\#/.NET and SQL Server backend and wrote the business plan; managed interns and a contractor.\hspace{1.1em}\textbf{Bestpass by Fleetworthy}, Software Engineer {\color{muted}(2019--2020)}. Introduced automated unit testing to a legacy toll-billing system that had none.\hspace{1.1em}\textbf{New York State Insurance Fund}, Software Engineer {\color{muted}(2015--2019)}. Migrated VB6 systems to C\# MVC, refactored Oracle EDI integrations and mentored junior engineers.\hspace{1.1em}\textbf{Town and Country Computer Services}, Junior Software Engineer {\color{muted}(2013--2015)}. Insurance quoting, rating and reporting apps used all day by underwriters; client-facing from the first day.\hspace{1.1em}\textbf{GE HealthCare}, Junior Software Engineer {\color{muted}(2012--2013)}. A browser-based CT/MRI viewer with real-time 3D scrolling; built its full internationalization feature.}\par
+\section*{Earlier Experience}
+\begingroup\szmeta\begin{itemize}[leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1pt]
+\item \textbf{Transcat}, Senior Software Engineer {\color{muted}(2022--2023)}. Led the team delivering .NET Web APIs and a React front end for lab-equipment calibration.
+\item \textbf{LeaseTrack}, Senior Software Engineer {\color{muted}(2021--2022)}. Python and AWS Textract document parsing; a Java Spring Boot annotation system feeding an ML training pipeline.
+\item \textbf{Akmazio Software}, Founding Engineer {\color{muted}(2020--2021)}. Built the full C\#/.NET and SQL Server backend and wrote the business plan; managed interns and a contractor.
+\item \textbf{Bestpass by Fleetworthy}, Software Engineer {\color{muted}(2019--2020)}. Introduced automated unit testing to a legacy toll-billing system that had none.
+\item \textbf{New York State Insurance Fund}, Software Engineer {\color{muted}(2015--2019)}. Migrated VB6 systems to C\# MVC, refactored Oracle EDI integrations and mentored junior engineers.
+\item \textbf{Town and Country Computer Services}, Junior Software Engineer {\color{muted}(2013--2015)}. Insurance quoting, rating and reporting apps used all day by underwriters; client-facing from the first day.
+\item \textbf{GE HealthCare}, Junior Software Engineer {\color{muted}(2012--2013)}. A browser-based CT/MRI viewer with real-time 3D scrolling; built its full internationalization feature.
+\end{itemize}\endgroup
 \section*{Skills}
 {\szmeta \textbf{Identity \& access:} Microsoft Entra ID, Okta (core, IGA, Workflows), SAML 2.0, OIDC/OAuth 2.0, workload identity federation, RBAC (control and data plane), governance-as-code reconciliation, SOX-aligned access governance, GxP-classified functional specifications\par\vspace{2pt}\textbf{Security \& compliance:} Secretless delivery (OIDC federated credentials, managed identity, CSI-driver vault secrets); Trivy, Semgrep, CodeQL, Bandit, Gitleaks, Checkov, SBOM (Syft/CycloneDX), Cosign keyless signing, Kyverno/OPA admission; STRIDE threat modeling, SOC 2 readiness, OWASP LLM Top 10, NIST AI RMF\par\vspace{2pt}\textbf{Platform \& cloud:} Private AKS (workload identity, KEDA), Terraform, Bicep, Helm, Kustomize, Flux/Argo CD GitOps, GitHub Actions, Service Bus, Event Hubs, Key Vault, Private Endpoints, App Gateway + WAF, OpenTelemetry, PostgreSQL, Redis, Cosmos DB, AWS\par\vspace{2pt}\textbf{AI \& LLM systems:} Multi-vendor LLM gateways with cost and policy governance, agent sandboxing and egress policy, multi-agent orchestration, MCP servers, RAG (pgvector, FAISS, Azure AI Search, Pinecone), human-in-the-loop gating, structured outputs; Claude, Azure OpenAI/Foundry, GPT, Gemini, Mistral, vLLM, Ollama\par\vspace{2pt}\textbf{Languages:} Python 3.12 (FastAPI, SQLAlchemy 2, Pydantic, kopf), TypeScript/NestJS, Next.js + React, C\#/.NET, Java Spring Boot, SQL, KQL, Bash, gRPC/REST, OpenAPI}\par
-\section*{Open source \& publications}\begin{itemize}
+\section*{Open Source and Publications}\begin{itemize}
 \item \textbf{\href{https://github.com/the-vibey-project/vibey}{vibey}}. A Claude Code and Codex killer: completely free, censorship-free, open-source conductor for AI coding agents, five engine runners, the vibey-gh release tool, vibey-bootstrap and krypton apps for desktop, mobile, web and VS Code. Writes code like a principal software engineer with quality over slop, built toward AGI with superintelligence coming soon. MIT; pip install vibey-engine.
 \item \textbf{\href{https://github.com/the-vibey-project/vibey}{vibey-skills}}. A 149-plugin Claude Code skills marketplace, shipped inside vibey.
 \item \textbf{\href{https://the-vibey-project.github.io/vibey/main/paper.pdf}{Ledger-Mediated Orchestration: Vendor-Independent Autonomous Software Delivery over a Pool of Coding Agents}}. Paper describing vibey's design (not peer reviewed).
 \item \textbf{\href{https://vibewithadam.matthewsteinberger.com/novice-to-navigator}{Novice to Navigator: Your Guide to AI Chatbots for Business}}. Plain-English guide to RAG chatbots for decision-makers; first edition free online (ISBN 979-8274310628).
 \end{itemize}
 \Needspace{4\baselineskip}
-\section*{Education \& certification}
-{\szmeta \textbf{Skidmore College}, B.A., Computer Science {\color{muted}(2010--2012)}\hspace{1.1em}\textbf{Rensselaer Polytechnic Institute}, Electrical Engineering coursework {\color{muted}(2008--2010)}\hspace{1.1em}\textbf{Certified ScrumMaster (CSM)}, Scrum Alliance {\color{muted}(2021)}}\par
+\section*{Education and Certifications}
+{\szmeta \textbf{Skidmore College}, B.A., Computer Science {\color{muted}(2010--2012)}; \textbf{Rensselaer Polytechnic Institute}, Electrical Engineering coursework {\color{muted}(2008--2010)}; \textbf{Certified ScrumMaster (CSM)}, Scrum Alliance {\color{muted}(2021)}}\par
 \end{document}

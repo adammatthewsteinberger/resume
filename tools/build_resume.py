@@ -487,7 +487,7 @@ VARIANTS = {
             "**Open source, in public.** Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and "
             "passes only if no job is lost or run twice.",
         ],
-        "pdf_omit": {"vizius": ["also", "library"]},
+        "pdf_omit": {"vizius": ["also", "library", "reports"], "llc": ["review"]},
         "skills": ["ai", "identity", "security", "platform", "languages"],
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
@@ -523,6 +523,7 @@ VARIANTS = {
         ],
         "services": True,
         "order": ["llc", "vibey", "vizius", "apologist", "limaone"],
+        "pdf_omit": {"llc": ["push"], "apologist": ["excite"]},
         "skills": ["ai", "security", "identity", "languages"],
         "bullets": {
             "llc": ["chatbots", "review", "push"],
@@ -699,6 +700,7 @@ VARIANTS = {
             "**Handoffs that hold.** Co-led a 20-service platform to production-ready architecture by day 45; the junior "
             "developer trained in parallel now owns it.",
         ],
+        "pdf_omit": {"vizius": ["also", "library"]},
         "skills": ["identity", "security", "ai", "platform", "languages"],
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
@@ -1405,9 +1407,12 @@ def html_doc(v):
 def latex_doc(v):
     L = [
         r"\documentclass[10pt,letterpaper]{article}",
-        r"\usepackage[letterpaper,top=0.42in,bottom=0.42in,left=0.6in,right=0.6in]{geometry}",
+        r"\usepackage[letterpaper,top=0.4in,bottom=0.4in,left=0.6in,right=0.6in]{geometry}",
         r"\usepackage[utf8]{inputenc}",
+        r"\usepackage{cmap}",
         r"\usepackage[T1]{fontenc}",
+        r"\input{glyphtounicode}",
+        r"\ifdefined\pdfgentounicode\pdfgentounicode=1\fi",
         r"\usepackage{helvet}",
         r"\renewcommand{\familydefault}{\sfdefault}",
         r"\usepackage[protrusion=true,expansion=true]{microtype}",
@@ -1416,7 +1421,6 @@ def latex_doc(v):
         r"\usepackage{enumitem}",
         r"\usepackage{titlesec}",
         r"\usepackage{needspace}",
-        r"\usepackage{fontawesome5}",
         "",
         r"% Palette",
         r"\definecolor{primary}{HTML}{0F172A}",
@@ -1428,9 +1432,9 @@ def latex_doc(v):
         r"% One type scale, used everywhere: name 20, title 10.5, body 9, meta 8.",
         r"\newcommand{\szname}{\fontsize{20pt}{24pt}\selectfont}",
         r"\newcommand{\sztitle}{\fontsize{10.5pt}{13pt}\selectfont}",
-        r"\newcommand{\szbody}{\fontsize{9pt}{11.1pt}\selectfont}",
+        r"\newcommand{\szbody}{\fontsize{9pt}{10.8pt}\selectfont}",
         r"\newcommand{\szmeta}{\fontsize{8pt}{10pt}\selectfont}",
-        r"\newcommand{\secfmt}[1]{\textls[110]{\MakeUppercase{#1}}}",
+        r"\newcommand{\secfmt}[1]{\MakeUppercase{#1}}",
         "",
         r"\pagestyle{empty}",
         r"\setlength{\parindent}{0pt}",
@@ -1443,10 +1447,10 @@ def latex_doc(v):
         r"\hyphenpenalty=2000",
         "",
         r"\titleformat{\section}{\fontsize{9pt}{11pt}\bfseries\color{primary}}{}{0em}{\secfmt}[\vspace{-1pt}\color{rulecolor}\titlerule]",
-        r"\titlespacing*{\section}{0pt}{7.5pt}{3.5pt}",
+        r"\titlespacing*{\section}{0pt}{6pt}{3pt}",
         "",
-        r"\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.5pt}",
-        r"\renewcommand\labelitemi{\raisebox{0.2ex}{\color{accent}\fontsize{4.5pt}{4.5pt}\selectfont\faCircle}}",
+        r"\setlist[itemize]{leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1.1pt}",
+        r"\renewcommand\labelitemi{{\color{accent}\textbullet}}",
         "",
         r"\begin{document}",
         r"\color{ink}\szbody",
@@ -1458,16 +1462,16 @@ def latex_doc(v):
     ]
 
     c_line1 = [
-        f"\\faMapMarker*\\ {tex_escape(CITY)}, {tex_escape(REGION)} (US remote)",
-        f"\\faPhone*\\ \\href{{tel:+18645174117}}{{{tex_escape(PHONE)}}}",
-        f"\\faEnvelope\\ \\href{{mailto:{EMAIL}}}{{{tex_escape(EMAIL)}}}"
+        f"{tex_escape(CITY)}, {tex_escape(REGION)} (US remote)",
+        f"\\href{{tel:+18645174117}}{{{tex_escape(PHONE)}}}",
+        f"\\href{{mailto:{EMAIL}}}{{{tex_escape(EMAIL)}}}"
     ]
     c_line2 = [
-        f"\\faLinkedin\\ \\href{{{PROFILES[0][2]}}}{{linkedin.com/in/{PROFILES[0][1]}}}",
-        f"\\faGithub\\ \\href{{{PROFILES[1][2]}}}{{github.com/{PROFILES[1][1]}}}",
-        f"\\faGlobe\\ \\href{{{SITE}}}{{vibewithadam.matthewsteinberger.com}}"
+        f"\\href{{{PROFILES[0][2]}}}{{linkedin.com/in/{PROFILES[0][1]}}}",
+        f"\\href{{{PROFILES[1][2]}}}{{github.com/{PROFILES[1][1]}}}",
+        f"\\href{{{SITE}}}{{vibewithadam.matthewsteinberger.com}}"
     ]
-    dot = r"\quad{\color{rulecolor}\textbullet}\quad"
+    dot = r"\ {\color{rulecolor}\textbar}\ "
     L.append(f"{{\\szmeta\\color{{muted}} {dot.join(c_line1)}}}\\\\[2pt]")
     L.append(f"{{\\szmeta\\color{{muted}} {dot.join(c_line2)}}}\\\\[6pt]")
     L.append(f"{{\\szbody\\bfseries {tex_escape(v['availability'])}}}")
@@ -1488,7 +1492,7 @@ def latex_doc(v):
         L.append(r"\end{itemize}")
         L.append(f"{{\\szmeta {tex_escape(SERVICES_NOTE)} Details and proof: \\href{{{REPO}/blob/HEAD/SERVICES.md}}{{SERVICES.md}}}}\\par")
 
-    L.append(r"\section*{Experience}")
+    L.append(r"\section*{Professional Experience}")
     for idx, (e, bullets) in enumerate(jobs(v, pdf=True)):
         org = tex_escape(e["org"])
         loc = tex_escape(e["loc"])
@@ -1504,10 +1508,11 @@ def latex_doc(v):
             L.append(f"\\item {tex_rich(b)}")
         L.append(r"\end{itemize}")
 
-    L.append(r"\section*{Earlier experience}")
-    earlier_parts = [f"\\textbf{{{tex_escape(org)}}}, {tex_escape(role)} {{\\color{{muted}}({s[:4]}--{e[:4]})}}. {tex_escape(line)}"
-                     for org, role, loc, s, e, line in EARLIER]
-    L.append("{\\szmeta " + r"\hspace{1.1em}".join(earlier_parts) + "}\\par")
+    L.append(r"\section*{Earlier Experience}")
+    L.append(r"\begingroup\szmeta\begin{itemize}[leftmargin=11pt,labelsep=5pt,topsep=1pt,partopsep=0pt,parsep=0pt,itemsep=1pt]")
+    for org, role, loc, s_, e_, line in EARLIER:
+        L.append(f"\\item \\textbf{{{tex_escape(org)}}}, {tex_escape(role)} {{\\color{{muted}}({s_[:4]}--{e_[:4]})}}. {tex_escape(line)}")
+    L.append(r"\end{itemize}\endgroup")
 
     L.append(r"\section*{Skills}")
     skills_lines = []
@@ -1515,7 +1520,7 @@ def latex_doc(v):
         skills_lines.append(f"\\textbf{{{tex_escape(k)}:}} {tex_rich(t)}")
     L.append("{\\szmeta " + r"\par\vspace{2pt}".join(skills_lines) + "}\\par")
 
-    L.append(r"\section*{Open source \& publications}\begin{itemize}")
+    L.append(r"\section*{Open Source and Publications}\begin{itemize}")
     for n, u, desc in OPEN_SOURCE:
         L.append(f"\\item \\textbf{{\\href{{{u}}}{{{tex_escape(n)}}}}}. {tex_escape(desc)}")
     for t, desc, u, _ in PUBLICATIONS:
@@ -1523,10 +1528,10 @@ def latex_doc(v):
     L.append(r"\end{itemize}")
 
     L.append(r"\Needspace{4\baselineskip}")
-    L.append(r"\section*{Education \& certification}")
-    edu = [f"\\textbf{{{tex_escape(s_)}}}, {tex_escape(d.replace('Electrical and Electronics Engineering coursework', 'Electrical Engineering coursework'))} {{\\color{{muted}}({a}--{b})}}" for s_, d, a, b in EDUCATION]
+    L.append(r"\section*{Education and Certifications}")
+    edu = [f"\\textbf{{{tex_escape(s_)}}}, {tex_escape(d.replace('Electrical and Electronics Engineering coursework', 'Electrical Engineering coursework'))} {{\\color{{muted}}({a_}--{b_})}}" for s_, d, a_, b_ in EDUCATION]
     edu += [f"\\textbf{{{tex_escape(c)}}}, {tex_escape(o)} {{\\color{{muted}}({y})}}" for c, o, y in CERTS]
-    L.append("{\\szmeta " + r"\hspace{1.1em}".join(edu) + "}\\par")
+    L.append("{\\szmeta " + "; ".join(edu) + "}\\par")
 
     L.append(r"\end{document}")
     return "\n".join(L)
@@ -1538,6 +1543,35 @@ def latex_compiler():
         if p and os.path.exists(p):
             return cmd
     return None
+
+
+ATS_HEADINGS = ["SUMMARY", "PROFESSIONAL EXPERIENCE", "EARLIER EXPERIENCE", "SKILLS", "EDUCATION AND CERTIFICATIONS"]
+
+
+def ats_check(reader, v):
+    """What an applicant-tracking parser needs from the PDF's text layer: real text in reading order, standard section
+    headings, contact details as plain text, a real bullet character, and no icon glyphs or letter-spaced words."""
+    text = "\n".join((page.extract_text() or "") for page in reader.pages)
+    problems = []
+    if len(text) < 2000:
+        problems.append("the text layer is nearly empty")
+    for heading in ATS_HEADINGS:
+        if heading not in text:
+            problems.append(f"missing section heading {heading!r}")
+    if text.find("SUMMARY") > text.find("PROFESSIONAL EXPERIENCE") >= 0:
+        problems.append("sections are out of order")
+    for needle in (EMAIL, PHONE):
+        if needle not in text:
+            problems.append(f"contact detail {needle!r} is not in the text")
+    if any(0xE000 <= ord(c) <= 0xF8FF or ord(c) in (0x25CB, 0x25CF) for c in text):
+        problems.append("icon or private-use glyphs in the text layer")
+    if re.search(r"\b(?:[A-Z] ){4,}[A-Z]\b", text):
+        problems.append("letter-spaced words")
+    if re.search(r"[a-z0-9\)][|][A-Za-z]", text):
+        problems.append("words glued across a separator")
+    if "\u2022" not in text:
+        problems.append("no bullet character in the text")
+    return problems
 
 
 def pdf(v, tex_path, pdf_path):
@@ -1569,7 +1603,12 @@ def pdf(v, tex_path, pdf_path):
     page_count = len(reader.pages)
     if page_count != 2:
         print(f"  WARNING: {pdf_path} is {page_count} pages (expected exactly 2 pages)")
+    ats_problems = ats_check(reader, v)
+    for problem in ats_problems:
+        print(f"  WARNING: {pdf_path} is not ATS-safe: {problem}")
     writer = PdfWriter(clone_from=reader)
+    from pypdf.generic import NameObject, TextStringObject
+    writer._root_object[NameObject("/Lang")] = TextStringObject("en-US")  # the document language, for parsers and readers
     writer.add_metadata({
         "/Title": f"{NAME}: {v['title']}",
         "/Author": NAME,
