@@ -154,21 +154,30 @@ EXPERIENCE = [
                       "volunteers on Chatwoot or EchoGlobal: an explicit session state machine with idempotent "
                       "teardown, Redis-backed sessions, HMAC-verified webhooks and QStash-queued delivery. Shipped as "
                       "split PR stacks with security hardening (DOMPurify, CORS allowlist, Sentry PII off, rate limiting).",
-            "discover": "**Monthly insight pipeline** _(architect; Python, dbt, PostgreSQL, DuckDB)_. Finds what a "
-                        "month of messages was about with no fixed category list: embeddings are clustered into "
-                        "subjects, a local open-weight model (Qwen3-4B) names each one and rejects groups that are not "
-                        "subjects, and dbt publishes versioned categories as marts and a report. **A 27 GB dump of "
-                        "5.14 million rows runs end to end in about six minutes on a laptop**, streamed once and never "
-                        "restored.",
-            "privacy": "**Privacy as a rule the data cannot break.** A count is public only when ten different people "
-                       "stand behind it, a hidden cell takes its smallest visible neighbour with it, and no message "
-                       "text is ever published. Each secret has exactly one reader, so a compromised public portal "
-                       "still cannot reach the pipeline or the store that holds text, and the public run buttons sit "
-                       "behind a kill switch that starts off.",
+            "discover": "**APG Insight** _(architect; Python, dbt, PostgreSQL, DuckDB)_. A monthly pipeline that works "
+                        "out what people ask a nonprofit's AI chat about, with no fixed category list: multilingual "
+                        "embeddings are clustered into 40 micro-topics and merged into 12 categories, a local "
+                        "open-weight model (Qwen3-4B) judges whether each is a real subject and names it, and every "
+                        "message joins up to three. Categories are stability-checked across refits and keep their keys "
+                        "from run to run. **Discovery and assignment for 120,901 messages take about two minutes on a "
+                        "laptop; a 27 GB, 5.14-million-row dump is read in 2.5 minutes without being restored.**",
+            "depth": "**Subtopics, tone and conversations.** Each run splits every large, stable category into named "
+                     "subtopics up to three levels deep. An optional tone stage scores messages from Hostile to "
+                     "Friendly: a local model scores a sample (the teacher), a classifier trained on those scores "
+                     "labels the rest (the student), the student is checked out of fold, and a category it cannot "
+                     "judge is withheld. dbt traces conversations from message structure, so topic and tone roll up "
+                     "per conversation.",
+            "privacy": "**A public portal that answers questions without exposing anyone.** A visitor asks what a "
+                       "month talked about; the question is matched against the month's message vectors and the "
+                       "matches are split into topics that come from the data (no taxonomy in the code, and no "
+                       "language model sees the question). A count appears only when ten different people stand "
+                       "behind it, and each secret has one reader, so a compromised portal (Next.js over a read-only "
+                       "API) cannot reach the pipeline or the text. Built and tested end to end; not yet deployed.",
             "gates": "**Held to its own gates.** 120 architecture decision records, 100% branch coverage on 4,500+ "
-                     "tests, and a Helm and Kustomize install with KEDA-scaled workers exercised on minikube. **A dbt "
-                     "step that ran 4 hours 20 minutes without finishing now builds in about a minute**, and a test "
-                     "fails if the slow query shape returns.",
+                     "tests, and a queue-driven install (control-plane database, KEDA-scaled stage workers, Helm and "
+                     "Kustomize) exercised on minikube, including stopping a pod mid-task. **A dbt step that ran 4 "
+                     "hours 20 minutes without finishing now builds in about a minute**, and a test fails if the slow "
+                     "query shape returns.",
         },
     },
     {
@@ -478,12 +487,12 @@ VARIANTS = {
             "**Open source, in public.** Creator of vibey, whose chaos test crashes a fifth of its workers mid-job and "
             "passes only if no job is lost or run twice.",
         ],
-        "pdf_omit": {"vizius": ["also"]},
+        "pdf_omit": {"vizius": ["also", "library"]},
         "skills": ["ai", "identity", "security", "platform", "languages"],
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
             "vizius": ["gateway", "identity", "payroll", "reports", "devsecops", "library", "also"],
-            "apologist": ["excite", "privacy"],
+            "apologist": ["discover", "privacy"],
             "llc": ["chatbots", "review"],
         },
         "keywords": ["Staff Software Engineer", "AI platform engineering", "agent orchestration", "LLM gateway",
@@ -518,7 +527,7 @@ VARIANTS = {
         "bullets": {
             "llc": ["chatbots", "review", "push"],
             "vizius": ["gateway", "identity", "reports", "devsecops"],
-            "apologist": ["excite", "discover"],
+            "apologist": ["discover", "excite"],
             "vibey": ["what", "ledger"],
         },
         "keywords": ["freelance AI engineer", "AI consultant", "RAG chatbot", "LLM gateway", "AI security review",
@@ -552,7 +561,7 @@ VARIANTS = {
         "bullets": {
             "vibey": ["what", "ledger", "gates"],
             "vizius": ["payroll", "reports", "gateway", "library", "also"],
-            "apologist": ["discover", "privacy"],
+            "apologist": ["discover", "depth"],
             "llc": ["review", "chatbots"],
         },
         "keywords": ["university", "academia", "AI systems", "open source", "technical writing",
@@ -613,18 +622,20 @@ VARIANTS = {
             "FAISS and vLLM, with Grafana and Prometheus watching every token.",
             "**Small scope, done fast.** Web push notifications for a non-profit, timezone-aware and personalized: "
             "159 of 159 tests passing at 86% coverage, delivered in 5 billable hours against a 30-hour estimate.",
-            "**Volunteer architect.** Since April 2026, software architect for The Apologist Project, which hands "
-            "people from an AI chat to live volunteers.",
+            "**Volunteer architect.** Since April 2026, software architect for The Apologist Project: a relay that "
+            "hands people from an AI chat to live volunteers, and a monthly pipeline that finds what the chat's "
+            "users talk about, publishing only what ten people stand behind.",
             "**Open source, in public.** I maintain vibey (MIT), and its contributing guide and a volunteer page are "
             "public.",
         ],
         "order": ["apologist", "llc", "vibey", "vizius", "limaone"],
+        "pdf_omit": {"apologist": ["gates"]},
         "skills": ["ai", "platform", "security", "languages"],
         "bullets": {
             "llc": ["chatbots", "push", "review"],
             "vibey": ["what", "ledger"],
             "vizius": ["gateway", "identity", "devsecops", "library"],
-            "apologist": ["excite", "discover", "privacy", "gates"],
+            "apologist": ["excite", "discover", "depth", "privacy", "gates"],
         },
         "keywords": ["non-profit", "mission-driven organizations", "self-hosted RAG chatbot", "Mistral-7B", "vLLM",
                      "FAISS", "Prometheus", "Grafana", "web push notifications", "volunteer software architect",
@@ -655,6 +666,7 @@ VARIANTS = {
             "versioned sync API for 114+ directory groups replaced a low-code workflow.",
         ],
         "order": ["vizius", "limaone", "llc", "vibey", "apologist"],
+        "pdf_omit": {"vizius": ["library"], "apologist": ["gates"]},
         "skills": ["ai", "platform", "data", "languages", "delivery"],
         "bullets": {
             "vizius": ["gateway", "payroll", "reports", "identity", "devsecops", "library"],
@@ -721,6 +733,7 @@ VARIANTS = {
             "**Adoption, not demos.** Three product teams moved onto the AI gateway I architected; my platform library "
             "is used by 17+ repositories.",
         ],
+        "pdf_omit": {"vizius": ["also", "advisory"]},
         "skills": ["ai", "data", "languages", "platform_fd", "delivery"],
         "bullets": {
             "vibey": ["what", "ledger", "gates"],

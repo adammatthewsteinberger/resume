@@ -38,8 +38,8 @@ Senior Software Engineering Consultant | Mar 2025 – Aug 2025
 
 The Apologist Project | Remote
 Volunteer Software Architect | Apr 2026 – Present
-- Privacy as a rule the data cannot break. A count is public only when ten different people stand behind it, a hidden cell takes its smallest visible neighbour with it, and no message text is ever published. Each secret has exactly one reader, so a compromised public portal still cannot reach the pipeline or the store that holds text, and the public run buttons sit behind a kill switch that starts off.
-- Held to its own gates. 120 architecture decision records, 100% branch coverage on 4,500+ tests, and a Helm and Kustomize install with KEDA-scaled workers exercised on minikube. A dbt step that ran 4 hours 20 minutes without finishing now builds in about a minute, and a test fails if the slow query shape returns.
+- A public portal that answers questions without exposing anyone. A visitor asks what a month talked about; the question is matched against the month's message vectors and the matches are split into topics that come from the data (no taxonomy in the code, and no language model sees the question). A count appears only when ten different people stand behind it, and each secret has one reader, so a compromised portal (Next.js over a read-only API) cannot reach the pipeline or the text. Built and tested end to end; not yet deployed.
+- Held to its own gates. 120 architecture decision records, 100% branch coverage on 4,500+ tests, and a queue-driven install (control-plane database, KEDA-scaled stage workers, Helm and Kustomize) exercised on minikube, including stopping a pod mid-task. A dbt step that ran 4 hours 20 minutes without finishing now builds in about a minute, and a test fails if the slow query shape returns.
 
 Lima One Capital | Greenville, SC
 Senior Software Engineer | May 2023 – Feb 2025
