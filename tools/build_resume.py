@@ -57,13 +57,14 @@ JOIN_ME = SITE + "/join-me"
 NAME = "Adam Matthew Steinberger"
 EMAIL = "adam@matthewsteinberger.com"
 PHONE = "+1-864-517-4117"
-CITY, REGION, COUNTRY = "Greenville", "SC", "US"
+CITY, REGION, COUNTRY = "Albany", "NY", "US"  # primary base, for structured fields
+LOCALE = "Albany, NY · Greenville, SC · US remote"
 PROFILES = [
     ("LinkedIn", "adammatthewsteinberger", "https://www.linkedin.com/in/adammatthewsteinberger/"),
     ("GitHub", "adammatthewsteinberger", "https://github.com/adammatthewsteinberger"),
 ]
 CONTACT = [
-    (f"{CITY}, {REGION} (US remote)", None),
+    (LOCALE, None),
     (PHONE, "tel:+18645174117"),
     (EMAIL, f"mailto:{EMAIL}"),
     ("linkedin.com/in/adammatthewsteinberger", PROFILES[0][2]),
@@ -470,7 +471,7 @@ VARIANTS = {
         "title": "Staff Software Engineer · AI platforms, identity and agent infrastructure",
         "tagline": "Creator of vibey and krypton: a free, censorship-free Claude Code and Codex killer that writes "
                    "code like a principal engineer without slop, built toward AGI with superintelligence coming soon.",
-        "availability": "Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.",
+        "availability": "Available now for Staff+ engineering roles and fixed-scope contract work. Albany, NY, Greenville, SC or US remote.",
         "summary": "For 14 years I've built production software for insurance, lending, healthcare and security teams. "
                    "Lately I build krypton and the vibey engine in the open: a completely free, censorship-free Claude "
                    "Code and Codex killer meant to replace both and open to everyone. It writes code the way a principal "
@@ -506,7 +507,7 @@ VARIANTS = {
         "title": "Independent AI Platform Engineer · fixed-scope AI, identity and security work",
         "tagline": "Senior engineering sold as a fixed scope: RAG chatbots, LLM gateways, identity governance and AI "
                    "security reviews, agreed in writing and handed over clean.",
-        "availability": "Taking fixed-scope and contract engagements now. US-remote.",
+        "availability": "Taking fixed-scope and contract engagements now. Albany, NY, Greenville, SC or US remote.",
         "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
                    "teams. Now I sell that work as fixed-scope engagements. I've delivered two RAG chatbots in "
                    "30 days each, reviewed a 59,000-line codebase in 10 hours, and architected an AI gateway that "
@@ -541,7 +542,7 @@ VARIANTS = {
         "title": "Software Engineer · AI systems, open source and technical writing",
         "tagline": "I build AI software whose claims can be checked: the design is a paper, the behavior is pinned by "
                    "tests, and the code is open.",
-        "availability": "Available now for engineering roles at universities and research groups. US-remote.",
+        "availability": "Available now for engineering roles at universities and research groups. Albany, NY, Greenville, SC or US remote.",
         "summary": "For 14 years I've built production software, and lately I've written it up as carefully as I "
                    "build it. vibey's design is a paper, its decisions are 86 architecture decision records, its "
                    "documentation is a book, and its chaos test passes only if no job is lost or run twice. I built "
@@ -574,7 +575,7 @@ VARIANTS = {
         "title": "Staff Software Engineer · Secure, auditable AI platforms for government and defense",
         "tagline": "Secretless, auditable AI platforms for environments where compliance and security are "
                    "requirements from the first day.",
-        "availability": "Available now for Staff+ roles in government, defense and public-sector engineering. US-remote.",
+        "availability": "Available now for Staff+ roles in government, defense and public-sector engineering. Albany, NY, Greenville, SC or US remote.",
         "summary": "For 14 years I've built production systems in regulated industries: insurance, lending, "
                    "healthcare and cybersecurity. I architect AI platforms whose identity, audit and supply-chain "
                    "controls hold up to review: workload identity instead of stored secrets, hash-chained audit "
@@ -611,7 +612,7 @@ VARIANTS = {
         "title": "Senior Software Engineer · AI and web platforms for mission-driven organizations",
         "tagline": "I build software for mission-driven teams that keeps data on your own servers when it has to, is "
                    "monitored on every request, and is handed over to the people who will run it.",
-        "availability": "Available now for engineering roles at mission-driven organizations. US-remote.",
+        "availability": "Available now for engineering roles at mission-driven organizations. Albany, NY, Greenville, SC or US remote.",
         "summary": "For 14 years I've built production software for insurance, lending, healthcare and security "
                    "teams. Recently that has included non-profit work: a fully self-hosted RAG chatbot delivered in "
                    "30 days, web push notifications delivered in 5 billable hours against a 30-hour estimate, and, "
@@ -648,7 +649,7 @@ VARIANTS = {
         "title": "Staff Software Engineer · Enterprise AI and platform engineering, discovery to production",
         "tagline": "I turn unclear business problems into AI and platform software that product teams adopt and that "
                    "keeps running after I hand it over.",
-        "availability": "Available now for Staff+ engineering roles in industry. US-remote.",
+        "availability": "Available now for Staff+ engineering roles in industry. Albany, NY, Greenville, SC or US remote.",
         "summary": "For 14 years I've turned unclear business problems into production systems for insurance, lending, "
                    "healthcare, manufacturing and industrial-testing teams. Most recently I architected AI platforms "
                    "that put language models into real operational work, and built krypton and the vibey engine as a "
@@ -686,7 +687,7 @@ VARIANTS = {
         "title": "Staff Software Engineer · AI platform, identity and regulated deployments",
         "tagline": "Secretless, auditable AI platforms for environments where compliance and security are "
                    "requirements from the first day.",
-        "availability": "Available now for Staff+ roles in AI platform, identity and public-sector engineering. US-remote.",
+        "availability": "Available now for Staff+ roles in AI platform, identity and public-sector engineering. Albany, NY, Greenville, SC or US remote.",
         "summary": "For 14 years I've built production systems in regulated industries: insurance, lending, "
                    "healthcare and cybersecurity. I architect AI platforms whose identity, audit and supply-chain "
                    "controls hold up to review, with workload identity instead of stored secrets, hash-chained audit "
@@ -719,7 +720,7 @@ VARIANTS = {
         "title": "Forward Deployed AI Engineer · Enterprise AI, discovery to production",
         "tagline": "I embed with the business, break the messy problem into parts, and ship AI workflows the customer "
                    "can run after I leave.",
-        "availability": "Available now for forward-deployed and customer-facing AI engineering roles. US-remote.",
+        "availability": "Available now for forward-deployed and customer-facing AI engineering roles. Albany, NY, Greenville, SC or US remote.",
         "summary": "For 14 years I've turned unclear business problems into production systems for insurance, lending, "
                    "healthcare and industrial-testing teams, as an employee, a founding engineer and an independent "
                    "consultant. My method is steady: discovery, a written solution, decomposition into work, then a "
@@ -1462,7 +1463,7 @@ def latex_doc(v):
     ]
 
     c_line1 = [
-        f"{tex_escape(CITY)}, {tex_escape(REGION)} (US remote)",
+        tex_escape(LOCALE).replace("·", r"\textbullet{}"),
         f"\\href{{tel:+18645174117}}{{{tex_escape(PHONE)}}}",
         f"\\href{{mailto:{EMAIL}}}{{{tex_escape(EMAIL)}}}"
     ]

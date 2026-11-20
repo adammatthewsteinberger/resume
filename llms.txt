@@ -4,7 +4,7 @@
 
 For 14 years I've built production software for insurance, lending, healthcare and security teams. Lately I build krypton and the vibey engine in the open: a completely free, censorship-free Claude Code and Codex killer meant to replace both and open to everyone. It writes code the way a principal software engineer does so developers get quality code rather than slop, completely free of charge, paving the way to an AGI platform with superintelligence coming soon. I write architecture down before code, enforce 100% branch coverage, and ship systems with no lost jobs.
 
-Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.
+Available now for Staff+ engineering roles and fixed-scope contract work. Albany, NY, Greenville, SC or US remote.
 
 Key facts, each traceable to the résumé and to public repositories:
 - Claude Code & Codex replacement. Built krypton and vibey engine completely free, censorship-free and open to everyone, writing code like a principal software engineer with quality over slop.

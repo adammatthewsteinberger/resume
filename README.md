@@ -4,11 +4,11 @@
 
 Creator of vibey and krypton: a free, censorship-free Claude Code and Codex killer that writes code like a principal engineer without slop, built toward AGI with superintelligence coming soon.
 
-Greenville, SC (US remote) · [+1-864-517-4117](tel:+18645174117) · [adam@matthewsteinberger.com](mailto:adam@matthewsteinberger.com) · [linkedin.com/in/adammatthewsteinberger](https://www.linkedin.com/in/adammatthewsteinberger/) · [github.com/adammatthewsteinberger](https://github.com/adammatthewsteinberger) · [vibewithadam.matthewsteinberger.com](https://vibewithadam.matthewsteinberger.com)
+Albany, NY · Greenville, SC · US remote · [+1-864-517-4117](tel:+18645174117) · [adam@matthewsteinberger.com](mailto:adam@matthewsteinberger.com) · [linkedin.com/in/adammatthewsteinberger](https://www.linkedin.com/in/adammatthewsteinberger/) · [github.com/adammatthewsteinberger](https://github.com/adammatthewsteinberger) · [vibewithadam.matthewsteinberger.com](https://vibewithadam.matthewsteinberger.com)
 
 [![vibey on PyPI](https://img.shields.io/pypi/v/vibey-engine?label=vibey)](https://pypi.org/project/vibey-engine/) [![Code: MIT](https://img.shields.io/badge/code-MIT-yellow.svg)](LICENSE) [![Content: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
 
-> Available now for Staff+ engineering roles and fixed-scope contract work. US-remote.
+> Available now for Staff+ engineering roles and fixed-scope contract work. Albany, NY, Greenville, SC or US remote.
 
 **[Contribute to vibey](#open-source)** · [Hire me for a fixed-scope project](#fixed-scope-engagements) · [Hire me full-time](#experience)
 

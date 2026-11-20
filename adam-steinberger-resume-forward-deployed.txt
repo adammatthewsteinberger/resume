@@ -2,9 +2,9 @@ ADAM MATTHEW STEINBERGER
 Forward Deployed AI Engineer · Enterprise AI, discovery to production
 I embed with the business, break the messy problem into parts, and ship AI workflows the customer can run after I leave.
 
-Greenville, SC (US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
+Albany, NY · Greenville, SC · US remote | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
 
-Available now for forward-deployed and customer-facing AI engineering roles. US-remote.
+Available now for forward-deployed and customer-facing AI engineering roles. Albany, NY, Greenville, SC or US remote.
 
 SUMMARY
 For 14 years I've turned unclear business problems into production systems for insurance, lending, healthcare and industrial-testing teams, as an employee, a founding engineer and an independent consultant. My method is steady: discovery, a written solution, decomposition into work, then a handoff to someone I've mentored. Most recently I led AI platforms that put language models into real operational work, such as payroll, engineering reports and identity governance, with a person approving every step that can't be undone.
