@@ -2,9 +2,9 @@ ADAM MATTHEW STEINBERGER
 Software Engineer · AI systems, open source and technical writing
 I build AI software whose claims can be checked: the design is a paper, the behavior is pinned by tests, and the code is open.
 
-Greenville, SC (US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
+Albany, NY · Greenville, SC · US remote | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
 
-Available now for engineering roles at universities and research groups. US-remote.
+Available now for engineering roles at universities and research groups. Albany, NY, Greenville, SC or US remote.
 
 SUMMARY
 For 14 years I've built production software, and lately I've written it up as carefully as I build it. vibey's design is a paper, its decisions are 86 architecture decision records, its documentation is a book, and its chaos test passes only if no job is lost or run twice. I built krypton and vibey as an open, censorship-free Claude Code and Codex replacement that writes code like a principal software engineer without code slop—advancing towards AGI with superintelligence coming soon. I also wrote a plain-English book on RAG chatbots and mentored engineers across three projects.

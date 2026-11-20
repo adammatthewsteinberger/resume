@@ -2,9 +2,9 @@ ADAM MATTHEW STEINBERGER
 Staff Software Engineer · Enterprise AI and platform engineering, discovery to production
 I turn unclear business problems into AI and platform software that product teams adopt and that keeps running after I hand it over.
 
-Greenville, SC (US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
+Albany, NY · Greenville, SC · US remote | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
 
-Available now for Staff+ engineering roles in industry. US-remote.
+Available now for Staff+ engineering roles in industry. Albany, NY, Greenville, SC or US remote.
 
 SUMMARY
 For 14 years I've turned unclear business problems into production systems for insurance, lending, healthcare, manufacturing and industrial-testing teams. Most recently I architected AI platforms that put language models into real operational work, and built krypton and the vibey engine as a Claude Code and Codex killer—completely free, censorship-free, open to everyone, and writing code the way a principal software engineer does so teams get quality code not slop, advancing toward an AGI platform with superintelligence coming soon.

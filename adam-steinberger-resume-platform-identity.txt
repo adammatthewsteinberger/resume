@@ -2,9 +2,9 @@ ADAM MATTHEW STEINBERGER
 Staff Software Engineer · AI platform, identity and regulated deployments
 Secretless, auditable AI platforms for environments where compliance and security are requirements from the first day.
 
-Greenville, SC (US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
+Albany, NY · Greenville, SC · US remote | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
 
-Available now for Staff+ roles in AI platform, identity and public-sector engineering. US-remote.
+Available now for Staff+ roles in AI platform, identity and public-sector engineering. Albany, NY, Greenville, SC or US remote.
 
 SUMMARY
 For 14 years I've built production systems in regulated industries: insurance, lending, healthcare and cybersecurity. I architect AI platforms whose identity, audit and supply-chain controls hold up to review, with workload identity instead of stored secrets, hash-chained audit trails, policy-as-code admission and governance reconciled from Git. I write the architecture down before the code, train the people who inherit it, and hand off systems that keep running.

@@ -2,9 +2,9 @@ ADAM MATTHEW STEINBERGER
 Senior Software Engineer · AI and web platforms for mission-driven organizations
 I build software for mission-driven teams that keeps data on your own servers when it has to, is monitored on every request, and is handed over to the people who will run it.
 
-Greenville, SC (US remote) | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
+Albany, NY · Greenville, SC · US remote | +1-864-517-4117 | adam@matthewsteinberger.com | linkedin.com/in/adammatthewsteinberger | github.com/adammatthewsteinberger | vibewithadam.matthewsteinberger.com
 
-Available now for engineering roles at mission-driven organizations. US-remote.
+Available now for engineering roles at mission-driven organizations. Albany, NY, Greenville, SC or US remote.
 
 SUMMARY
 For 14 years I've built production software for insurance, lending, healthcare and security teams. Recently that has included non-profit work: a fully self-hosted RAG chatbot delivered in 30 days, web push notifications delivered in 5 billable hours against a 30-hour estimate, and, since April, volunteer architecture for The Apologist Project. In open source, I built krypton and the vibey engine as a free, censorship-free Claude Code and Codex killer that writes code like a principal engineer so mission-driven orgs get quality code instead of slop, built toward AGI with superintelligence coming soon.
