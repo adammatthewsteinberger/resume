@@ -27,8 +27,13 @@ metrics. When a figure changes, change it here and rebuild.
 
 Usage:
     python tools/build_resume.py [OUT_DIR] [--no-pdf]
+    python tools/build_resume.py [OUT_DIR] --federal [--final] [--no-pdf]
 
 PDF output needs Google Chrome (or set CHROME=/path/to/chrome) and pypdf for metadata.
+
+--federal builds ONLY the private résumé for a USAJOBS announcement into OUT_DIR/applications/...,
+which is git-ignored, and leaves every public output untouched. It follows the announcement's
+format rules (two pages, 10pt+ Arial, 0.5in margins, no links, MM/DD/YYYY dates, hours per week).
 """
 import html
 import json
@@ -43,6 +48,9 @@ import time
 ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
 OUT = ARGS[0] if ARGS else "."
 MAKE_PDF = "--no-pdf" not in sys.argv
+APP = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--application=")), "irs")
+FEDERAL = "--federal" in sys.argv or any(a.startswith("--application=") for a in sys.argv)  # private application résumé
+FINAL = "--final" in sys.argv       # with --federal: fail while any date or hours figure is still a placeholder
 
 REPO = "https://github.com/adammatthewsteinberger/resume"
 RAW = "https://raw.githubusercontent.com/adammatthewsteinberger/resume/HEAD"
@@ -1734,11 +1742,389 @@ def docx_doc(v, path):
     d.save(path)
 
 
+# ================================================================ FEDERAL RÉSUMÉ
+# A USAJOBS résumé plays by different rules from the public ones above, so it has its own
+# renderer instead of a VARIANTS entry. A federal announcement typically requires:
+#   - two pages at most, Arial or Calibri at 10pt or larger, 0.5in margins (readability tricks
+#     to squeeze in more are grounds for ineligibility);
+#   - no embedded links, no photo, no SSN, no copied announcement language;
+#   - MM/DD/YYYY start and end dates and hours per week for every position.
+# Facts still live once: title, employer, location and months come from EXPERIENCE/EARLIER, and
+# check_federal() fails the build if a condensed bullet states a number its source does not.
+# The output is private per-application material, so it goes to a git-ignored folder.
+# Per-application data (announcement, wording, exact dates and hours) is PRIVATE. It lives in the
+# git-ignored applications/profiles.py and is loaded by load_private_profiles(); see
+# tools/federal_profiles.example.py for the shape. Until then these names are unset.
+FED_ANNOUNCEMENT = FED_DIR = FED = FED_BULLETS = FED_NOTES = FED_DAYS = FED_HOURS = None
+FED_HOURS_CONFIRMED = False
+APPLICATIONS = {}
+
+
+def load_private_profiles():
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "applications", "profiles.py")
+    if not os.path.exists(path):
+        sys.exit("applications/profiles.py not found. It holds your private per-application data and is "
+                 "git-ignored; copy tools/federal_profiles.example.py there and fill it in.")
+    with open(path, encoding="utf-8") as fh:
+        exec(compile(fh.read(), path, "exec"), globals())
+
+
+FED_CSS = """
+@page { size: Letter; margin: 0.5in; }
+:root { --ink: #111; --muted: #444; --rule: #999; }
+* { box-sizing: border-box; }
+body { font-family: Arial, "Liberation Sans", Helvetica, sans-serif; color: var(--ink); font-size: 10pt;
+       line-height: 1.17; margin: 0; }
+h1 { font-size: 18pt; line-height: 1.1; margin: 0 0 1pt; }
+.target { font-weight: 700; margin: 0; }
+.contact { margin: 0 0 2pt; }
+h2 { font-size: 10pt; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 1px solid var(--rule);
+     padding-bottom: 1pt; margin: 6pt 0 2pt; break-after: avoid; page-break-after: avoid; }
+p { margin: 0 0 2pt; }
+ul { margin: 1pt 0 2pt; padding-left: 13pt; }
+li { margin: 0 0 1.2pt; }
+.job { margin: 0 0 3pt; }
+.row { display: flex; justify-content: space-between; align-items: baseline; break-after: avoid;
+       page-break-after: avoid; }
+.org { font-weight: 700; }
+.loc, .muted { color: var(--muted); font-weight: 400; }
+.dates, .hrs { white-space: nowrap; color: var(--muted); }
+.role { font-style: italic; }
+.note { color: var(--muted); margin: 0 0 1pt; }
+ul.plain { list-style: none; padding-left: 0; }
+"""
+
+
+FED_LOCATION = f"{CITY}, {REGION}"   # per profile; a profile may override it
+
+
+def fed_contact():
+    """Plain text only: no links, and no 'US remote', because the duty stations are on-site."""
+    return [FED_LOCATION, PHONE, EMAIL]
+
+
+DATE_STYLE = "day"   # "day" = MM/DD/YYYY (federal); "month" = MM/YYYY (New York State)
+
+
+def fed_date(ym, day):
+    if ym is None:
+        return "Present"
+    y, m = ym.split("-")
+    if DATE_STYLE == "month":
+        return f"{m}/{y}"
+    return f"{m}/{day:02d}/{y}" if day else f"{m}/DD/{y}"
+
+
+def fed_span(key, start, end):
+    sd, ed = FED_DAYS.get(key, (None, None))
+    return f"{fed_date(start, sd)} – {fed_date(end, ed)}"
+
+
+def fed_hrs(key):
+    h_ = FED_HOURS.get(key)
+    return f"{h_} hrs/week" if h_ else "## hrs/week"
+
+
+def fed_jobs():
+    by_key = {e["key"]: e for e in EXPERIENCE}
+    return [(by_key[k], FED_BULLETS[k]) for k in ORDER]
+
+
+def fed_earlier():
+    """(org, role, loc, dates, hours, line) for each earlier position."""
+    return [(org, role, loc, fed_span(org, s, e), fed_hrs(org), line) for org, role, loc, s, e, line in EARLIER]
+
+
+def fed_unresolved():
+    """Everything the applicant still has to supply or confirm before this can be submitted."""
+    todo = []
+    rows = [(e["key"], e["org"], e["start"], e["end"]) for e, _ in fed_jobs()]
+    rows += [(org, org, s, e) for org, _, _, s, e, _ in EARLIER]
+    for key, org, start, end in rows:
+        sd, ed = FED_DAYS.get(key, (None, None))
+        if DATE_STYLE == "month":
+            sd = ed = True
+        if not sd:
+            todo.append(f"{org}: start day for {start}")
+        if end is not None and not ed:
+            todo.append(f"{org}: end day for {end}")
+        if not FED_HOURS.get(key):
+            todo.append(f"{org}: hours per week")
+    if not FED_HOURS_CONFIRMED:
+        todo.append("hours per week: 40 is assumed for the salaried roles; confirm them, then set FED_HOURS_CONFIRMED")
+    return todo
+
+
+def check_federal():
+    """Fail the build if the federal text breaks a rule or states a number its sources do not."""
+    nums = lambda s: re.findall(r"\d[\d,.]*\d|\d", s)
+    by_key = {e["key"]: e for e in EXPERIENCE}
+    canon = " ".join(
+        [b for e in EXPERIENCE for b in e["bullets"].values()] + [e.get("summary", "") for e in EXPERIENCE]
+        + [line for *_, line in EARLIER] + [v["summary"] for v in VARIANTS.values()]
+        + [" ".join(p[:2]) + " " + p[3] for p in PUBLICATIONS] + [s["proof"] for s in SERVICES]
+        + [f"{e['start']} {e['end'] or ''}" for e in EXPERIENCE])  # job years are facts too
+    assert set(FED_BULLETS) == set(ORDER), "FED_BULLETS must cover every job in ORDER"
+    for key, bullets in FED_BULLETS.items():
+        src = " ".join(by_key[key]["bullets"].values()) + " " + by_key[key].get("summary", "")
+        for b in bullets:
+            for n in nums(plain(b)):
+                assert n in src, f"federal '{key}': '{n}' is not in that job's source bullets"
+    for t in FED["highlights"] + [FED["summary"], FED["publications"]]:
+        for n in nums(plain(t)):
+            assert n in canon, f"federal highlights/summary: '{n}' is not in the source facts"
+    for size in re.findall(r"font-size:\s*([\d.]+)pt", FED_CSS):
+        assert float(size) >= 10, f"federal CSS has a {size}pt font; the announcement requires 10pt or larger"
+    assert "0.5in" in FED_CSS and "Arial" in FED_CSS
+    assert FED["title"] and "http" not in json.dumps(FED), "no links are allowed on a federal résumé"
+
+
+def fed_txt():
+    L = [NAME.upper(), FED["title"], FED["target"], "",
+         " | ".join(fed_contact()), "",
+         "SUMMARY", FED["summary"], "", "QUALIFICATION HIGHLIGHTS"] + [f"- {b}" for b in FED["highlights"]]
+    L += ["", "PROFESSIONAL EXPERIENCE"]
+    for e, bullets in fed_jobs():
+        L += ["", f"{e['org']} | {e['loc']}", f"{e['role']} | {fed_span(e['key'], e['start'], e['end'])} | "
+                                              f"{fed_hrs(e['key'])}"]
+        if FED_NOTES.get(e["key"]):
+            L.append(FED_NOTES[e["key"]])
+        L += [f"- {b}" for b in bullets]
+    L += ["", "EARLIER EXPERIENCE"]
+    L += [f"- {org}, {role}, {loc}, {dates}, {hrs}. {line}" for org, role, loc, dates, hrs, line in fed_earlier()]
+    L += ["", "SKILLS"] + [f"- {k}: {t}" for k, t in FED["skills"]]
+    L += ["", "PUBLICATIONS", FED["publications"], "", "EDUCATION AND CERTIFICATION"]
+    L += [f"- {s}, {d} ({a}–{b})" for s, d, a, b in EDUCATION] + [f"- {c}, {o} ({y})" for c, o, y in CERTS]
+    L.append("")
+    return plain("\n".join(L))
+
+
+def fed_html():
+    contact = " &nbsp;·&nbsp; ".join(h(t) for t in fed_contact())
+    L = ["<!doctype html><html lang='en'><head><meta charset='utf-8'>",
+         f"<title>{h(NAME)} · {h(FED['title'])}</title>",
+         f"<meta name='author' content='{h(NAME)}'>", f"<style>{FED_CSS}</style></head><body>",
+         f"<header><h1>{h(NAME)}</h1><div class='target'>{h(FED['title'])}</div>"
+         f"<div class='target muted'>{h(FED['target'])}</div><div class='contact'>{contact}</div></header>",
+         f"<h2>Summary</h2><p>{rich(FED['summary'])}</p>",
+         "<h2>Qualification highlights</h2><ul>" + "".join(f"<li>{rich(b)}</li>" for b in FED["highlights"])
+         + "</ul>", "<h2>Professional experience</h2>"]
+    for e, bullets in fed_jobs():
+        L.append("<div class='job'><div class='row'>"
+                 f"<span class='org'>{h(e['org'])} <span class='loc'>· {h(e['loc'])}</span></span>"
+                 f"<span class='dates'>{h(fed_span(e['key'], e['start'], e['end']))}</span></div>"
+                 f"<div class='row'><span class='role'>{h(e['role'])}</span>"
+                 f"<span class='hrs'>{h(fed_hrs(e['key']))}</span></div>"
+                 + (f"<div class='note'>{h(FED_NOTES[e['key']])}</div>" if FED_NOTES.get(e["key"]) else "")
+                 + "<ul>" + "".join(f"<li>{rich(b)}</li>" for b in bullets) + "</ul></div>")
+    L.append("<h2>Earlier experience</h2><ul class='plain'>" + "".join(
+        f"<li><b>{h(org)}</b>, {h(role)}, {h(loc)}, {h(dates)}, {h(hrs)}. {h(line)}</li>"
+        for org, role, loc, dates, hrs, line in fed_earlier()) + "</ul>")
+    L.append("<h2>Skills</h2><ul class='plain'>" + "".join(
+        f"<li><b>{h(k)}:</b> {h(t)}</li>" for k, t in FED["skills"]) + "</ul>")
+    L.append(f"<h2>Publications, education and certification</h2><p>{rich(FED['publications'])}</p><p>"
+             + " &nbsp;·&nbsp; ".join([f"<b>{h(s)}</b>, {h(d)} ({a}–{b})" for s, d, a, b in EDUCATION]
+                                      + [f"<b>{h(c)}</b>, {h(o)} ({y})" for c, o, y in CERTS]) + "</p>")
+    L.append("</body></html>")
+    return "".join(L)
+
+
+def fed_docx(path):
+    from docx import Document
+    from docx.shared import Pt, Inches
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
+
+    d = Document()
+    for s in d.sections:
+        s.top_margin = s.bottom_margin = s.left_margin = s.right_margin = Inches(0.5)
+    base = d.styles["Normal"]
+    base.font.name = "Arial"
+    base.element.rPr.rFonts.set(qn("w:eastAsia"), "Arial")
+    base.font.size = Pt(10)
+    base.paragraph_format.space_after = Pt(1.5)
+    base.paragraph_format.line_spacing = 1.0
+    for style in ("List Bullet",):
+        d.styles[style].font.name = "Arial"
+        d.styles[style].font.size = Pt(10)
+
+    def add_rich(par, text):
+        for t, style in spans(text):
+            r = par.add_run(t)
+            r.bold = style == "b" or None
+            r.italic = style == "i" or None
+
+    def heading(text):
+        p = d.add_paragraph(); r = p.add_run(text.upper()); r.bold = True
+        p.paragraph_format.space_before = Pt(5); p.paragraph_format.space_after = Pt(1.5)
+        p.paragraph_format.keep_with_next = True
+        bdr = OxmlElement("w:pBdr"); b = OxmlElement("w:bottom")
+        for k, val in (("w:val", "single"), ("w:sz", "4"), ("w:space", "1"), ("w:color", "999999")):
+            b.set(qn(k), val)
+        bdr.append(b); p._p.get_or_add_pPr().append(bdr)
+
+    def bullet(text):
+        p = d.add_paragraph(style="List Bullet"); p.paragraph_format.space_after = Pt(1)
+        # Match the PDF's 13pt bullet indent so Word wraps lines where Chrome does (page count).
+        p.paragraph_format.left_indent = Pt(13); p.paragraph_format.first_line_indent = Pt(-10)
+        add_rich(p, text)
+
+    def two_col(left, right, bold=False, italic=False):
+        p = d.add_paragraph(); p.paragraph_format.space_after = Pt(0); p.paragraph_format.keep_with_next = True
+        p.paragraph_format.tab_stops.add_tab_stop(Inches(7.5), alignment=2)
+        r = p.add_run(left); r.bold = bold or None; r.italic = italic or None
+        p.add_run(f"\t{right}")
+
+    p = d.add_paragraph(); r = p.add_run(NAME); r.bold = True; r.font.size = Pt(18)
+    p.paragraph_format.space_after = Pt(0)
+    p = d.add_paragraph(); r = p.add_run(FED["title"]); r.bold = True; p.paragraph_format.space_after = Pt(0)
+    p = d.add_paragraph(); r = p.add_run(FED["target"]); r.bold = True; p.paragraph_format.space_after = Pt(0)
+    d.add_paragraph("  ·  ".join(fed_contact()))
+
+    heading("Summary"); add_rich(d.add_paragraph(), FED["summary"])
+    heading("Qualification highlights")
+    for b in FED["highlights"]:
+        bullet(b)
+    heading("Professional experience")
+    for e, bullets in fed_jobs():
+        two_col(f"{e['org']}  ·  {e['loc']}", fed_span(e["key"], e["start"], e["end"]), bold=True)
+        two_col(e["role"], fed_hrs(e["key"]), italic=True)
+        if FED_NOTES.get(e["key"]):
+            d.add_paragraph(FED_NOTES[e["key"]]).paragraph_format.space_after = Pt(1)
+        for b in bullets:
+            bullet(b)
+    heading("Earlier experience")
+    for org, role, loc, dates, hrs, line in fed_earlier():
+        p = d.add_paragraph(); r = p.add_run(org); r.bold = True
+        p.add_run(f", {role}, {loc}, {dates}, {hrs}. {line}")
+    heading("Skills")
+    for k, t in FED["skills"]:
+        p = d.add_paragraph(); r = p.add_run(f"{k}: "); r.bold = True; p.add_run(t)
+    heading("Publications, education and certification")
+    add_rich(d.add_paragraph(), FED["publications"])
+    p = d.add_paragraph()
+    for i, (s, deg, a, b) in enumerate(EDUCATION):
+        p.add_run("  ·  " if i else "").bold = None
+        r = p.add_run(s); r.bold = True; p.add_run(f", {deg} ({a}–{b})")
+    for c, o, y in CERTS:
+        p.add_run("  ·  "); r = p.add_run(c); r.bold = True; p.add_run(f", {o} ({y})")
+
+    cp = d.core_properties
+    cp.author = NAME
+    cp.title = f"{NAME}: {FED['title']}"
+    cp.subject = FED["tagline"]
+    cp.keywords = ", ".join(FED["keywords"])
+    d.save(path)
+
+
+def select_application(name):
+    """Rebind the module-level federal data to another application profile."""
+    if name == "irs":
+        return
+    if name not in APPLICATIONS:
+        sys.exit(f"unknown --application={name}; choose irs or one of {', '.join(sorted(APPLICATIONS))}")
+    a = APPLICATIONS[name]
+    globals().update(FED=a["fed"], FED_BULLETS=a["bullets"], FED_DIR=a["dir"], DATE_STYLE=a["date_style"],
+                     FED_LOCATION=a.get("location", FED_LOCATION))
+
+
+# Federal PDFs come from headless Chrome (exact 10pt layout), not the LaTeX path the public résumés use.
+def chrome_path():
+    for p in (os.environ.get("CHROME"), "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+              shutil.which("google-chrome"), shutil.which("chromium"), shutil.which("chromium-browser")):
+        if p and os.path.exists(p):
+            return p
+    return None
+
+
+def fed_pdf(v, html_path, pdf_path):
+    chrome = chrome_path()
+    if not chrome:
+        print(f"  skipped {pdf_path}: Chrome not found (set CHROME=...)")
+        return
+    if os.path.exists(pdf_path):
+        os.remove(pdf_path)
+    with tempfile.TemporaryDirectory() as profile:
+        # Headless Chrome sometimes lingers after printing, so wait for a complete PDF
+        # (size stable and ending in %%EOF), then stop the process ourselves.
+        proc = subprocess.Popen([chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
+                                 "--no-first-run", "--no-default-browser-check", "--disable-extensions",
+                                 f"--user-data-dir={profile}", f"--print-to-pdf={os.path.abspath(pdf_path)}",
+                                 "file://" + os.path.abspath(html_path)],
+                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        last, deadline = -1, time.time() + 90
+        while time.time() < deadline:
+            time.sleep(0.5)
+            if proc.poll() is not None and os.path.exists(pdf_path):
+                break
+            if os.path.exists(pdf_path):
+                size = os.path.getsize(pdf_path)
+                with open(pdf_path, "rb") as fh:
+                    fh.seek(max(0, size - 1024))
+                    done = b"%%EOF" in fh.read()
+                if done and size == last:
+                    break
+                last = size
+        if proc.poll() is None:
+            proc.terminate()
+            try:
+                proc.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+    if not os.path.exists(pdf_path):
+        raise RuntimeError(f"Chrome did not produce {pdf_path}")
+    try:
+        from pypdf import PdfReader, PdfWriter
+    except ImportError:
+        print("  pypdf not installed: PDF written without metadata")
+        return
+    writer = PdfWriter(clone_from=PdfReader(pdf_path))
+    writer.add_metadata({"/Title": f"{NAME}: {v['title']}", "/Author": NAME,
+                         "/Subject": plain(v["tagline"]), "/Keywords": ", ".join(v["keywords"]),
+                         "/Creator": "tools/build_resume.py (federal)"})
+    with open(pdf_path, "wb") as f:
+        writer.write(f)
+
+
+def build_federal():
+    check_federal()
+    out = os.path.join(OUT, FED_DIR)
+    os.makedirs(out, exist_ok=True)
+    stem = os.path.join(out, FED["stem"])
+    with open(stem + ".txt", "w", encoding="utf-8") as f:
+        f.write(fed_txt())
+    with open(stem + ".html", "w", encoding="utf-8") as f:
+        f.write(fed_html())
+    fed_docx(stem + ".docx")
+    pages = None
+    if MAKE_PDF:
+        fed_pdf(FED, stem + ".html", stem + ".pdf")
+        try:
+            from pypdf import PdfReader
+            pages = len(PdfReader(stem + ".pdf").pages)
+        except (ImportError, FileNotFoundError):
+            pass
+    print(f"wrote federal résumé → {out}/{FED['stem']}.(txt|html|docx|pdf)")
+    if pages is not None:
+        print(f"  PDF is {pages} page(s); the announcement allows 2")
+    todo = fed_unresolved()
+    for t in todo:
+        print(f"  TODO {t}")
+    if (pages is not None and pages > 2) or (FINAL and todo):
+        sys.exit(f"federal build failed: {'over two pages' if pages and pages > 2 else f'{len(todo)} items unresolved'}")
+
+
 # ---------------------------------------------------------------- write
 def write(name, text):
     with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
         f.write(text)
 
+
+if FEDERAL:
+    load_private_profiles()
+    select_application(APP)
+    build_federal()
+    sys.exit(0)
 
 check_services()
 os.makedirs(os.path.join(OUT, "freelance"), exist_ok=True)
